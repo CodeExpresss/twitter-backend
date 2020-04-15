@@ -2,6 +2,7 @@
 #define USER_HPP
 
 #include <string>
+#include "container_user.hpp"
 
 class User {
 public:
@@ -11,16 +12,18 @@ public:
     bool login();
     bool logout();
     bool sign_up();
-    bool check_user();
+    bool change_user_data();
     bool is_active();
 private:
     int user_id;
     std::string password;
     std::string email;
+    std::string session;
 
-    bool set_password();
-    bool set_email();
-    bool set_username();
+    bool change_password();
+    bool change_email();
+    //bool set_username();
+    static ContainerUser &Objects;
 };
 
 #endif

@@ -8,9 +8,15 @@ using ::testing::DoAll;
 using ::testing::Return;
 using ::testing::SetArgReferee;
 
-//class MockManagerUser : public ManagerUser {
-
+//class MockUser : public User {
+    //MOCK_METHOD0(login, bool());
 //};
+
+class MockUserContainer : public ContainerUser {
+public:
+    MOCK_METHOD0(all, void());
+};
+
 
 
 int main(int argc, char** argv) {
