@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
+  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/test.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/test.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/test.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
+  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/manager_user.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/manager_user.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/manager_user.cpp"
+}
+]
