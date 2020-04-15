@@ -14,17 +14,17 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(INC
-   include/container_user.hpp
-   #include/subscription.hpp
-   include/user.hpp
-   #include/controller_user.hpp
-   #include/controller_user.hpp
+    include/types.h
+#include/subscription.hpp
+    include/user.hpp
+#include/controller_user.hpp
+#include/controller_user.hpp
 )
 
 set(SRC
     #source/main.c
     #source/memory_work.c
-    source/container_user.cpp
+    #source/container_user.cpp
 )
 
 #add_executable(it_3
