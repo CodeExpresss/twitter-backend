@@ -4,8 +4,13 @@
 #include <vector>
 #include <string>
 
+#include "tag.hpp"
+
 class Tweet {
 public:
+    Tweet();
+
+    bool set_tag(const std::vector<Tag> &tags);
 
 private:
     int tweet_id;
@@ -13,7 +18,7 @@ private:
     std::vector<int> tags_id;
     std::string text;
     std::string date;
-    std::string 
+    std::string image_path;
     bool is_visible;
 };
 

@@ -19,12 +19,20 @@ set(INC
     include/user.hpp
 #include/controller_user.hpp
 #include/controller_user.hpp
+    include/tag.hpp
+    include/tweet.hpp
+    include/container_tag.hpp
+    include/container_tweet.hpp
 )
 
 set(SRC
     #source/main.c
     #source/memory_work.c
     #source/container_user.cpp
+    source/tag.cpp
+    source/tweet.cpp
+    source/container_tag.cpp
+    source/container_tweet.cpp
 )
 
 #add_executable(it_3

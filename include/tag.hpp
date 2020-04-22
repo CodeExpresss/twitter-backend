@@ -7,6 +7,8 @@ class Tag {
 public:
     Tag();
     ~Tag();
+
+    std::string get_title() const;
 private:
     int tag_id;
     std::string title;

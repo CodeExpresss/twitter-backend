@@ -6,7 +6,22 @@
 },
 {
   "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
-  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/manager_user.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/manager_user.cpp",
-  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/manager_user.cpp"
+  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/tag.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/tag.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/tag.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
+  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/tweet.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/tweet.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/tweet.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
+  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/container_tag.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/container_tag.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/container_tag.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
+  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/container_tweet.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/container_tweet.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/container_tweet.cpp"
 }
 ]
