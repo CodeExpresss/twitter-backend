@@ -10,8 +10,8 @@ set(CMAKE_C_FLAGS "-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-#find_package(GTest REQUIRED)
-#include_directories(${GTEST_INCLUDE_DIRS})
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
 
 #add_subdirectory(../libs/client)
 #add_subdirectory(../libs/controllers)
@@ -27,10 +27,10 @@ set(SRC
 add_executable(tests_gmock
     ${SRC})
 
-#enable_testing()
-#add_test(gtest ${EXECUTABLE_OUTPUT_PATH}/tests_gtest)
-#add_definitions(-fprofile-arcs -ftest-coverage)
-#target_link_libraries(test -fprofile-arcs)
+enable_testing()
+add_test(gtest ${EXECUTABLE_OUTPUT_PATH}/tests_gtest)
+add_definitions(-fprofile-arcs -ftest-coverage)
+target_link_libraries(tests_gmock -fprofile-arcs)
 
 target_link_libraries(tests_gmock
     client
@@ -39,7 +39,7 @@ target_link_libraries(tests_gmock
     models
     repositories
     server
-    unit_of_worck)
+    unit_of_work)
 
 target_include_directories(tests_gmock
     PUBLIC
@@ -52,6 +52,6 @@ target_include_directories(tests_gmock
         "../libs/unit_of_work/include"
 )
 
-#target_link_libraries(tests_gmock ${GTEST_LIBRARIES} pthread)
+target_link_libraries(tests_gmock ${GTEST_LIBRARIES} pthread)
 #target_link_libraries(tests_gtest study_std_lib)
-#target_link_libraries(tests_gmock -lgmock)
+target_link_libraries(tests_gmock -lgmock)

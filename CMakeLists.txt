@@ -28,32 +28,32 @@ add_subdirectory(src/test)
 #add_definitions(-fprofile-arcs -ftest-coverage)
 #target_link_libraries(my_gmock -fprofile-arcs)
 
-set(SRC
-    src/test/source/main.cpp)
+#set(SRC
+    #src/test/source/main.cpp)
 
-add_executable(tests
-    ${SRC})
+#add_executable(tests
+    #${SRC})
 
-target_include_directories(test
-    PUBLIC
-        "src/libs/client/include"
-        "src/libs/controllers/include"
-        "src/libs/data_base/include"
-        "src/libs/models/include"
-        "src/libs/repositories/include"
-        "src/libs/server/include"
-        "src/libs/unit_of_work/include"
-)
+#target_include_directories(test
+    #PUBLIC
+        #"src/libs/client/include"
+        #"src/libs/controllers/include"
+        #"src/libs/data_base/include"
+        #"src/libs/models/include"
+        #"src/libs/repositories/include"
+        #"src/libs/server/include"
+        #"src/libs/unit_of_work/include"
+#)
 
-target_link_libraries(tests
-    client
-    controllers
-    data_base
-    models
-    repositories
-    server
-    unit_of_work
-)
+#target_link_libraries(tests
+    #client
+    #controllers
+    #data_base
+    #models
+    #repositories
+    #server
+    #unit_of_work
+#)
 
 #target_link_libraries(test ${GTEST_LIBRARIES} pthread)
 #target_link_libraries(tests_gtest study_std_lib)

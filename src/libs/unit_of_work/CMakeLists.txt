@@ -22,15 +22,6 @@ set(SRC
     source/unit_of_work.cpp
 )
 
-#add_executable(my_gmock
-    #${INC}
-    #source/test.cpp
-    #${SRC})
-#enable_testing()
-#add_test(gtest ${EXECUTABLE_OUTPUT_PATH}/tests_gtest)
-#add_definitions(-fprofile-arcs -ftest-coverage)
-#target_link_libraries(my_gmock -fprofile-arcs)
-
 add_library(unit_of_work SHARED
     ${SRC})
 
@@ -39,6 +30,4 @@ target_include_directories(unit_of_work
         "include"
 )
 
-#target_link_libraries(my_gmock ${GTEST_LIBRARIES} pthread)
-#target_link_libraries(tests_gtest study_std_lib)
-#target_link_libraries(my_gmock -lgmock)
+
