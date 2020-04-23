@@ -1,64 +1,60 @@
 cmake_minimum_required(VERSION 3.8)
 
-project(my_gmock)
+project(app)
 
 set(CMAKE_C_STANDARD 99)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 set(CMAKE_C_FLAGS "-g -O0 -Wall -W -fprofile-arcs -ftest-coverage")
 set(CMAKE_EXE_LINKER_FLAGS "-fprofile-arcs -ftest-coverage")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+#find_package(GTest REQUIRED)
+#include_directories(${GTEST_INCLUDE_DIRS})
 
-set(INC
-    include/types.h
-#include/subscription.hpp
-    include/user.hpp
-#include/controller_user.hpp
-#include/controller_user.hpp
-    include/tag.hpp
-    include/tweet.hpp
-    include/container_tag.hpp
-    include/container_tweet.hpp
-)
+add_subdirectory(src/libs/client)
+add_subdirectory(src/libs/controllers)
+add_subdirectory(src/libs/data_base)
+add_subdirectory(src/libs/models)
+add_subdirectory(src/libs/repositories)
+add_subdirectory(src/libs/server)
+add_subdirectory(src/libs/unit_of_work)
+
+add_subdirectory(src/test)
+
+#enable_testing()
+#add_test(gtest ${EXECUTABLE_OUTPUT_PATH}/tests_gtest)
+#add_definitions(-fprofile-arcs -ftest-coverage)
+#target_link_libraries(my_gmock -fprofile-arcs)
 
 set(SRC
-    #source/main.c
-    #source/memory_work.c
-    #source/container_user.cpp
-    source/tag.cpp
-    source/tweet.cpp
-    source/container_tag.cpp
-    source/container_tweet.cpp
-)
+    src/test/source/main.cpp)
 
-#add_executable(it_3
-    #${INC}
-    #source/main.c
-    #${SRC}
-#)
-
-add_executable(my_gmock
-    ${INC}
-    source/test.cpp
+add_executable(tests
     ${SRC})
-enable_testing()
-add_test(gtest ${EXECUTABLE_OUTPUT_PATH}/tests_gtest)
-add_definitions(-fprofile-arcs -ftest-coverage)
-target_link_libraries(my_gmock -fprofile-arcs)
 
-#target_include_directories(it_3
-    #PUBLIC
-        #"include"
-#)
-target_include_directories(my_gmock
+target_include_directories(test
     PUBLIC
-        "include"
+        "src/libs/client/include"
+        "src/libs/controllers/include"
+        "src/libs/data_base/include"
+        "src/libs/models/include"
+        "src/libs/repositories/include"
+        "src/libs/server/include"
+        "src/libs/unit_of_work/include"
 )
 
-target_link_libraries(my_gmock ${GTEST_LIBRARIES} pthread)
+target_link_libraries(tests
+    client
+    controllers
+    data_base
+    models
+    repositories
+    server
+    unit_of_work
+)
+
+#target_link_libraries(test ${GTEST_LIBRARIES} pthread)
 #target_link_libraries(tests_gtest study_std_lib)
-target_link_libraries(my_gmock -lgmock)
+#target_link_libraries(test -lgmock)
