@@ -13,14 +13,6 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-#add_subdirectory(../libs/client)
-#add_subdirectory(../libs/controllers)
-#add_subdirectory(../libs/data_base)
-#add_subdirectory(../libs/models)
-#add_subdirectory(../libs/repositories)
-#add_subdirectory(../libs/server)
-#add_subdirectory(../libs/unit_of_work)
-
 set(SRC
     source/main.cpp)
 
@@ -53,5 +45,4 @@ target_include_directories(tests_gmock
 )
 
 target_link_libraries(tests_gmock ${GTEST_LIBRARIES} pthread)
-#target_link_libraries(tests_gtest study_std_lib)
 target_link_libraries(tests_gmock -lgmock)

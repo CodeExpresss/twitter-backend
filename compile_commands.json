@@ -1,27 +1,162 @@
 [
 {
-  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
-  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/test.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/test.cpp",
-  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/test.cpp"
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/client",
+  "command": "/usr/bin/c++  -Dclient_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/client -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/client -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/client/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/client.dir/source/client.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/client/source/client.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/client/source/client.cpp"
 },
 {
-  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
-  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/tag.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/tag.cpp",
-  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/tag.cpp"
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/create_tweet_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/create_tweet_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/create_tweet_controller.cpp"
 },
 {
-  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
-  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/tweet.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/tweet.cpp",
-  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/tweet.cpp"
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/get_profile_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/get_profile_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/get_profile_controller.cpp"
 },
 {
-  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
-  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/container_tag.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/container_tag.cpp",
-  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/container_tag.cpp"
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/index_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/index_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/index_controller.cpp"
 },
 {
-  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build",
-  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build -I/home/san_sanchez/TechnoPark/twitter-backend -I/home/san_sanchez/TechnoPark/twitter-backend/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++11 -o CMakeFiles/my_gmock.dir/source/container_tweet.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/source/container_tweet.cpp",
-  "file": "/home/san_sanchez/TechnoPark/twitter-backend/source/container_tweet.cpp"
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/login_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/login_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/login_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/logout_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/logout_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/logout_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/profile_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/profile_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/profile_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/signup_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/signup_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/signup_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/subscription_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/subscription_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/subscription_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/tags_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/tags_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/tags_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/tweet_like_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/tweet_like_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/tweet_like_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/update_profile_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/update_profile_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/update_profile_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/update_user_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/update_user_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/update_user_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/user_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/user_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/user_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers",
+  "command": "/usr/bin/c++  -Dcontrollers_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/controllers.dir/source/vote_controller.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/vote_controller.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/source/vote_controller.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/data_base",
+  "command": "/usr/bin/c++  -Ddata_base_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/data_base -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/data_base.dir/source/DBConnection.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base/source/DBConnection.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base/source/DBConnection.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/data_base",
+  "command": "/usr/bin/c++  -Ddata_base_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/data_base -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/data_base.dir/source/DBController.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base/source/DBController.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base/source/DBController.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models",
+  "command": "/usr/bin/c++  -Dmodels_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/models.dir/source/profile.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/profile.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/profile.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models",
+  "command": "/usr/bin/c++  -Dmodels_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/models.dir/source/subscription.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/subscription.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/subscription.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models",
+  "command": "/usr/bin/c++  -Dmodels_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/models.dir/source/tag.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/tag.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/tag.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models",
+  "command": "/usr/bin/c++  -Dmodels_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/models.dir/source/tweet.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/tweet.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/tweet.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models",
+  "command": "/usr/bin/c++  -Dmodels_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/models.dir/source/user.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/user.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/user.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models",
+  "command": "/usr/bin/c++  -Dmodels_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/models.dir/source/vote.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/vote.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/source/vote.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories",
+  "command": "/usr/bin/c++  -Drepositories_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/repositories.dir/source/profile_repository.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/profile_repository.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/profile_repository.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories",
+  "command": "/usr/bin/c++  -Drepositories_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/repositories.dir/source/subscription_repository.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/subscription_repository.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/subscription_repository.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories",
+  "command": "/usr/bin/c++  -Drepositories_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/repositories.dir/source/tag_repository.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/tag_repository.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/tag_repository.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories",
+  "command": "/usr/bin/c++  -Drepositories_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/repositories.dir/source/tweet_repository.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/tweet_repository.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/tweet_repository.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories",
+  "command": "/usr/bin/c++  -Drepositories_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/repositories.dir/source/user_repository.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/user_repository.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/user_repository.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories",
+  "command": "/usr/bin/c++  -Drepositories_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/repositories.dir/source/vote_repository.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/vote_repository.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/source/vote_repository.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/server",
+  "command": "/usr/bin/c++  -Dserver_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/server -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/server -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/server/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/server.dir/source/server.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/server/source/server.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/server/source/server.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/unit_of_work",
+  "command": "/usr/bin/c++  -Dunit_of_work_EXPORTS -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/libs/unit_of_work -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/unit_of_work -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/unit_of_work/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage -fPIC   -std=gnu++14 -o CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/libs/unit_of_work/source/unit_of_work.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/libs/unit_of_work/source/unit_of_work.cpp"
+},
+{
+  "directory": "/home/san_sanchez/TechnoPark/twitter-backend/build/src/test",
+  "command": "/usr/bin/c++   -I/home/san_sanchez/TechnoPark/twitter-backend/build/src/test -I/home/san_sanchez/TechnoPark/twitter-backend/src/test -I/home/san_sanchez/TechnoPark/twitter-backend/src/test/../libs/client/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/test/../libs/controllers/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/test/../libs/data_base/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/test/../libs/models/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/test/../libs/repositories/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/test/../libs/server/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/test/../libs/unit_of_work/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/client/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/controllers/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/data_base/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/models/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/repositories/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/server/include -I/home/san_sanchez/TechnoPark/twitter-backend/src/libs/unit_of_work/include  -g -O0 -Wall -fprofile-arcs -ftest-coverage   -fprofile-arcs -ftest-coverage -std=gnu++14 -o CMakeFiles/tests_gmock.dir/source/main.cpp.o -c /home/san_sanchez/TechnoPark/twitter-backend/src/test/source/main.cpp",
+  "file": "/home/san_sanchez/TechnoPark/twitter-backend/src/test/source/main.cpp"
 }
 ]
