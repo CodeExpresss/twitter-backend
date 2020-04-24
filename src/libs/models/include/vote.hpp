@@ -1,10 +1,16 @@
 #ifndef VOTE_HPP
 #define VOTE_HPP
 
+#include <iostream>
+
 class Vote {
 public:
-    Vote(int, int);
-    ~Vote();
+    Vote() = default;
+    ~Vote() = default;
+
+    void foo() {
+        std::cout << "It's a live!\n";
+    }
 
 private:
     int profile_id;
