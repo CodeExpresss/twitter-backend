@@ -2,7 +2,6 @@
 #define UNIT_OF_WORK_HPP
 
 #include <iostream>
-//#include <boost/property_tree/ptree.hpp>
 
 #include "unit_of_work_header.hpp"
 boost::property_tree::ptree heroTree;
@@ -11,7 +10,7 @@ class UnitOfWork {
 public:
     UnitOfWork() = default;
     ~UnitOfWork() = default;
-    void foo() {std::cout << "Work";};
+
     boost::property_tree::ptree  sing_up();
     boost::property_tree::ptree get_index_tweet();
     boost::property_tree::ptree login();
@@ -35,7 +34,6 @@ private:
     UserRepository user_repository;
     VoteRepository vote_repository;
     SubscriptionRepository subscription_repository;
-
 };
 
 #endif // UNIT_OF_WORK_HPP

@@ -9,7 +9,6 @@ public:
     UserRepository() = default;
     ~UserRepository() = default;
 
-
     std::vector<User> get_all();
     User get_by_id(int id);
     void create(User item);
