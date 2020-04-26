@@ -3,5 +3,6 @@
 
 #include <string>
 #include <boost/property_tree/ptree.hpp>
+#include "unit_of_work.hpp"
 
 #endif

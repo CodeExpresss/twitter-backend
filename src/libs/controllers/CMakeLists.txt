@@ -49,4 +49,5 @@ add_library(controllers SHARED
 target_include_directories(controllers
     PUBLIC
         "include"
+        "../unit_of_work/include"
 )
