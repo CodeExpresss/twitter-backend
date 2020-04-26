@@ -1,7 +1,7 @@
 #ifndef USER_HPP
 #define USER_HPP
 
-#include "types.hpp"
+#include "models_header.hpp"
 
 class User {
 public:

@@ -1,7 +1,7 @@
 #ifndef PROFILE_HPP
 #define PROFILE_HPP
 
-#include "types.hpp"
+#include "models_header.hpp"
 
 class Profile {
 public:

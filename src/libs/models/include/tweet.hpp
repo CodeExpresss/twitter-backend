@@ -1,8 +1,7 @@
 #ifndef TWEET_HPP
 #define TWEET_HPP
 
-#include "types.hpp"
-
+#include "models_header.hpp"
 #include "tag.hpp"
 
 class Tweet {
