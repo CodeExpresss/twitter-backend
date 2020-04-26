@@ -3,31 +3,34 @@
 
 #include <memory>
 #include <mutex>
-#include <queue>
 #include <condition_variable>
+#include <queue>
+#include <vector>
+#include <string>
 #include <postgresql/libpq-fe.h>
 
 #include "DBConnection.hpp"
 
 using namespace std;
 
+template <class Connection>
 class DBController
 {
 public:
     static DBController& instance();
-    shared_ptr<DBConnection> get_free_connection();
-    void reset_connection(shared_ptr<DBConnection>);
+    shared_ptr<Connection> get_free_connection();
+    void reset_connection(shared_ptr<Connection>);
 
-    bool run_query(string query, PGresult *res);
+    bool run_query(string query, vector<string>& result);
 
 private:
-    DBController(int count);
+    explicit DBController(int count);
     DBController(const DBController&) = delete;
     DBController& operator= (const DBController&) = delete;
     
     void create_pool(int size);
 
-    queue<shared_ptr<DBConnection>> connection_pool;
+    queue<shared_ptr<Connection>> connection_pool;
     mutex mtx;
     condition_variable cond;
 };
