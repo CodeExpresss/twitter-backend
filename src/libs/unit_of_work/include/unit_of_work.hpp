@@ -25,8 +25,8 @@ public:
     boost::property_tree::ptree create_tweet();
 
 private:
-    vector<Profile> get_sub();
-    vector<Tag> get_tags();
+    std::vector<Profile> get_sub();
+    std::vector<Tag> get_tags();
 
     ProfileRepository profile_repositrory;
     TweetRepository  tweet_repository;
