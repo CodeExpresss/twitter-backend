@@ -1,8 +1,6 @@
 #ifndef SUBSCRIPTION_HPP
 #define SUBSCRIPTION_HPP
 
-#include <vector>
-
 #include "user.hpp"
 
 class Subscription {

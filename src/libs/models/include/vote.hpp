@@ -1,16 +1,12 @@
 #ifndef VOTE_HPP
 #define VOTE_HPP
 
-#include <iostream>
+#include "models_header.hpp"
 
 class Vote {
 public:
     Vote() = default;
     ~Vote() = default;
-
-    void foo() {
-        std::cout << "It's a live!\n";
-    }
 
 private:
     int profile_id;

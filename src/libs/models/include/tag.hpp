@@ -1,7 +1,7 @@
 #ifndef TAG_HPP
 #define TAG_HPP
 
-#include <string>
+#include "models_header.hpp"
 
 class Tag {
 public:
