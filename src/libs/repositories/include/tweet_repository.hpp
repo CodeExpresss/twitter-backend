@@ -1,7 +1,7 @@
-#ifndef REPOSITORY_HPP
-#define REPOSITORY_HPP
+#ifndef TWEET_REPOSITORY_HPP
+#define TWEET_REPOSITORY_HPP
 
-#include "types.hpp"
+#include "repositories_header.hpp"
 #include "tweet.hpp"
 
 class TweetRepository {
@@ -19,4 +19,4 @@ public:
 private:
 };
 
-#endif // REPOSITORY_HPP
+#endif // TWEET_REPOSITORY_HPP

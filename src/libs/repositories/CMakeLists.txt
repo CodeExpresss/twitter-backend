@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(INC
+    include/repositories_header.hpp
     include/abstract_repository.hpp
     include/profile_repository.hpp
     include/subscription_repository.hpp

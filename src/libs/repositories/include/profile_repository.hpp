@@ -2,7 +2,7 @@
 #define PROFILE_REPOSITORY_HPP
 
 //#include "abstract_repository.hpp"
-#include "types.hpp"
+#include "repositories_header.hpp"
 #include "profile.hpp"
 
 /*class ProfileRepository : public AbstractRepository<Profile> {*/
@@ -34,6 +34,7 @@ public:
     void erase(int id);
 
 private:
+    Profile profile;
 };
 
 #endif // PROFILE_REPOSITORY_HPP

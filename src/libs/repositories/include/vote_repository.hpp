@@ -1,8 +1,8 @@
-#ifndef REPOSITORY_HPP
-#define REPOSITORY_HPP
+#ifndef VOTE_REPOSITORY_HPP
+#define VOTE_REPOSITORY_HPP
 
+#include "repositories_header.hpp"
 #include "vote.hpp"
-#include "types.hpp"
 
 class VoteRepository {
 public:
@@ -19,4 +19,4 @@ public:
 private:
 };
 
-#endif // REPOSITORY_HPP
+#endif // VOTE_REPOSITORY_HPP

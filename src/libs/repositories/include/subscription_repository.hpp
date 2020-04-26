@@ -1,7 +1,7 @@
-#ifndef REPOSITORY_HPP
-#define REPOSITORY_HPP
+#ifndef SUBSCRIPTION_REPOSITORY_HPP
+#define SUBSCRIPTION_REPOSITORY_HPP
 
-#include "types.hpp"
+#include "repositories_header.hpp"
 #include "subscription.hpp"
 
 class SubscriptionRepository {
@@ -19,4 +19,4 @@ public:
 private:
 };
 
-#endif // REPOSITORY_HPP
+#endif // SUBSCRIPTION_REPOSITORY_HPP

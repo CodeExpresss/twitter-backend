@@ -1,7 +1,7 @@
-#ifndef REPOSITORY_HPP
-#define REPOSITORY_HPP
+#ifndef USER_REPOSITORY_HPP
+#define USER_REPOSITORY_HPP
 
-#include "types.hpp"
+#include "repositories_header.hpp"
 #include "user.hpp"
 
 class UserRepository {
@@ -19,4 +19,4 @@ public:
 private:
 };
 
-#endif // REPOSITORY_HPP
+#endif // USER_REPOSITORY_HPP

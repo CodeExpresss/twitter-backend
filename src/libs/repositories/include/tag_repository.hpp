@@ -1,7 +1,7 @@
-#ifndef REPOSITORY_HPP
-#define REPOSITORY_HPP
+#ifndef TAG_REPOSITORY_HPP
+#define TAG_REPOSITORY_HPP
 
-#include "types.hpp"
+#include "repositories_header.hpp"
 #include "tag.hpp"
 
 class TagRepository {
@@ -19,4 +19,4 @@ public:
 private:
 };
 
-#endif // REPOSITORY_HPP
+#endif // TAG_REPOSITORY_HPP
