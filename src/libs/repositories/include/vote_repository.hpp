@@ -10,13 +10,14 @@ public:
     ~VoteRepository() = default;
 
 
-    std::vector<Vote> get_all();
+    std::vector<Vote> get_where();
     Vote get_by_id(int id);
     void create(Vote item);
     void update(Vote item);
     void erase(int id);
 
 private:
+    std::shared_ptr<DBController> db_controller;
 };
 
 #endif // VOTE_REPOSITORY_HPP
