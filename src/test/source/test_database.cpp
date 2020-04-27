@@ -21,59 +21,107 @@ public:
     MOCK_CONST_METHOD0(get_connection, shared_ptr<PGconn>&());
 };
 
-class MockDBController {
+class MockDBController : public DBController<DBConnection> {
 public:
-    MOCK_METHOD0(get_free_connection, shared_ptr<MockDBConnection>());
-    MOCK_METHOD1(reset_connection, void(shared_ptr<MockDBConnection>));
+    MockDBController(int c) : DBController<DBConnection>(c) {}
+    MOCK_METHOD0(get_free_connection, shared_ptr<DBConnection>());
+    MOCK_METHOD1(reset_connection, void(shared_ptr<DBConnection>));
     MOCK_METHOD2(run_query, bool(string, vector<string>&));
 };
 
-class DBControllerLayer {
-public:
-    DBControllerLayer() { ctrl = &(DBController<MockDBConnection>::instance()); }
-    shared_ptr<MockDBConnection> get_free_connection() { return ctrl->get_free_connection(); }
-    void reset_connection(shared_ptr<MockDBConnection> c) { ctrl->reset_connection(c); }
-    bool run_query(string str, vector<string>& ss) { return ctrl->run_query(str, ss); }
-    
-private:
-    DBController<MockDBConnection> *ctrl;
+class TestDBController : public ::testing::Test
+{
+protected:
+    void SetUp()
+    {
+        mock_obj = make_shared<MockDBController>(1);
+    }
+    void TearDown() {}
+    shared_ptr<MockDBController> mock_obj;
+    vector<string> result;
 };
 
-class MockDBControl : public DBControllerLayer {
-public:
-    MOCK_METHOD0(get_free_connection, shared_ptr<MockDBConnection>());
-    MOCK_METHOD1(reset_connection, void(shared_ptr<MockDBConnection>));
-    MOCK_METHOD2(run_query, bool(string, vector<string>&));
-};
-
-/*TEST(DBConnectionTest, get_connection_call) {
-    MockDBController controller;
-    shared_ptr<MockDBConnection> conn = controller.connection;
+TEST(DBConnectionTest, get_connection_call) {
+    DBController<MockDBConnection> ctrl(1);
+    shared_ptr<MockDBConnection> conn = ctrl.get_free_connection();
+    ctrl.reset_connection(conn);
     EXPECT_CALL(*conn, get_connection()).Times(AtLeast(1));
     vector<string> result;
-    controller.run_query("select 1;", result);
-}*/
-
-TEST(DBControllerTest, can_get_free_and_reset_connection) {
-    MockDBControl controller;
-    EXPECT_CALL(controller, get_free_connection()).Times(AtLeast(1));
-    shared_ptr<MockDBConnection> c = controller.get_free_connection();
-    EXPECT_CALL(controller, reset_connection(c)).Times(AtLeast(1));
-    vector<string> result;
-    controller.run_query("select 1;", result);
+    ctrl.run_query("select 1;", result);
 }
 
-TEST(DBControllerTest, profile_repository_run_query) {
-    MockDBController controller;
-    vector<string> result;
-    EXPECT_CALL(controller, run_query("select 1;", result)).Times(AtLeast(5));
-    ProfileRepository<MockDBController> p_rep;
+TEST_F(TestDBController, can_get_free_and_reset_connection) {
+    shared_ptr<DBConnection> conn = mock_obj->get_free_connection();
+    mock_obj->reset_connection(conn);
+    EXPECT_CALL(*mock_obj, get_free_connection()).Times(AtLeast(1));
+    EXPECT_CALL(*mock_obj, reset_connection(conn)).Times(AtLeast(1));
+    mock_obj->run_query("select 1;", result);
+}
+
+TEST_F(TestDBController, profile_repository_run_query) {
+    EXPECT_CALL(*mock_obj, run_query("select 1;", result)).Times(AtLeast(5));
+    ProfileRepository p_rep(mock_obj);
     Profile p;
     p_rep.create(p);
-    p_rep.get_all();
+    p_rep.get_where();
     p_rep.get_by_id(1);
     p_rep.update(p);
     p_rep.erase(1);
+}
+
+TEST_F(TestDBController, subscription_repository_run_query) {
+    EXPECT_CALL(*mock_obj, run_query("select 1;", result)).Times(AtLeast(5));
+    SubscriptionRepository sub_rep(mock_obj);
+    Subscription sub;
+    sub_rep.create(sub);
+    sub_rep.get_where();
+    sub_rep.get_by_id(1);
+    sub_rep.update(sub);
+    sub_rep.erase(1);
+}
+
+TEST_F(TestDBController, tag_repository_run_query) {
+    EXPECT_CALL(*mock_obj, run_query("select 1;", result)).Times(AtLeast(5));
+    TagRepository t_rep(mock_obj);
+    Tag t;
+    t_rep.create(t);
+    t_rep.get_where();
+    t_rep.get_by_id(1);
+    t_rep.update(t);
+    t_rep.erase(1);
+}
+
+TEST_F(TestDBController, tweet_repository_run_query) {
+    EXPECT_CALL(*mock_obj, run_query("select 1;", result)).Times(AtLeast(5));
+    TweetRepository tw_rep(mock_obj);
+    Tweet tw;
+    tw_rep.create(tw);
+    tw_rep.get_where();
+    tw_rep.get_by_id(1);
+    tw_rep.update(tw);
+    tw_rep.erase(1);
+}
+
+TEST_F(TestDBController, user_repository_run_query) {
+    EXPECT_CALL(*mock_obj, run_query("select 1;", result)).Times(AtLeast(5));
+    UserRepository u_rep(mock_obj);
+    User u;
+    u_rep.create(u);
+    u_rep.get_where();
+    u_rep.get_by_id(1);
+    u_rep.update(u);
+    u_rep.erase(1);
+}
+
+TEST_F(TestDBController, vote_repository_run_query) {
+    EXPECT_CALL(*mock_obj, run_query("select 1;", result)).Times(AtLeast(5));
+    VoteRepository v_rep(mock_obj);
+    Vote v;
+    v_rep.create(v);
+    v_rep.get_where();
+    v_rep.get_by_id(1);
+    v_rep.update(v);
+    v_rep.erase(1);
 }
 
 int main(int argc, char** argv) {
