@@ -17,23 +17,20 @@ template <class Connection>
 class DBController
 {
 public:
-    static DBController<Connection>& instance() {}
+    explicit DBController(int connection_count) {}
+    ~DBController() = default;
 
-    shared_ptr<Connection> get_free_connection();
-    void reset_connection(shared_ptr<Connection>);
+    shared_ptr<Connection> get_free_connection() {}
+    void reset_connection(shared_ptr<Connection>) {}
 
-    bool run_query(string query, vector<string>& result);
+    bool run_query(const string& query, vector<string>& result) {}
 
 private:
-    explicit DBController<Connection>(int count);
-    DBController(const DBController<Connection>&) = delete;
-    DBController<Connection>& operator= (const DBController<Connection>&) = delete;
-    
-    void create_pool(int size);
-
     queue<shared_ptr<Connection>> connection_pool;
     mutex mtx;
     condition_variable cond;
+
+    void create_pool(int size);
 };
 
 #endif

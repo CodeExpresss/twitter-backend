@@ -10,7 +10,7 @@ using namespace std;
 class DBConnection
 {
 public:
-    DBConnection(string host, string dbname, string user, string password, int port);
+    DBConnection(const string& host, const string& dbname, const string& user, const string& password, int port) {}
     shared_ptr<PGconn> get_connection() const;
 
 private:
