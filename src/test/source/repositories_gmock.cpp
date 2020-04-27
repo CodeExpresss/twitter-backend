@@ -59,7 +59,7 @@ public:
     MOCK_METHOD0(create, void());
 };
 
-TEST(unit_of_work, user_profile_action) {
+TEST(unit_of_work, login_test) {
     ProfileRepositoryMock mock_profile_rep;;
     UserRepositoryMock mock_user_rep;
     UnitOfWork unit_of_work;
@@ -67,20 +67,41 @@ TEST(unit_of_work, user_profile_action) {
     EXPECT_CALL(mock_profile_rep, create()).Times(AtLeast(1));
     EXPECT_CALL(mock_user_rep, create()).Times(AtLeast(1));
 
-    //EXPECT_TRUE(unit_of_work.sing_up());
-
-    EXPECT_CALL(mock_profile_rep, update()).Times(AtLeast(1));
-    EXPECT_CALL(mock_user_rep, update()).Times(AtLeast(2));
-
-    //EXPECT_TRUE(unit_of_work.user_update());
-    //EXPECT_TRUE(unit_of_work.profile_update());
-
-    //EXPECT_TRUE(unit_of_work.logout());
+    unit_of_work.sing_up();
 }
 
-TEST(unit_of_work, regular_action) {
+TEST(unit_of_work, update_profile_test) {
     ProfileRepositoryMock mock_profile_rep;;
     UserRepositoryMock mock_user_rep;
+    UnitOfWork unit_of_work;
+
+    EXPECT_CALL(mock_profile_rep, create()).Times(AtLeast(1));
+
+    EXPECT_CALL(mock_profile_rep, update()).Times(AtLeast(1));
+
+    unit_of_work.profile_update();
+}
+
+TEST(unit_of_work, update_user_test) {
+    UserRepositoryMock mock_user_rep;
+    UnitOfWork unit_of_work;
+
+    EXPECT_CALL(mock_user_rep, update()).Times(AtLeast(1));
+
+    unit_of_work.user_update();
+}
+
+TEST(unit_of_work, logout_test) {
+    UserRepositoryMock mock_user_rep;
+    UnitOfWork unit_of_work;
+
+    EXPECT_CALL(mock_user_rep, update()).Times(AtLeast(1));
+
+    unit_of_work.logout();
+}
+
+TEST(unit_of_work, get_index_tweet_test) {
+    ProfileRepositoryMock mock_profile_rep;;
     TweetRepositoryMock mock_tweet_rep;
     TagRepositoryMock mock_tag_rep;
     SubscriptionRepositoryMock mock_subs_rep;
@@ -93,21 +114,83 @@ TEST(unit_of_work, regular_action) {
     EXPECT_CALL(mock_vote_rep, get_where()).Times(AtLeast(1));
     EXPECT_CALL(mock_tag_rep, get_where()).Times(AtLeast(1));
 
-    EXPECT_TRUE(unit_of_work.get_index_tweet());
+    unit_of_work.get_index_tweet();
+}
+
+TEST(unit_of_work, create_tweet_test) {
+    ProfileRepositoryMock mock_profile_rep;;
+    UserRepositoryMock mock_user_rep;
+    TweetRepositoryMock mock_tweet_rep;
+    TagRepositoryMock mock_tag_rep;
+    SubscriptionRepositoryMock mock_subs_rep;
+    VoteRepositoryMock mock_vote_rep;
+    UnitOfWork unit_of_work;
 
     EXPECT_CALL(mock_tag_rep, get_where()).Times(AtLeast(1));
-    //EXPECT_CALL(mock_tag_rep, create()).Times(AtLeast(1));
     EXPECT_CALL(mock_tweet_rep, create()).Times(AtLeast(1));
 
-    EXPECT_TRUE(unit_of_work.create_tweet());
+    unit_of_work.create_tweet();
+}
+
+TEST(unit_of_work, create_tweet_tag_test) {
+    TweetRepositoryMock mock_tweet_rep;
+    TagRepositoryMock mock_tag_rep;
+    UnitOfWork unit_of_work;
 
     EXPECT_CALL(mock_tag_rep, get_where()).Times(AtLeast(1));
-    //EXPECT_CALL(mock_tag_rep, erase()).Times(AtLeast(1));
+    EXPECT_CALL(mock_tag_rep, create()).Times(AtLeast(1));
+    EXPECT_CALL(mock_tweet_rep, create()).Times(AtLeast(1));
+
+    unit_of_work.create_tweet();
+}
+
+TEST(unit_of_work, delete_tweet_test) {
+    ProfileRepositoryMock mock_profile_rep;;
+    UserRepositoryMock mock_user_rep;
+    TweetRepositoryMock mock_tweet_rep;
+    TagRepositoryMock mock_tag_rep;
+    SubscriptionRepositoryMock mock_subs_rep;
+    VoteRepositoryMock mock_vote_rep;
+    UnitOfWork unit_of_work;
+
+    EXPECT_CALL(mock_tag_rep, get_where()).Times(AtLeast(1));
     EXPECT_CALL(mock_vote_rep, get_where()).Times(AtLeast(1));
-    //EXPECT_CALL(mock_vote_rep, erase()).Times(AtLeast(1));
     EXPECT_CALL(mock_tweet_rep, erase()).Times(AtLeast(1));
 
-    EXPECT_TRUE(unit_of_work.delete_tweet());
+    unit_of_work.delete_tweet();
+}
+TEST(unit_of_work, delete_tweet_tag_test) {
+    ProfileRepositoryMock mock_profile_rep;;
+    UserRepositoryMock mock_user_rep;
+    TweetRepositoryMock mock_tweet_rep;
+    TagRepositoryMock mock_tag_rep;
+    SubscriptionRepositoryMock mock_subs_rep;
+    VoteRepositoryMock mock_vote_rep;
+    UnitOfWork unit_of_work;
+
+    EXPECT_CALL(mock_tag_rep, get_where()).Times(AtLeast(1));
+    EXPECT_CALL(mock_tag_rep, erase()).Times(AtLeast(1));
+    EXPECT_CALL(mock_vote_rep, get_where()).Times(AtLeast(1));
+    EXPECT_CALL(mock_tweet_rep, erase()).Times(AtLeast(1));
+
+    unit_of_work.delete_tweet();
+}
+
+TEST(unit_of_work, delete_tweet_vote_test) {
+    ProfileRepositoryMock mock_profile_rep;;
+    UserRepositoryMock mock_user_rep;
+    TweetRepositoryMock mock_tweet_rep;
+    TagRepositoryMock mock_tag_rep;
+    SubscriptionRepositoryMock mock_subs_rep;
+    VoteRepositoryMock mock_vote_rep;
+    UnitOfWork unit_of_work;
+
+    EXPECT_CALL(mock_tag_rep, get_where()).Times(AtLeast(1));
+    EXPECT_CALL(mock_vote_rep, get_where()).Times(AtLeast(1));
+    EXPECT_CALL(mock_vote_rep, erase()).Times(AtLeast(1));
+    EXPECT_CALL(mock_tweet_rep, erase()).Times(AtLeast(1));
+
+    unit_of_work.delete_tweet();
 }
 
 int main(int argc, char** argv) {
