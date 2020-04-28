@@ -17,11 +17,13 @@ using tcp = boost::asio::ip::tcp;
 
 class HTTPServer {
 public:
-    static HTTPServer& Instance();
-    void start_server(const std::string _address, const std::string _port);
+    HTTPServer(std::string address, std::string port): _address(std::move(address)), _port(std::move(port)) {}
+    void start_server();
 
 private:
-    HTTPServer();
+    std::string _address;
+    std::string _port;
+
     void ConnectionLoop(tcp::acceptor& acceptor, tcp::socket& socket);
 };
 

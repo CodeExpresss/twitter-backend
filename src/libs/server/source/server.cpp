@@ -1,11 +1,6 @@
 #include "server.hpp"
 
-HTTPServer& HTTPServer::Instance() {
-    static HTTPServer server;
-    return server;
-}
-
-void HTTPServer::start_server(const std::string _address, const std::string _port) {
+void HTTPServer::start_server() {
     try {
         auto const address = net::ip::make_address(_address);
         auto const port = static_cast<unsigned short>(std::stoi(_port));
@@ -23,8 +18,6 @@ void HTTPServer::start_server(const std::string _address, const std::string _por
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
-
-HTTPServer::HTTPServer() = default;
 
 void HTTPServer::ConnectionLoop(tcp::acceptor& acceptor, tcp::socket& socket) {
     acceptor.async_accept(socket,
