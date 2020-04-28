@@ -6,9 +6,7 @@ public:
     explicit IndexController(std::shared_ptr<UnitOfWork> _worker): worker(_worker) {};
     ~IndexController() = default;
 
-    boost::property_tree::ptree get_queryset() {
-        worker->get_index_tweet();
-    };
+    boost::property_tree::ptree get_queryset() {};
 
 private:
     std::shared_ptr<UnitOfWork> worker;
