@@ -27,7 +27,7 @@ void HTTPClient::process_request() {
     switch (request.method()) {
         case http::verb::get:
             response.result(http::status::ok);
-            create_response();
+            routing();
             break;
         case http::verb::post:
             break;
@@ -44,12 +44,39 @@ void HTTPClient::process_request() {
     write_response();
 }
 
-void HTTPClient::create_response() {
+void HTTPClient::routing() {
     if (request.target() == "/echo") {
         response.set(http::field::content_type, "text/html");
         beast::ostream(response.body())
                 << request.method() << "\n"
                 << request.target() << "\n";
+    } else if (request.target() == "/api/user/register/") {
+        return;
+
+    } else if (request.target() == "/api/user/login/") {
+        return;
+
+    } else if (request.target() == "/api/user/current/") {
+        return;
+
+    } else if (request.target() == "/api/user/update/") {
+        return;
+
+    } else if (request.target() == "/api/profile/current/") {
+        return;
+
+    } else if (request.target() == "/api/profile/update/") {
+        return;
+
+    } else if (request.target() == "/api/tweet/index/") {
+        return;
+
+    } else if (request.target() == "/api/tweet/create/") {
+        return;
+
+    } else if (request.target() == "/api/tweet/vote/") {
+        return;
+
     } else {
         response.result(http::status::not_found);
         response.set(http::field::content_type, "text/plain");

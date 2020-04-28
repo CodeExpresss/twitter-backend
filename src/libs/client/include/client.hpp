@@ -42,7 +42,7 @@ private:
     void process_request();
 
     // Создание ответа, здесь должен быть реализован роутинг
-    void create_response();
+    void routing();
 
     // записать ответ в сокет
     void write_response();
