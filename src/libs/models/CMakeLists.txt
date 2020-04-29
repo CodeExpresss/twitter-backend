@@ -9,7 +9,6 @@ set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(INC
-    include/models_header.hpp
     include/profile.hpp
     include/subscription.hpp
     include/tag.hpp
