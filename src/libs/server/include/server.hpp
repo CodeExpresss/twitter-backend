@@ -1,3 +1,6 @@
+#ifndef SERVER_HPP
+#define SERVER_HPP
+
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/beast/version.hpp>
@@ -24,6 +27,7 @@ private:
     std::string _address;
     std::string _port;
 
-    void ConnectionLoop(tcp::acceptor& acceptor, tcp::socket& socket);
+    void connection_loop(tcp::acceptor& acceptor, tcp::socket& socket);
 };
 
+#endif
