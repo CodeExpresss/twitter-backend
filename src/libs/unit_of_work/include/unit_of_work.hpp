@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "unit_of_work_header.hpp"
+
 boost::property_tree::ptree heroTree;
 
 class UnitOfWork {
