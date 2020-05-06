@@ -5,26 +5,24 @@
 
 #include "unit_of_work_header.hpp"
 
-boost::property_tree::ptree heroTree;
-
 class UnitOfWork {
 public:
     UnitOfWork() = default;
     ~UnitOfWork() = default;
 
-    boost::property_tree::ptree sing_up();
-    boost::property_tree::ptree get_index_tweet();
-    boost::property_tree::ptree login();
-    boost::property_tree::ptree authenticate();
-    boost::property_tree::ptree logout();
-    boost::property_tree::ptree user_update();
-    boost::property_tree::ptree get_user();
-    boost::property_tree::ptree get_profile();
-    boost::property_tree::ptree profile_update();
-    boost::property_tree::ptree get_like_tweets();
-    boost::property_tree::ptree vote();
-    boost::property_tree::ptree create_tweet();
-    boost::property_tree::ptree delete_tweet();
+    std::pair<unsigned short int, std::string> sing_up();
+    std::tuple<Tweet, Profile> get_index_tweet();
+    unsigned short int login();
+    unsigned short int authenticate();
+    unsigned short int logout();
+    std::pair<unsigned short int, std::string> user_update();
+    User get_user();
+    Profile get_profile();
+    std::pair<unsigned short int, std::string> profile_update();
+    std::tuple<Tweet, Profile> get_like_tweets();
+    unsigned short int vote();
+    std::pair<unsigned short int, std::string> create_tweet();
+    std::pair<unsigned short int, std::string> delete_tweet();
 
 private:
     std::vector<Profile> get_sub();
