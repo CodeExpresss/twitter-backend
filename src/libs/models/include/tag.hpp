@@ -5,8 +5,8 @@
 
 class Tag {
 public:
-    Tag();
-    ~Tag();
+    Tag() = default;
+    ~Tag() = default;
 
     std::string get_title() const;
 private:

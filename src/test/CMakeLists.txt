@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.8)
+cmake_minimum_required(VERSION 3.5)
 
 project(tests_gmock)
 
@@ -14,7 +14,9 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(SRC
-        source/unit_of_work_gmock.cpp)
+    #source/main.cpp)
+    source/repositories_gmock.cpp)
+    #source/unit_of_work_gmock.cpp)
 
 add_executable(tests_gmock
     ${SRC})
@@ -46,3 +48,21 @@ target_include_directories(tests_gmock
 
 target_link_libraries(tests_gmock ${GTEST_LIBRARIES} pthread)
 target_link_libraries(tests_gmock -lgmock)
+
+
+add_executable(tests_gmock_database source/test_database.cpp)
+target_link_libraries(tests_gmock_database -lpq  -fprofile-arcs)
+
+target_link_libraries(tests_gmock_database
+    data_base
+    models
+    repositories)
+
+target_include_directories(tests_gmock_database
+    PUBLIC
+        "../libs/data_base/include"
+        "../libs/models/include"
+        "../libs/repositories/include"
+)
+
+target_link_libraries(tests_gmock_database ${GTEST_LIBRARIES} pthread -lgmock)
