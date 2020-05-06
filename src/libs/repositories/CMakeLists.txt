@@ -35,4 +35,5 @@ target_include_directories(repositories
     PUBLIC
         "include"
         "../models/include"
+        "../data_base/include"
 )

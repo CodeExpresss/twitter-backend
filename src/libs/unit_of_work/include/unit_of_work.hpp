@@ -11,7 +11,7 @@ public:
     UnitOfWork() = default;
     ~UnitOfWork() = default;
 
-    boost::property_tree::ptree  sing_up();
+    boost::property_tree::ptree sing_up();
     boost::property_tree::ptree get_index_tweet();
     boost::property_tree::ptree login();
     boost::property_tree::ptree authenticate();
@@ -23,10 +23,11 @@ public:
     boost::property_tree::ptree get_like_tweets();
     boost::property_tree::ptree vote();
     boost::property_tree::ptree create_tweet();
+    boost::property_tree::ptree delete_tweet();
 
 private:
-    vector<Profile> get_sub();
-    vector<Tag> get_tags();
+    std::vector<Profile> get_sub();
+    std::vector<Tag> get_tags();
 
     ProfileRepository profile_repositrory;
     TweetRepository  tweet_repository;

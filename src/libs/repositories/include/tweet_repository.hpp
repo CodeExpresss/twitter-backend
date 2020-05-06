@@ -10,13 +10,14 @@ public:
     ~TweetRepository() = default;
 
 
-    std::vector<Tweet> get_all();
+    std::vector<Tweet> get_where();
     Tweet get_by_id(int id);
     void create(Tweet item);
     void update(Tweet item);
     void erase(int id);
 
 private:
+    std::shared_ptr<DBController> db_controller;
 };
 
 #endif // TWEET_REPOSITORY_HPP

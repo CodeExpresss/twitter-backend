@@ -27,14 +27,14 @@ public:
     ~ProfileRepository() = default;
 
 
-    std::vector<Profile> get_all();
+    std::vector<Profile> get_where();
     Profile get_by_id(int id);
     void create(Profile item);
     void update(Profile item);
     void erase(int id);
 
 private:
-    Profile profile;
+    std::shared_ptr<DBController> db_controller;
 };
 
 #endif // PROFILE_REPOSITORY_HPP

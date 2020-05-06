@@ -9,13 +9,14 @@ public:
     UserRepository() = default;
     ~UserRepository() = default;
 
-    std::vector<User> get_all();
+    std::vector<User> get_where();
     User get_by_id(int id);
     void create(User item);
     void update(User item);
     void erase(int id);
 
 private:
+    std::shared_ptr<DBController> db_controller;
 };
 
 #endif // USER_REPOSITORY_HPP

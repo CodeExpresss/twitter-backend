@@ -14,7 +14,9 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(SRC
-    source/main.cpp)
+    #source/main.cpp)
+    source/repositories_gmock.cpp)
+    #source/unit_of_work_gmock.cpp)
 
 add_executable(tests_gmock
     ${SRC})
