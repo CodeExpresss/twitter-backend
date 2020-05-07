@@ -6,17 +6,17 @@
 
 class UserRepository {
 public:
-    UserRepository() = default;
+    UserRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {};
     ~UserRepository() = default;
 
-    std::vector<User> get_where();
-    User get_by_id(int id);
-    void create(User item);
-    void update(User item);
-    void erase(int id);
+    std::vector<User> get_where() {}
+    User get_by_id(int id) {}
+    void create(User item) {}
+    void update(User item) {}
+    void erase(int id) {}
 
 private:
-    std::shared_ptr<DBController> db_controller;
+    std::weak_ptr<DBController<DBConnection>> db_controller;
 };
 
 #endif // USER_REPOSITORY_HPP
