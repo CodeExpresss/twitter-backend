@@ -24,6 +24,7 @@ target_include_directories(unit_of_work
     PUBLIC
         "include"
         "../models/include"
+        "../data_base/include"
         "../repositories/include"
 )
 
