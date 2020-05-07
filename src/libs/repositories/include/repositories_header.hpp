@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 
-#include "DBController.hpp"
+#include "../../data_base/include/DBController.hpp"
+#include "../../data_base/include/DBConnection.hpp"
 
 #endif // REPOSITORY_HEADER_HPP

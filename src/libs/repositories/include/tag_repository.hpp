@@ -6,18 +6,18 @@
 
 class TagRepository {
 public:
-    TagRepository() = default;
+    TagRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {};
     ~TagRepository() = default;
 
 
-    std::vector<Tag> get_where();
-    Tag get_by_id(int id);
-    void create(Tag item);
-    void update(Tag item);
-    void erase(int id);
+    std::vector<Tag> get_where() {}
+    Tag get_by_id(int id) {}
+    void create(Tag item) {}
+    void update(Tag item) {}
+    void erase(int id) {}
 
 private:
-    std::shared_ptr<DBController> db_controller;
+    std::weak_ptr<DBController<DBConnection>> db_controller;
 };
 
 #endif // TAG_REPOSITORY_HPP

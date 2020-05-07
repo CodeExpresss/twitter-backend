@@ -6,18 +6,18 @@
 
 class VoteRepository {
 public:
-    VoteRepository() = default;
+    VoteRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {};
     ~VoteRepository() = default;
 
 
-    std::vector<Vote> get_where();
-    Vote get_by_id(int id);
-    void create(Vote item);
-    void update(Vote item);
-    void erase(int id);
+    std::vector<Vote> get_where() {}
+    Vote get_by_id(int id) {}
+    void create(Vote item) {}
+    void update(Vote item) {}
+    void erase(int id) {}
 
 private:
-    std::shared_ptr<DBController> db_controller;
+    std::weak_ptr<DBController<DBConnection>> db_controller;
 };
 
 #endif // VOTE_REPOSITORY_HPP
