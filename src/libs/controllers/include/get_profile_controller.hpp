@@ -1,12 +1,13 @@
 #include <controller_header.hpp>
 
-class GetProfileController {
+template<typename Serialize>
+class GetProfileController: public AbstractController {
 public:
-    explicit GetProfileController(std::shared_ptr<UnitOfWork> _worker): worker(_worker) {};
+    GetProfileController(std::shared_ptr<UnitOfWork> _worker): AbstractController(_worker), _profile() {};
     ~GetProfileController() = default;
 
-    boost::property_tree::ptree get_queryset();
-
+    boost::property_tree::ptree get_queryset() override;
 private:
-    std::shared_ptr<UnitOfWork> worker;
+    Profile _profile;
+    Serialize _serialize;
 };
