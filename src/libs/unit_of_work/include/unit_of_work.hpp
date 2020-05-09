@@ -29,7 +29,7 @@ public:
     unsigned short int logout() {}
     std::pair<unsigned short int, std::string> user_update() {}
     User get_user() {}
-    Profile get_profile() {}
+    Profile get_profile();
     std::pair<unsigned short int, std::string> profile_update() {}
     std::tuple<Tweet, Profile> get_like_tweets() {}
     unsigned short int vote() {}

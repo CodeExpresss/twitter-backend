@@ -1,6 +1,7 @@
 #include "get_profile_controller.hpp"
 
-boost::property_tree::ptree GetProfileController::get_queryset() {
-    _profile = worker->get_profile();
-    return _serialize(_profile);
-}
+template <class Serialize>
+boost::property_tree::ptree GetProfileController<Serialize>::get_queryset() {
+    profile = worker->get_profile();
+    return serialize(profile);
+};
