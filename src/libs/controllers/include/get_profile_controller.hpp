@@ -6,7 +6,7 @@
 template <typename Serialize>
 class GetProfileController: public AbstractController {
 public:
-    explicit GetProfileController(const AbstractController& _worker): AbstractController(_worker) {};
+    explicit GetProfileController(const std::shared_ptr<UnitOfWork>& worker): AbstractController(worker) {};
 
     ~GetProfileController() = default;
 
