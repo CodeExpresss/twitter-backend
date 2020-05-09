@@ -6,18 +6,21 @@ using ::testing::DoAll;
 using ::testing::Return;
 using ::testing::SetArgReferee;
 
-#include "../../libs/data_base/include/DBConnection.hpp"
-#include "../../libs/data_base/include/DBController.hpp"
+#include "DBConnection.hpp"
+#include "DBController.hpp"
 
-#include "../../libs/repositories/include/profile_repository.hpp"
-#include "../../libs/repositories/include/subscription_repository.hpp"
-#include "../../libs/repositories/include/tag_repository.hpp"
-#include "../../libs/repositories/include/tweet_repository.hpp"
-#include "../../libs/repositories/include/user_repository.hpp"
-#include "../../libs/repositories/include/vote_repository.hpp"
+#include "profile_repository.hpp"
+#include "subscription_repository.hpp"
+#include "tag_repository.hpp"
+#include "tweet_repository.hpp"
+#include "user_repository.hpp"
+#include "vote_repository.hpp"
 
 class MockDBConnection : public DBConnection {
 public:
+    MockDBConnection(const string& h, const string& n, const string& u, 
+                     const string& p, int port) : 
+                     DBConnection(h, n, u, p, port) {}
     MOCK_CONST_METHOD0(get_connection, shared_ptr<PGconn>&());
 };
 

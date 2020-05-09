@@ -44,7 +44,7 @@ shared_ptr<Connection> DBController<Connection>::get_free_connection(void)
 }
 
 template <class Connection>
-void DBController::reset_connection(shared_ptr<Connection> conn)
+void DBController<Connection>::reset_connection(shared_ptr<Connection> conn)
 {
     unique_lock<mutex> lock(mtx);
     connection_pool.push(conn);
@@ -53,7 +53,7 @@ void DBController::reset_connection(shared_ptr<Connection> conn)
 }
 
 template <class Connection>
-bool DBController::run_query(string query, vector<string> &result)
+bool DBController<Connection>::run_query(const string &query, vector<string> &result)
 {
     auto conn = get_free_connection();
     PGresult *query_res = PQexec(conn->get_connection().get(), query.c_str());
@@ -66,7 +66,7 @@ bool DBController::run_query(string query, vector<string> &result)
     result.clear();
     int columns = PQnfields(query_res);
     int strings = PQntuples(query_res);
-    for (int i = 1; i < PQntuples(query_res); i++)
+    for (int i = 1; i < strings; i++)
     {
         for (int j = 0; j < columns; j++)
             result.push_back(PQgetvalue(query_res, i, j));
