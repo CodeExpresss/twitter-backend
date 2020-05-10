@@ -1,22 +1,18 @@
 #ifndef CONTROLLER_HEADER_HPP
 #define CONTROLLER_HEADER_HPP
 
-#include <string>
-#include <boost/property_tree/ptree.hpp>
-#include "unit_of_work.hpp"
+#include <utility>
 
-#include "create_tweet_controller.hpp"
-#include "index_controller.hpp"
-#include "login_controller.hpp"
-#include "logout_controller.hpp"
-#include "profile_controller.hpp"
-#include "signup_controller.hpp"
-#include "subscription_controller.hpp"
-#include "tags_controller.hpp"
-#include "tweet_like_controller.hpp"
-#include "update_profile_controller.hpp"
-#include "update_user_controller.hpp"
-#include "user_controller.hpp"
-#include "vote_controller.hpp"
+#include "unit_of_work.hpp"
+#include "serialize.hpp"
+
+class AbstractController {
+public:
+    virtual boost::property_tree::ptree get_queryset() = 0;
+
+protected:
+    AbstractController(std::shared_ptr<UnitOfWork> _worker): worker(std::move(_worker)) {};
+    std::shared_ptr<UnitOfWork> worker;
+};
 
 #endif
