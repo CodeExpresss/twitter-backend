@@ -1,13 +1,12 @@
 #ifndef DBCONTROLLER_HPP
 #define DBCONTROLLER_HPP
 
-#include <memory>
+#include <iostream>
+#include <fstream>
 #include <mutex>
 #include <condition_variable>
 #include <queue>
 #include <vector>
-#include <string>
-#include <postgresql/libpq-fe.h>
 
 #include "DBConnection.hpp"
 
@@ -17,13 +16,13 @@ template <class Connection>
 class DBController
 {
 public:
-    explicit DBController(int connection_count) {}
-    ~DBController() = default;
+    explicit DBController(int connection_count);
+    ~DBController();
 
-    shared_ptr<Connection> get_free_connection() {}
-    void reset_connection(shared_ptr<Connection>) {}
+    shared_ptr<Connection> get_free_connection();
+    void reset_connection(shared_ptr<Connection>);
 
-    bool run_query(const string& query, vector<string>& result) {}
+    bool run_query(const string& query, vector<string> &result);
 
 private:
     queue<shared_ptr<Connection>> connection_pool;
@@ -32,5 +31,7 @@ private:
 
     void create_pool(int size);
 };
+
+#include "templates/DBController_impl.hpp"
 
 #endif
