@@ -1,13 +1,12 @@
 #ifndef DBCONTROLLER_HPP
 #define DBCONTROLLER_HPP
 
-#include <memory>
+#include <iostream>
+#include <fstream>
 #include <mutex>
 #include <condition_variable>
 #include <queue>
 #include <vector>
-#include <string>
-#include <libpq-fe.h>
 
 #include "DBConnection.hpp"
 

@@ -14,7 +14,10 @@ DBConnection::DBConnection(const string &host, const string &dbname,
     }
 }
 
-DBConnection::~DBConnection() {}
+DBConnection::~DBConnection() 
+{
+    
+}
 
 shared_ptr<PGconn> DBConnection::get_connection() const
 {

@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "../DBController.hpp"
 
 template <class Connection>
@@ -17,10 +16,15 @@ template <class Connection>
 void DBController<Connection>::create_pool(int size)
 {
     lock_guard<mutex> locker_(mtx);
-    // need to read connection params from config
-    string host = "localhost", db_name = "twitter";
-    string user = "twitter_user", password = "twitter_password";
-    int port = 5432;
+    string host = "", db_name = "";
+    string user = "", password = "";
+    int port = 0;
+    ifstream fin("../src/libs/data_base/include/config.txt", ios_base::in);
+    if (fin.is_open())
+    {
+        fin >> db_name >> user >> password >> host >> port;
+        fin.close();
+    }
     for (int i = 0; i < size; ++i )
     {
          connection_pool.emplace(make_shared<Connection>(host, db_name, 
