@@ -27,9 +27,9 @@ public:
     std::pair<unsigned short int, std::string> user_update() {}
     User get_user() {}
 	
-    Profile get_profile(int profile_id)
+    Profile get_profile(int profile_id, error_code &rc)
 	{
-		return profile_repositrory->get_by_id(profile_id);
+		return profile_repositrory->get_by_id(profile_id, rc);
 	}
 	
     std::pair<unsigned short int, std::string> profile_update() {}
