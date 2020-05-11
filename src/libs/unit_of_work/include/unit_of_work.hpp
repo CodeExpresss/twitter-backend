@@ -22,18 +22,20 @@ public:
 
     ~UnitOfWork() = default;
 
-    std::pair<unsigned short int, std::string> sing_up() {}
-    std::tuple<Tweet, Profile> get_index_tweet() {}
-    unsigned short int login() {}
+    std::pair<unsigned short int, std::string> sing_up(User user, Profile profile) {}
+    std::tuple<Tweet, Profile> get_index_tweet(int profile_id) {}
+    unsigned short int login(User user) {}
     unsigned short int authenticate() {}
-    unsigned short int logout() {}
-    std::pair<unsigned short int, std::string> user_update() {}
+    unsigned short int logout(User user) {}
+    std::pair<unsigned short int, std::string> user_update(User user) {}
     User get_user() {}
-    Profile get_profile();
-    std::pair<unsigned short int, std::string> profile_update() {}
-    std::tuple<Tweet, Profile> get_like_tweets() {}
-    unsigned short int vote() {}
-    std::pair<unsigned short int, std::string> create_tweet() {}
+    Profile get_profile(int profile_id);
+    std::vector<Tag> get_tag_list();
+    std::vector<Profile> get_subscriptions(int profile_id);
+    Profile profile_update(int profile_id) {}
+    std::tuple<Tweet, Profile> get_like_tweets(int profile_id) {}
+    unsigned short int vote(Vote vote) {}
+    std::pair<unsigned short int, std::string> create_tweet(Tweet tweet) {}
     std::pair<unsigned short int, std::string> delete_tweet() {}
 
 private:
