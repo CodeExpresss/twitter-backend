@@ -1,7 +1,7 @@
 -- first only 3 command
 CREATE DATABASE twitter WITH ENCODING = 'UTF8';
 CREATE USER twitter_user WITH PASSWORD 'twitter_password';
-GRANT ALL PRIVILEGES ON DATABASE twitter TO twitter_user;
+ALTER ROLE twitter_user SUPERUSER;
 
 -- connect to twitter before execution following commands
 -- for psql:
