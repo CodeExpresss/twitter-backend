@@ -6,6 +6,7 @@
 class Vote {
 public:
     Vote(int profile_id, int tweet_id): profile_id(profile_id), tweet_id(tweet_id), kind(1) {};
+    Vote() = default;
     ~Vote() = default;
 
 private:

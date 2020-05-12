@@ -21,4 +21,6 @@ private:
     Serialize serialize;
 };
 
+#include "templates/template_update_user_controller.hpp"
+
 #endif

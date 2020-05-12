@@ -21,4 +21,6 @@ private:
     Serialize serialize;
 };
 
+#include "templates/teplate_create_tweet_controller.hpp"
+
 #endif

@@ -14,7 +14,7 @@ public:
 private:
     std::shared_ptr<UnitOfWork> worker;
 
-    std::tuple<Tweet, Profile> like_wall;
+    std::vector<std::tuple<Tweet, Profile>> like_wall;
     Serialize serialize;
 };
 

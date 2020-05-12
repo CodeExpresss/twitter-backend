@@ -18,4 +18,6 @@ private:
     Serialize serialize;
 };
 
+#include "templates/template_subscription_controller.hpp"
+
 #endif
