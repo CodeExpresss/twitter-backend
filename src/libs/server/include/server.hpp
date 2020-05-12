@@ -5,14 +5,21 @@
 #include <boost/beast/http.hpp>
 #include <boost/beast/version.hpp>
 #include <boost/asio.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/regex.hpp>
+#include <boost/algorithm/string.hpp>
+#include <regex>
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <memory>
 #include <string>
-#include "index_controller.hpp"
-#include "unit_of_work.hpp"
+#include "../../controllers/include/index_controller.hpp"
+#include "../../unit_of_work/include/unit_of_work.hpp"
+#include "../../controllers/include/get_profile_controller.hpp"
+#include "../../serialize/include/serialize.hpp"
+#include "../../models/include/profile.hpp"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -21,6 +28,7 @@ using tcp = boost::asio::ip::tcp;
 
 class HTTPClient : public std::enable_shared_from_this<HTTPClient> {
 public:
+
     HTTPClient(tcp::socket socket) : socket(std::move(socket)) {}
 
     void start();
@@ -28,10 +36,52 @@ public:
     static std::shared_ptr<UnitOfWork> worker;
 
 private:
+
+    //регулярные выражения для роутинга
+    static std::regex register_regex;
+    static std::regex get_profile_regex;
+    static std::regex current_user_regex;
+    static std::regex get_news_feed_regex;
+    static std::regex login_regex;
+    static std::regex user_update_regex;
+    static std::regex profile_update_regex;
+    static std::regex create_tweet_regex;
+    static std::regex vote_tweet_regex;
+    static std::regex delete_tweet_regex;
+
+    std::string get_query_string(const std::string& url) {
+        std::string result;
+
+        static const std::regex parse_query{ R"((/([^ ?]+)?)?/??\?([^/ ]+\=[^/ ]+))"};
+        std::smatch match;
+
+        if (std::regex_match(url, match, parse_query)) {
+            result = match[match.size() - 1];
+        }
+
+        return result;
+    }
+
+    std::map<std::string, std::string> get_map_from_query(const std::string& query) {
+        std::map<std::string, std::string> data;
+        std::regex pattern("([\\w+%]+)=([^&]*)");
+        auto words_begin = std::sregex_iterator(query.begin(), query.end(), pattern);
+        auto words_end = std::sregex_iterator();
+
+        for (auto i = words_begin; i != words_end; i++)
+        {
+            std::string key = (*i)[1].str();
+            std::string value = (*i)[2].str();
+            data[key] = value;
+        }
+
+        return data;
+    }
+
     tcp::socket socket; //сокет для подключения конкретного клиента
     beast::flat_buffer buffer{8192}; //буфер для чтения данных
 
-    http::request<http::dynamic_body> request; //объект запроса
+    http::request<http::string_body> request; //объект запроса
     http::response<http::dynamic_body> response; //объект ответа
 
     //таймер для "протухания" соеденений
@@ -48,8 +98,9 @@ private:
     // Метод для обработки запроса
     void process_request();
 
-    // Создание ответа, здесь должен быть реализован роутинг
-    void routing();
+    void routing_get_method();
+
+    void routing_post_method();
 
     // записать ответ в сокет
     void write_response();
@@ -59,6 +110,17 @@ private:
 };
 
 std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
+std::regex HTTPClient::register_regex = std::regex("/api/user/register/.+");
+std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/current/.+");
+std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/.+");
+std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/.+");
+std::regex HTTPClient::login_regex = std::regex("/api/user/login/.+");
+std::regex HTTPClient::user_update_regex = std::regex("/api/user/update/.+");
+std::regex HTTPClient::profile_update_regex = std::regex("/api/profile/update/.+");
+std::regex HTTPClient::create_tweet_regex = std::regex("/api/tweet/create/.+");
+std::regex HTTPClient::vote_tweet_regex = std::regex("/api/tweet/vote/.+");
+std::regex HTTPClient::delete_tweet_regex = std::regex("/api/tweet/delete/.+");
+
 
 void HTTPClient::start() {
     read_request();
@@ -87,9 +149,11 @@ void HTTPClient::process_request() {
     switch (request.method()) {
         case http::verb::get:
             response.result(http::status::ok);
-            routing();
+            routing_get_method();
             break;
         case http::verb::post:
+            response.result(http::status::ok);
+            routing_post_method();
             break;
         default:
             // неопределённый метод запроса
@@ -104,43 +168,115 @@ void HTTPClient::process_request() {
     write_response();
 }
 
-void HTTPClient::routing() {
+void HTTPClient::routing_post_method() {
+
+    boost::property_tree::ptree json_response;
+
+    std::string request_string = request.target().to_string();
+    auto query_string_map = get_map_from_query( get_query_string(request_string) );
+    std::stringstream ss;
+
+    if (std::regex_match(request_string, register_regex)) {
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
+        return;
+
+    } else if (std::regex_match(request_string, login_regex)) {
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
+        return;
+
+    } else if (std::regex_match(request_string, user_update_regex)) {
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
+        return;
+
+    } else if (std::regex_match(request_string, profile_update_regex)) {
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
+        return;
+
+    } else if (std::regex_match(request_string, create_tweet_regex)) {
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
+        return;
+
+    } else if (std::regex_match(request_string, vote_tweet_regex)) {
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
+        return;
+
+    } else if (std::regex_match(request_string, delete_tweet_regex)) {
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
+        return;
+    } else {
+        std::cout << "Bad gateway" << std::endl;
+
+        response.result(http::status::not_found);
+        response.set(http::field::content_type, "text/plain");
+        beast::ostream(response.body()) << "File not found\r\n";
+    }
+}
+
+
+void HTTPClient::routing_get_method() {
+
+    boost::property_tree::ptree json_response;
+
+    std::string request_string = request.target().to_string();
+    auto query_string_map = get_map_from_query( get_query_string(request_string) );
+    std::stringstream ss;
+
     if (request.target() == "/echo") {
         response.set(http::field::content_type, "text/html");
         beast::ostream(response.body())
                 << request.method() << "\n"
                 << request.target() << "\n";
-    } else if (request.target() == "/api/user/register/") {
+
+    } else if (std::regex_match(request_string, current_user_regex)) {
+
+        std::shared_ptr<GetProfileController<Serialize<Profile>>> cont =
+                make_shared<GetProfileController<Serialize<Profile>>>(worker);
+
+        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
         return;
 
-    } else if (request.target() == "/api/user/login/") {
+    } else if (std::regex_match(request_string, get_profile_regex)) {
+
+        std::shared_ptr<GetProfileController<Serialize<Profile>>> cont =
+                make_shared<GetProfileController<Serialize<Profile>>>(worker);
+
+        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
         return;
 
-    } else if (request.target() == "/api/user/current/") {
-        return;
+    } else if (std::regex_match(request_string, get_news_feed_regex)) {
 
-    } else if (request.target() == "/api/user/update/") {
-        return;
+        //std::shared_ptr<IndexController<Serialize< std::vector<std::tuple<Tweet, Profile> > > > > cont =
+                make_shared<IndexController<Serialize< std::vector<std::tuple<Tweet, Profile>>>>>(worker);
 
-    } else if (request.target() == "/api/profile/current/") {
-        std::shared_ptr<ProfileController> p_cont = make_shared<ProfileController>(worker);
-        p_cont->get_queryset();
-        return;
+        //json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
-    } else if (request.target() == "/api/profile/update/") {
-        return;
-
-    } else if (request.target() == "/api/tweet/index/") {
-
-        return;
-
-    } else if (request.target() == "/api/tweet/create/") {
-        return;
-
-    } else if (request.target() == "/api/tweet/vote/") {
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
         return;
 
     } else {
+        std::cout << "Bad gateway" << std::endl;
+
         response.result(http::status::not_found);
         response.set(http::field::content_type, "text/plain");
         beast::ostream(response.body()) << "File not found\r\n";
@@ -177,22 +313,22 @@ public:
     HTTPServer(std::string address, std::string port): _address(std::move(address)), _port(std::move(port)) {}
 
     void start_server() {
-            try {
-                auto const address = net::ip::make_address(_address);
-                auto const port = static_cast<unsigned short>(std::stoi(_port));
+        try {
+            auto const address = net::ip::make_address(_address);
+            auto const port = static_cast<unsigned short>(std::stoi(_port));
 
-                net::io_context io_context{1};
+            net::io_context io_context{1};
 
-                tcp::acceptor acceptor{io_context, {address, port}};
-                tcp::socket socket{io_context};
+            tcp::acceptor acceptor{io_context, {address, port}};
+            tcp::socket socket{io_context};
 
-                connection_loop(acceptor, socket);
+            connection_loop(acceptor, socket);
 
-                io_context.run();
+            io_context.run();
 
-            } catch (std::exception const &e) {
-                std::cerr << "Error: " << e.what() << std::endl;
-            }
+        } catch (std::exception const &e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
     }
 
 private:

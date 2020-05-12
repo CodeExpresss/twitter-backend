@@ -19,23 +19,23 @@ public:
 
     ~UnitOfWork() = default;
 
-    std::pair<unsigned short int, std::string> sing_up() {}
-    std::tuple<Tweet, Profile> get_index_tweet() {}
-    unsigned short int login() {}
-    unsigned short int authenticate() {}
-    unsigned short int logout() {}
-    std::pair<unsigned short int, std::string> user_update() {}
-    User get_user() {}
-	
-    Profile get_profile(int profile_id, error_code &rc)
-	{
-		return profile_repositrory->get_by_id(profile_id, rc);
-	}
-	
-    std::pair<unsigned short int, std::string> profile_update() {}
-    std::tuple<Tweet, Profile> get_like_tweets() {}
-    unsigned short int vote() {}
-    std::pair<unsigned short int, std::string> create_tweet() {}
+    std::pair<unsigned short int, std::string> sing_up(User user, Profile profile) {}
+    std::vector<std::tuple<Tweet, Profile>> get_index_tweet(int profile_id) {}
+    std::pair<unsigned short int, std::string> login(User user) {}
+    std::pair<unsigned short int, std::string> authenticate() {}
+    std::pair<unsigned short int, std::string> logout(User user) {}
+    User user_update(User user) {}
+    User get_user() {}	
+    Profile get_profile(int profile_id) {
+      error_code &rc
+		  return profile_repositrory->get_by_id(profile_id, rc);
+    }
+    std::vector<Tag> get_tag_list();
+    std::vector<Profile> get_subscriptions(int profile_id);
+    Profile profile_update(int profile_id) {}
+    std::vector<std::tuple<Tweet, Profile>> get_like_tweets(int profile_id) {}
+    std::pair<unsigned short int, std::string> vote(Vote vote) {}
+    std::pair<unsigned short int, std::string> create_tweet(Tweet tweet) {}
     std::pair<unsigned short int, std::string> delete_tweet() {}
 
 private:

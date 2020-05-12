@@ -6,10 +6,14 @@
 
 class Tweet {
 public:
+    Tweet(std::string _text, int _profile_id): profile_id(_profile_id), text(std::move(_text)) {}
     Tweet() = default;
     ~Tweet() = default;
 
     bool set_tag(const std::vector<Tag> &tags);
+    std::string get_text();
+    std::string get_date();
+    std::vector<Tag> get_tags();
 
 private:
     int tweet_id;

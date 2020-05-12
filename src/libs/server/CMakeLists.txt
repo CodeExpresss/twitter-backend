@@ -22,4 +22,6 @@ add_library(server SHARED
 target_include_directories(server
     PUBLIC
         "include"
+        "../client/include"
+        "../serialize/include"
 )

@@ -15,10 +15,10 @@ set(INC
 set(SRC
 )
 
-add_library(controllers SHARED
+add_library(serialize SHARED
     ${SRC})
 
-target_include_directories(controllers
+target_include_directories(serialize
     PUBLIC
         "include"
         "../models/include"
