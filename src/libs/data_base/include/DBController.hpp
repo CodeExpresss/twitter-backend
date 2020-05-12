@@ -22,7 +22,7 @@ public:
     shared_ptr<Connection> get_free_connection();
     void reset_connection(shared_ptr<Connection>);
 
-    bool run_query(const string& query, vector<string> &result);
+    bool run_query(const string& query, vector<vector<string>> &result);
 
 private:
     queue<shared_ptr<Connection>> connection_pool;
