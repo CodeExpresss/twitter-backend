@@ -4,10 +4,11 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <boost/format.hpp>
 
 #include "../../data_base/include/DBController.hpp"
 #include "../../data_base/include/DBConnection.hpp"
 
-enum error_code { OK, NO_CTRL, NOT_EXIST );
+enum err_code { OK, NO_CTRL, NOT_EXIST };
 
 #endif // REPOSITORY_HEADER_HPP
