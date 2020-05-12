@@ -39,7 +39,7 @@ shared_ptr<Connection> DBController<Connection>::get_free_connection(void)
     unique_lock<mutex> lock(mtx);
     while (connection_pool.empty())
     {
-            cond.wait(lock);
+        cond.wait(lock);
     }
 
     auto conn = connection_pool.front();
@@ -57,24 +57,33 @@ void DBController<Connection>::reset_connection(shared_ptr<Connection> conn)
 }
 
 template <class Connection>
-bool DBController<Connection>::run_query(const string &query, vector<string> &result)
+bool DBController<Connection>::run_query(const string &query, 
+										 vector<vector<string>> &result)
 {
+    //cout << query << endl;
     auto conn = get_free_connection();
     PGresult *query_res = PQexec(conn->get_connection().get(), query.c_str());
-    if (PQresultStatus(query_res) != PGRES_TUPLES_OK)
+    reset_connection(conn);
+    //cout << "PError: " << PQresultErrorMessage(query_res) << endl;
+    if (PQresultStatus(query_res) != PGRES_TUPLES_OK && 
+		PQresultStatus(query_res) != PGRES_COMMAND_OK)
     {
         cout << "Error!" << endl;
+        PQclear(query_res);
         return false;
     }
-
-    result.clear();
+    
     int columns = PQnfields(query_res);
     int strings = PQntuples(query_res);
-    for (int i = 1; i < strings; i++)
+	vector<string> str = {};
+	result.clear();
+    for (int i = 0; i < strings; i++)
     {
+		str.clear();
         for (int j = 0; j < columns; j++)
-            result.push_back(PQgetvalue(query_res, i, j));
+			str.push_back(PQgetvalue(query_res, i, j));
+        result.push_back(str);
     }
-    reset_connection(conn);
+    PQclear(query_res);
     return true;
 }
