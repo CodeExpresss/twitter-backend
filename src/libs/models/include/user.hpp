@@ -1,11 +1,13 @@
 #ifndef USER_HPP
 #define USER_HPP
 
+#include <utility>
+
 #include "models_header.hpp"
 
 class User {
 public:
-    User() = default;
+    User(int id, std::string _email, std::string _password): user_id(id), password(std::move(_password)), email(std::move(_email)) {};
     ~User() = default;
 
     bool login();

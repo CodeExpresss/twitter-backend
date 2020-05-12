@@ -6,7 +6,7 @@
 
 class Tweet {
 public:
-    Tweet() = default;
+    Tweet(std::string _text, int _profile_id): profile_id(_profile_id), text(std::move(_text)) {};
     ~Tweet() = default;
 
     bool set_tag(const std::vector<Tag> &tags);
