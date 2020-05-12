@@ -18,14 +18,14 @@ set(SRC
     source/DBController.cpp
 )
 
-if(APPLE)
-    find_package(PostgreSQL REQUIRED)
-    target_include_directories(data_base PRIVATE ${PostgreSQL_INCUDE_DIRS})
-    target_link_libraries(data_base PRIVATE ${PostgreSQL_LIBRARIES})
-endif()
-
 add_library(data_base SHARED
     ${SRC})
+
+if(APPLE)
+    find_package(PostgreSQL REQUIRED)
+    target_include_directories(data_base PRIVATE ${PostgreSQL_INCLUDE_DIRS})
+    target_link_libraries(data_base PRIVATE ${PostgreSQL_LIBRARIES})
+endif()
 
 target_include_directories(data_base
     PUBLIC
