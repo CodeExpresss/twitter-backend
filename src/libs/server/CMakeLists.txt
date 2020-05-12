@@ -22,6 +22,10 @@ add_library(server SHARED
 target_include_directories(server
     PUBLIC
         "include"
+        "../models/include"
+        "../unit_of_work/include"
+        "../repositories/include"
         "../client/include"
+        "../controllers/include"
         "../serialize/include"
 )

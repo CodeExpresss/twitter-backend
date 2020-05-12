@@ -15,8 +15,8 @@
 #include <iostream>
 #include <memory>
 #include <string>
-#include "../../controllers/include/index_controller.hpp"
-#include "../../unit_of_work/include/unit_of_work.hpp"
+#include "index_controller.hpp"
+#include "unit_of_work.hpp"
 #include "../../controllers/include/get_profile_controller.hpp"
 #include "../../serialize/include/serialize.hpp"
 #include "../../models/include/profile.hpp"

@@ -14,8 +14,8 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 set(SRC
-    #source/main.cpp)
-    source/repositories_gmock.cpp)
+    source/main.cpp)
+    #source/repositories_gmock.cpp)
     #source/unit_of_work_gmock.cpp)
 
 add_executable(tests_gmock
@@ -49,62 +49,62 @@ target_include_directories(tests_gmock
 target_link_libraries(tests_gmock ${GTEST_LIBRARIES} pthread)
 target_link_libraries(tests_gmock -lgmock)
 
-add_executable(tests_gmock_repositories source/repositories_gmock.cpp)
-target_link_libraries(tests_gmock_repositories -lpq  -fprofile-arcs)
+#add_executable(tests_gmock_repositories source/repositories_gmock.cpp)
+#target_link_libraries(tests_gmock_repositories -lpq  -fprofile-arcs)
 
-target_link_libraries(tests_gmock_repositories
-    data_base
-    models
-)
+#target_link_libraries(tests_gmock_repositories
+    #data_base
+    #models
+#)
 
-target_include_directories(tests_gmock_repositories
-    PUBLIC
-        "include"
-        "../libs/repositories/include"
-        "../libs/unit_of_work/include"
-        "../libs/models/include"
-        "../libs/data_base/include"
-)
+#target_include_directories(tests_gmock_repositories
+    #PUBLIC
+        #"include"
+        #"../libs/repositories/include"
+        #"../libs/unit_of_work/include"
+        #"../libs/models/include"
+        #"../libs/data_base/include"
+#)
 
-target_link_libraries(tests_gmock_repositories ${GTEST_LIBRARIES} pthread -lgmock)
+#target_link_libraries(tests_gmock_repositories ${GTEST_LIBRARIES} pthread -lgmock)
 
 
-add_executable(tests_gmock_database source/test_database.cpp)
-target_link_libraries(tests_gmock_database -lpq  -fprofile-arcs)
+#add_executable(tests_gmock_database source/test_database.cpp)
+#target_link_libraries(tests_gmock_database -lpq  -fprofile-arcs)
 
-target_link_libraries(tests_gmock_database
-    data_base
-    models
-    repositories)
+#target_link_libraries(tests_gmock_database
+    #data_base
+    #models
+    #repositories)
 
-target_include_directories(tests_gmock_database
-    PUBLIC
-        "../libs/data_base/include"
-        "../libs/models/include"
-        "../libs/repositories/include"
-)
+#target_include_directories(tests_gmock_database
+    #PUBLIC
+        #"../libs/data_base/include"
+        #"../libs/models/include"
+        #"../libs/repositories/include"
+#)
 
-target_link_libraries(tests_gmock_database ${GTEST_LIBRARIES} pthread -lgmock)
+#target_link_libraries(tests_gmock_database ${GTEST_LIBRARIES} pthread -lgmock)
 
-add_executable(tests_gmock_unit_of_work source/unit_of_work_gmock.cpp)
-target_link_libraries(tests_gmock_unit_of_work -lpq  -fprofile-arcs)
+#add_executable(tests_gmock_unit_of_work source/unit_of_work_gmock.cpp)
+#target_link_libraries(tests_gmock_unit_of_work -lpq  -fprofile-arcs)
 
-target_link_libraries(tests_gmock_unit_of_work
-    data_base
-    models
-)
+#target_link_libraries(tests_gmock_unit_of_work
+    #data_base
+    #models
+#)
 
-target_include_directories(tests_gmock_unit_of_work
-    PUBLIC
-        "include"
-        "../libs/repositories/include"
-        "../libs/controllers/include"
-        "../libs/unit_of_work/include"
-        "../libs/models/include"
-        "../libs/data_base/include"
-)
+#target_include_directories(tests_gmock_unit_of_work
+    #PUBLIC
+        #"include"
+        #"../libs/repositories/include"
+        #"../libs/controllers/include"
+        #"../libs/unit_of_work/include"
+        #"../libs/models/include"
+        #"../libs/data_base/include"
+#)
 
-target_link_libraries(tests_gmock_unit_of_work ${GTEST_LIBRARIES} pthread -lgmock)
+#target_link_libraries(tests_gmock_unit_of_work ${GTEST_LIBRARIES} pthread -lgmock)
 
 #add_executable(tests_gmock_server source/test_server.cpp)
 #target_link_libraries(tests_gmock_server -lpq  -fprofile-arcs)
@@ -123,5 +123,23 @@ target_link_libraries(tests_gmock_unit_of_work ${GTEST_LIBRARIES} pthread -lgmoc
 #)
 
 #target_link_libraries(tests_gmock_server ${GTEST_LIBRARIES} pthread -lgmock)
+
+add_executable(tests_gmock_server source/test_server_run.cpp)
+target_link_libraries(tests_gmock_server -lpq  -fprofile-arcs)
+
+target_link_libraries(tests_gmock_server
+)
+
+target_include_directories(tests_gmock_server
+    PUBLIC
+        "include"
+        "../libs/controllers/include"
+        "../libs/client/include"
+        "../libs/repositories/include"
+        "../libs/models/include"
+        "../libs/unit_of_work/include"
+)
+
+target_link_libraries(tests_gmock_server ${GTEST_LIBRARIES} pthread -lgmock)
 
 
