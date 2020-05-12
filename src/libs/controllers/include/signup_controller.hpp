@@ -28,4 +28,6 @@ private:
     Serialize serialize;
 };
 
+#include "templates/template_signup_controller.hpp"
+
 #endif

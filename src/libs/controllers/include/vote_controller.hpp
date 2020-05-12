@@ -21,4 +21,6 @@ private:
     Serialize serialize;
 };
 
+#include "templates/template_vote_controller.hpp"
+
 #endif

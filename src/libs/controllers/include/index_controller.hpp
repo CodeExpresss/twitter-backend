@@ -14,8 +14,10 @@ public:
 private:
     std::shared_ptr<UnitOfWork> worker;
 
-    std::tuple<Tweet, Profile> wall;
+    std::vector<std::tuple<Tweet, Profile>> wall;
     Serialize serialize;
 };
+
+#include "templates/template_index_controller.hpp"
 
 #endif

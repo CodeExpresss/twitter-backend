@@ -19,4 +19,6 @@ private:
     Serialize serialize;
 };
 
+#include "templates/template_get_profile_controller.hpp"
+
 #endif
