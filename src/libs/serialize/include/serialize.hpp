@@ -75,7 +75,7 @@ template<> struct Serialize<std::vector<Profile>> {
 };
 
 
-template<> struct Serialize<std::tuple<Tweet, Profile>> {
+template<> struct Serialize<std::vector<std::tuple<Tweet, Profile>>> {
     boost::property_tree::ptree operator() (std::vector<std::tuple<Tweet, Profile>> wall) {
         boost::property_tree::ptree wall_tree,
                                     child_item,
