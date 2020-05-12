@@ -5,6 +5,10 @@
 #include <boost/beast/http.hpp>
 #include <boost/beast/version.hpp>
 #include <boost/asio.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/regex.hpp>
+#include <boost/algorithm/string.hpp>
+#include <regex>
 #include <chrono>
 #include <cstdlib>
 #include <ctime>
@@ -13,6 +17,8 @@
 #include <string>
 #include "index_controller.hpp"
 #include "unit_of_work.hpp"
+#include "get_profile_controller.hpp"
+#include "../../serialize/include/serialize.hpp"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -25,13 +31,43 @@ public:
 
     void start();
 
+    static std::string get_query_string(const std::string& url) {
+        std::string result;
+
+        static const std::regex parse_query{ R"((/([^ ?]+)?)?/??(\?[^/ ]+\=[^/ ]+))"};
+        std::smatch match;
+
+        if (std::regex_match(url, match, parse_query)) {
+            result = match[match.size() - 1];
+        }
+
+        return result;
+    }
+
+    static std::map<std::string, std::string> get_map_from_query(const std::string& query)
+    {
+        std::map<std::string, std::string> data;
+        std::regex pattern("([\\w+%]+)=([^&]*)");
+        auto words_begin = std::sregex_iterator(query.begin(), query.end(), pattern);
+        auto words_end = std::sregex_iterator();
+
+        for (std::sregex_iterator i = words_begin; i != words_end; i++)
+        {
+            std::string key = (*i)[1].str();
+            std::string value = (*i)[2].str();
+            data[key] = value;
+        }
+
+        return data;
+    }
+
     static std::shared_ptr<UnitOfWork> worker;
 
 private:
     tcp::socket socket; //сокет для подключения конкретного клиента
     beast::flat_buffer buffer{8192}; //буфер для чтения данных
 
-    http::request<http::dynamic_body> request; //объект запроса
+    http::request<http::string_body> request; //объект запроса
     http::response<http::dynamic_body> response; //объект ответа
 
     //таймер для "протухания" соеденений
@@ -49,7 +85,9 @@ private:
     void process_request();
 
     // Создание ответа, здесь должен быть реализован роутинг
-    void routing();
+    void routing_get_method();
+
+    void routing_post_method();
 
     // записать ответ в сокет
     void write_response();
@@ -87,9 +125,11 @@ void HTTPClient::process_request() {
     switch (request.method()) {
         case http::verb::get:
             response.result(http::status::ok);
-            routing();
+            routing_get_method();
             break;
         case http::verb::post:
+            response.result(http::status::ok);
+            routing_post_method();
             break;
         default:
             // неопределённый метод запроса
@@ -104,7 +144,15 @@ void HTTPClient::process_request() {
     write_response();
 }
 
-void HTTPClient::routing() {
+void HTTPClient::routing_get_method() {
+    std::regex profile_regex("/api/profile/current/.+");
+    std::regex register_regex("");
+    
+    std::string request_string = request.target().to_string();
+    auto query_string_map = HTTPClient::get_map_from_query( HTTPClient::get_query_string(request_string) );
+
+    error_code ec;
+
     if (request.target() == "/echo") {
         response.set(http::field::content_type, "text/html");
         beast::ostream(response.body())
@@ -122,9 +170,17 @@ void HTTPClient::routing() {
     } else if (request.target() == "/api/user/update/") {
         return;
 
-    } else if (request.target() == "/api/profile/current/") {
-        std::shared_ptr<ProfileController> p_cont = make_shared<ProfileController>(worker);
-        p_cont->get_queryset();
+    } else if (std::regex_search(request_string, profile_regex)) {
+
+        std::shared_ptr<GetProfileController<Serialize<Profile>>> p_cont =
+                make_shared<GetProfileController<Serialize<Profile>>>(worker);
+
+        boost::property_tree::ptree json = p_cont->get_queryset();
+        std::stringstream ss;
+
+        boost::property_tree::json_parser::write_json(ss, json);
+
+        beast::ostream(response.body()) << ss.str() << "\n\r";
         return;
 
     } else if (request.target() == "/api/profile/update/") {
@@ -141,10 +197,30 @@ void HTTPClient::routing() {
         return;
 
     } else {
+
+        std::cout << "Bad gateway" << std::endl;
+
+//        for (auto &field : request) {
+//            std::cout << field.name() << " = " << field.value() << "\n";
+//        }
+
+        //boost::beast::http::request_parser<boost::beast::http::request<http::dynamic_body>> p;
+
+        //std::string request_body = boost::asio::buffer_cast<boost::property_tree::ptree>(request.body().data());
+
         response.result(http::status::not_found);
         response.set(http::field::content_type, "text/plain");
         beast::ostream(response.body()) << "File not found\r\n";
     }
+}
+
+void HTTPClient::routing_post_method() {
+    boost::property_tree::ptree body_json;
+
+    std::stringstream ss;
+    boost::property_tree::read_json(ss, body_json);
+
+    std::cout << ss.str() << std::endl;
 }
 
 void HTTPClient::write_response() {
