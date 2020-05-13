@@ -128,6 +128,13 @@ add_executable(tests_gmock_server source/test_server_run.cpp)
 target_link_libraries(tests_gmock_server -lpq  -fprofile-arcs)
 
 target_link_libraries(tests_gmock_server
+    client
+    controllers
+    data_base
+    models
+    repositories
+    server
+    unit_of_work
 )
 
 target_include_directories(tests_gmock_server
