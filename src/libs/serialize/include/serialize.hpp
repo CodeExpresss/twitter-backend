@@ -22,11 +22,27 @@ template<> struct Serialize<Profile> {
     }
 };
 
+template<> struct Serialize<std::vector<Profile>> {
+    boost::property_tree::ptree operator() (std::vector<Profile> profiles) {
+        boost::property_tree::ptree profiles_tree,
+                                    item_tree;
+
+        for(auto& profile : profiles) {
+            item_tree.put("nickname", profile.get_username());
+            item_tree.put("birthday", profile.get_birthday());
+            profiles_tree.put('profile', item_tree);
+        }
+
+        return profiles_tree;
+    }
+};
+
+
 template<> struct Serialize<std::vector<Tag>> {
     boost::property_tree::ptree  operator() (std::vector<Tag> tags) {
         boost::property_tree::ptree tags_tree;
 
-        for(auto & tag : tags) {
+        for(auto& tag : tags) {
             tags_tree.put_value(tag.get_title());
         }
 
@@ -65,7 +81,7 @@ template<> struct Serialize<std::vector<Profile>> {
         boost::property_tree::ptree profiles_tree,
                                     profile_item;
 
-        for(auto & profile : profiles) {
+        for(auto& profile : profiles) {
             profile_item.put("username", profile.get_username());
             profiles_tree.add_child("user", profile_item);
         }
@@ -134,7 +150,7 @@ template<> struct Serialize<std::vector<std::tuple<Tweet, Profile>>> {
         Profile profile;
         Tweet tweet;
 
-        for(auto & i : wall) {
+        for(auto& i : wall) {
             std::tie(tweet, profile) = i;
             child_tweet.put("text", tweet.get_text());
             child_tweet.put("data", tweet.get_date());
