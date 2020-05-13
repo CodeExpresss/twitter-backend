@@ -9,12 +9,11 @@ public:
     TagRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {};
     ~TagRepository() = default;
 
-
     std::vector<Tag> get_where() {}
-    Tag get_by_id(int id) {}
-    void create(Tag item) {}
-    void update(Tag item) {}
-    void erase(int id) {}
+    Tag get_by_id(int id, err_code& rc);
+    void create(Tag& item, err_code& rc);
+    void update(Tag& item, err_code& rc);
+    //void erase(int id, err_code& rc);
 
 private:
     std::weak_ptr<DBController<DBConnection>> db_controller;
