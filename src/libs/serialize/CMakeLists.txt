@@ -13,6 +13,7 @@ set(INC
 )
 
 set(SRC
+    "source/serialize.cpp"
 )
 
 add_library(serialize STATIC

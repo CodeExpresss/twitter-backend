@@ -134,6 +134,7 @@ target_include_directories(tests_gmock_server
     PUBLIC
         "include"
         "../libs/controllers/include"
+        "../libs/serialize/include"
         "../libs/client/include"
         "../libs/repositories/include"
         "../libs/models/include"
