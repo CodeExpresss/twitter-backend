@@ -5,7 +5,7 @@
 
 class Tag {
 public:
-    Tag() = default;
+    Tag(int tag_id, std::string &title) : tag_id(tag_id), title(title) {}
     ~Tag() = default;
 
     int get_tag_id() {return tag_id;}
