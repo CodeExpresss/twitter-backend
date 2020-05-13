@@ -31,7 +31,7 @@ public:
 		  return profile_repositrory->get_by_id(profile_id, rc);
     }
     std::vector<Tag> get_tag_list();
-    std::vector<Profile> get_subscriptions(int profile_id);
+    std::vector<Profile> get_subscriptions(int profile_id) {};
     Profile profile_update(int profile_id) {}
     std::vector<std::tuple<Tweet, Profile>> get_like_tweets(int profile_id) {}
     std::pair<unsigned short int, std::string> vote(Vote vote) {}
