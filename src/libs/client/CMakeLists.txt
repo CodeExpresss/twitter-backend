@@ -23,4 +23,8 @@ add_library(client STATIC
 target_include_directories(client
     PUBLIC
         "include"
+        "../controllers/include"
+        "../unit_of_work/include"
+        "../serialize/include"
+        "../models/include"
 )

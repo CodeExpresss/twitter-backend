@@ -22,11 +22,27 @@ template<> struct Serialize<Profile> {
     }
 };
 
+template<> struct Serialize<std::vector<Profile>> {
+    boost::property_tree::ptree operator() (std::vector<Profile> profiles) {
+        boost::property_tree::ptree profiles_tree,
+                                    item_tree;
+
+        for(auto& profile : profiles) {
+            item_tree.put("nickname", profile.get_username());
+            item_tree.put("birthday", profile.get_birthday());
+            profiles_tree.add_child("profile", item_tree);
+        }
+
+        return profiles_tree;
+    }
+};
+
+
 template<> struct Serialize<std::vector<Tag>> {
     boost::property_tree::ptree  operator() (std::vector<Tag> tags) {
         boost::property_tree::ptree tags_tree;
 
-        for(auto & tag : tags) {
+        for(auto& tag : tags) {
             tags_tree.put_value(tag.get_title());
         }
 
@@ -65,12 +81,61 @@ template<> struct Serialize<std::vector<Profile>> {
         boost::property_tree::ptree profiles_tree,
                                     profile_item;
 
-        for(auto & profile : profiles) {
+        for(auto& profile : profiles) {
             profile_item.put("username", profile.get_username());
             profiles_tree.add_child("user", profile_item);
         }
 
         return profiles_tree;
+    }
+};
+
+template<> struct Serialize<std::tuple<User, Profile>> {
+    boost::property_tree::ptree operator() (std::tuple<User, Profile> user) {
+        boost::property_tree::ptree tweet_tree,
+                child_item,
+                child_profile,
+                child_user;
+
+        Profile profile;
+        User system_user;
+
+        std::tie(system_user, profile) = user;
+        child_user.put("email", system_user.get_email());
+        child_profile.put("username", profile.get_username());
+//        child_profile.put("avatar", profile.get_avatar());
+        child_profile.put("birthday", profile.get_birthday());
+
+        child_item.add_child("system_user", child_user);
+        child_item.add_child("profile", child_profile);
+
+        tweet_tree.add_child("user", child_item);
+
+        return tweet_tree;
+    }
+};
+
+template<> struct Serialize<std::tuple<Tweet, Profile>> {
+    boost::property_tree::ptree operator() (std::tuple<Tweet, Profile> new_tweet) {
+        boost::property_tree::ptree tweet_tree,
+                child_item,
+                child_tweet,
+                child_user;
+
+        Profile profile;
+        Tweet tweet;
+
+        std::tie(tweet, profile) = new_tweet;
+        child_tweet.put("text", tweet.get_text());
+        child_tweet.put("data", tweet.get_date());
+        child_user.put("username", profile.get_username());
+
+        child_item.add_child("tweet", child_tweet);
+        child_item.add_child("author", child_user);
+
+        tweet_tree.add_child("wall_item", child_item);
+
+        return tweet_tree;
     }
 };
 
@@ -85,7 +150,7 @@ template<> struct Serialize<std::vector<std::tuple<Tweet, Profile>>> {
         Profile profile;
         Tweet tweet;
 
-        for(auto & i : wall) {
+        for(auto& i : wall) {
             std::tie(tweet, profile) = i;
             child_tweet.put("text", tweet.get_text());
             child_tweet.put("data", tweet.get_date());

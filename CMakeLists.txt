@@ -15,6 +15,7 @@ add_subdirectory(src/libs/models)
 add_subdirectory(src/libs/repositories)
 add_subdirectory(src/libs/controllers)
 add_subdirectory(src/libs/unit_of_work)
+add_subdirectory(src/libs/serialize)
 add_subdirectory(src/libs/server)
 add_subdirectory(src/libs/client)
 

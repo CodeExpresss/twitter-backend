@@ -4,12 +4,12 @@
 #include "controller_header.hpp"
 
 template<class Serialize>
-class GetUserController {
+class GetAuthUserController {
 public:
-    explicit GetUserController(std::shared_ptr<UnitOfWork> _worker):
+    explicit GetAuthUserController(std::shared_ptr<UnitOfWork> _worker, int id, std::string email, std::string password):
         worker(_worker),
-        user(id, std::move(email), std::move(password)),{};
-    ~GetUserController() = default;
+        user(id, std::move(email), std::move(password)) {};
+    ~GetAuthUserController() = default;
 
     boost::property_tree::ptree get_queryset() {};
 
