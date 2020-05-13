@@ -17,7 +17,7 @@ set(SRC
     source/unit_of_work.cpp
 )
 
-add_library(unit_of_work SHARED
+add_library(unit_of_work STATIC
     ${SRC})
 
 target_include_directories(unit_of_work

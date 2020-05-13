@@ -16,7 +16,7 @@ set(SRC
     source/server.cpp
 )
 
-add_library(server SHARED
+add_library(server STATIC
     ${SRC})
 
 target_include_directories(server

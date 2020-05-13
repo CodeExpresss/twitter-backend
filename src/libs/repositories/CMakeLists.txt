@@ -28,7 +28,7 @@ set(SRC
     source/vote_repository.cpp
 )
 
-add_library(repositories SHARED
+add_library(repositories STATIC
     ${SRC})
 
 target_include_directories(repositories
