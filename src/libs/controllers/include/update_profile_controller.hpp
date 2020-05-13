@@ -11,7 +11,7 @@ public:
             std::string username,
             std::string birthday,
             std::string avatar ):
-                worker(std::move(_worker)),
+                worker(_worker),
                 profile(profile_id, user_id, std::move(username), std::move(birthday), std::move(avatar)) {};
 
     ~UpdateProfileController() = default;

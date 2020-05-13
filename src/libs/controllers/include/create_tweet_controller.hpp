@@ -7,7 +7,7 @@ template <class Serialize>
 class AddTweetController {
 public:
     explicit AddTweetController(std::shared_ptr<UnitOfWork> _worker, std::string text, int profile_id):
-        worker(std::move(_worker)),
+        worker(_worker),
         tweet(std::move(text), profile_id) {};
 
     ~AddTweetController() = default;

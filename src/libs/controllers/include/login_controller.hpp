@@ -8,7 +8,7 @@ template<class Serialize>
 class LoginController {
 public:
     explicit LoginController(std::shared_ptr<UnitOfWork> _worker, std::string email, std::string password):
-    worker(std::move(_worker)),
+    worker(_worker),
     user(0, std::move(email), std::move(password)) {};
 
     ~LoginController() = default;

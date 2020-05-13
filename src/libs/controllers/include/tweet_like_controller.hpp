@@ -6,7 +6,7 @@
 template <class Serialize>
 class TweetLikeController {
 public:
-    explicit TweetLikeController(std::shared_ptr<UnitOfWork> _worker, int profile_id): worker(std::move(_worker)) {};
+    explicit TweetLikeController(std::shared_ptr<UnitOfWork> _worker, int profile_id): worker(_worker) {};
     ~TweetLikeController() = default;
 
     boost::property_tree::ptree get_queryset(int profile_id);
