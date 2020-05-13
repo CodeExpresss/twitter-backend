@@ -7,18 +7,15 @@
 
 class UnitOfWork {
 public:
-    UnitOfWork(ProfileRepository profile_repository,
-        TweetRepository  tweet_repository,
-        TagRepository tag_repository,
-        UserRepository user_repository,
-        VoteRepository vote_repository,
-        SubscriptionRepository subscription_repository)
-        : profile_repositrory(std::move(profile_repository)),
-        tweet_repository(std::move(tweet_repository)),
-        tag_repository(std::move(tag_repository)),
-        user_repository(std::move(user_repository)),
-        vote_repository(std::move(vote_repository)),
-        subscription_repository(std::move(subscription_repository)) {}
+    UnitOfWork() {
+        shared_ptr<DBController<DBConnection>> controller = make_shared<DBController<DBConnection>>(3);
+        profile_repositrory = make_shared<ProfileRepository>(controller);
+        tweet_repository = make_shared<TweetRepository>(controller);
+        tag_repository = make_shared<TagRepository>(controller);
+        user_repository = make_shared<UserRepository>(controller);
+        vote_repository = make_shared<VoteRepository>(controller);
+        subscription_repository = make_shared<SubscriptionRepository>(controller);
+    }
 
     ~UnitOfWork() = default;
 
@@ -29,7 +26,10 @@ public:
     std::pair<unsigned short int, std::string> logout(User user) {}
     User user_update(User user) {}
     User get_user() {}
-    Profile get_profile(int profile_id);
+    Profile get_profile(int profile_id); /*{*/
+      //error_code &rc
+		  //return profile_repositrory->get_by_id(profile_id, rc);
+    /*}*/
     std::vector<Tag> get_tag_list();
     std::vector<Profile> get_subscriptions(int profile_id);
     Profile profile_update(int profile_id) {}
@@ -42,12 +42,12 @@ private:
     std::vector<Profile> get_sub() {}
     std::vector<Tag> get_tags() {}
 
-    ProfileRepository profile_repositrory;
-    TweetRepository  tweet_repository;
-    TagRepository tag_repository;
-    UserRepository user_repository;
-    VoteRepository vote_repository;
-    SubscriptionRepository subscription_repository;
+    std::shared_ptr<ProfileRepository> profile_repositrory;
+    std::shared_ptr<TweetRepository>  tweet_repository;
+    std::shared_ptr<TagRepository> tag_repository;
+    std::shared_ptr<UserRepository> user_repository;
+    std::shared_ptr<VoteRepository> vote_repository;
+    std::shared_ptr<SubscriptionRepository> subscription_repository;
 };
 
 #endif // UNIT_OF_WORK_HPP
