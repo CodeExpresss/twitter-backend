@@ -30,7 +30,7 @@ template<> struct Serialize<std::vector<Profile>> {
         for(auto& profile : profiles) {
             item_tree.put("nickname", profile.get_username());
             item_tree.put("birthday", profile.get_birthday());
-            profiles_tree.put('profile', item_tree);
+            profiles_tree.add_child("profile", item_tree);
         }
 
         return profiles_tree;
