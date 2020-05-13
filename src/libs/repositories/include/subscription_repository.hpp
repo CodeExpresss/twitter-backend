@@ -11,10 +11,10 @@ public:
 
 
     std::vector<Subscription> get_where() {}
-    Subscription get_by_id(int id) {}
-    void create(Subscription item) {}
-    void update(Subscription item) {}
-    void erase(int id) {}
+    std::vector<int> get_by_id(int id, err_code &rc);
+    void create(Subscription &item, err_code &rc);
+    void update(Subscription &item, err_code &rc);
+    void erase(int id, err_code &rc);
 
 private:
     std::weak_ptr<DBController<DBConnection>> db_controller;

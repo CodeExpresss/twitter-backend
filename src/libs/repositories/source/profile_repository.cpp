@@ -1,6 +1,6 @@
 #include "../include/profile_repository.hpp" 
 
-/*Profile ProfileRepository::get_by_id(int id, err_code &rc) 
+Profile ProfileRepository::get_by_id(int id, err_code &rc) 
 {
 	std::vector<std::vector<std::string>> query_result = {};
 	int p_id = 0, user_id = 0;
@@ -25,14 +25,14 @@
 		rc = NO_CTRL;
 	
 	// need to specify the object with params
-	//Profile p = Profile(p_id, user_id, username, avatar, birthday);
-	Profile p = Profile();
+	Profile p = Profile(p_id, user_id, username, avatar, birthday);
+	//Profile p = Profile();
 	return p;
-}*/
+}
 
 void ProfileRepository::create(Profile &item, err_code &rc)
 {
-	/*int id = item.get_id();
+	/*int id = item.get_profile_id();
 	int user_id = item.get_user_id();
 	std::string username = item.get_username();
 	std::string avatar = item.get_avatar();
@@ -54,7 +54,7 @@ void ProfileRepository::create(Profile &item, err_code &rc)
 
 void ProfileRepository::update(Profile &item, err_code &rc)
 {
-	/*int id = item.get_id();
+	/*int id = item.get_profile_id();
 	std::string username = item.get_username();
 	std::string avatar = item.get_avatar();
 	std::string birthday = item.get_birthday();
