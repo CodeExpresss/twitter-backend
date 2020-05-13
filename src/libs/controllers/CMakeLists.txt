@@ -28,7 +28,7 @@ set(SRC
     source/controller_header.cpp
 )
 
-add_library(controllers SHARED
+add_library(controllers STATIC
     ${SRC})
 
 target_include_directories(controllers

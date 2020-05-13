@@ -4,7 +4,7 @@ project(data_base)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -I /usr/include/postgresql/")
+set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -I /usr/include/postgresql/ -lpq")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -18,7 +18,7 @@ set(SRC
     source/DBController.cpp
 )
 
-add_library(data_base SHARED
+add_library(data_base STATIC
     ${SRC})
 
 if(APPLE)

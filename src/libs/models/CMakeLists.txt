@@ -27,7 +27,7 @@ set(SRC
    source/vote.cpp
 )
 
-add_library(models SHARED
+add_library(models STATIC
     ${SRC})
 
 target_include_directories(models

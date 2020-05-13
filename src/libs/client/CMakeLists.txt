@@ -17,7 +17,7 @@ set(SRC
     source/client.cpp
 )
 
-add_library(client SHARED
+add_library(client STATIC
     ${SRC})
 
 target_include_directories(client

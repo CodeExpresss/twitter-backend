@@ -81,7 +81,7 @@ CREATE TABLE newsfeed (
 );
 
 -- test data
-insert into users values (1, "password", "myemail@mail.ru", true, 7);
-insert into profile values (3, 1, "user1", "avatar", "2000-01-31");
-insert into tweet values (2, 3, "My first tweet", "2020-05-06 00:01", null, false);
+insert into users values (1, 'password', 'myemail@mail.ru', true, 7);
+insert into profile values (3, 1, 'user1', 'avatar', '2000-01-31');
+insert into tweet values (2, 3, 'My first tweet', '2020-05-06 00:01', null, false);
 	

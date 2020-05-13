@@ -15,7 +15,7 @@ set(INC
 set(SRC
 )
 
-add_library(serialize SHARED
+add_library(serialize STATIC
     ${SRC})
 
 target_include_directories(serialize
