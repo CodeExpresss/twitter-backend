@@ -6,7 +6,7 @@
 template <class Serialize>
 class TagsController {
 public:
-    explicit TagsController(std::shared_ptr<UnitOfWork> _worker): worker(std::move(_worker)) {};
+    explicit TagsController(std::shared_ptr<UnitOfWork> _worker): worker(_worker) {};
     ~TagsController() = default;
 
     boost::property_tree::ptree get_queryset();

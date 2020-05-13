@@ -7,7 +7,7 @@ template<class Serialize>
 class LogoutController {
 public:
     explicit LogoutController(std::shared_ptr<UnitOfWork> _worker, int id, std::string email, std::string password):
-    worker(std::move(_worker)),
+    worker(_worker),
     user(id, std::move(email), std::move(password)) {};
 
     ~LogoutController() = default;

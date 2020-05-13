@@ -6,7 +6,7 @@
 template <typename Serialize>
 class GetProfileController {
 public:
-    explicit GetProfileController(std::shared_ptr<UnitOfWork>& _worker): worker(std::move(_worker)) {};
+    explicit GetProfileController(std::shared_ptr<UnitOfWork>& _worker): worker(_worker) {};
 
     ~GetProfileController() = default;
 

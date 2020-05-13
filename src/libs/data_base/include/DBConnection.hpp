@@ -24,7 +24,10 @@ public:
 
     ~DBConnection() = default;
     
-    shared_ptr<PGconn> get_connection() const;
+    shared_ptr<PGconn> get_connection() const
+    {
+        return connection;
+    }
 
 private:
     shared_ptr<PGconn> connection;

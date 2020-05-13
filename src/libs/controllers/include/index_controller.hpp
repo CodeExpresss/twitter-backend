@@ -6,7 +6,7 @@
 template<class Serialize>
 class IndexController {
 public:
-    explicit IndexController(std::shared_ptr<UnitOfWork> _worker): worker(std::move(_worker)) {};
+    explicit IndexController(std::shared_ptr<UnitOfWork> _worker): worker(_worker) {};
     ~IndexController() = default;
 
     boost::property_tree::ptree get_queryset(int profile_id);
