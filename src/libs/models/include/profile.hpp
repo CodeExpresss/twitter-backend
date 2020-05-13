@@ -19,7 +19,7 @@ public:
     int get_profile_id() {return profile_id;}
     int get_user_id() {return user_id;}
     std::string get_username() {return username;}
-    std::string get_avater() {return avatar;}
+    std::string get_avatar() {return avatar;}
     std::string get_birthday() {return birthday;}
 
     void set_profile_id(int id) { profile_id = id; }
