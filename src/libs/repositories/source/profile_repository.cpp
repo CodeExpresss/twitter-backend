@@ -1,6 +1,6 @@
 #include "../include/profile_repository.hpp" 
 
-Profile ProfileRepository::get_by_id(int id, err_code &rc) 
+/*Profile ProfileRepository::get_by_id(int id, err_code &rc) 
 {
 	std::vector<std::vector<std::string>> query_result = {};
 	int p_id = 0, user_id = 0;
@@ -28,7 +28,7 @@ Profile ProfileRepository::get_by_id(int id, err_code &rc)
 	//Profile p = Profile(p_id, user_id, username, avatar, birthday);
 	Profile p = Profile();
 	return p;
-}
+}*/
 
 void ProfileRepository::create(Profile &item, err_code &rc)
 {

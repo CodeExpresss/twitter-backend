@@ -2,6 +2,7 @@
 
 template <class Serialize>
 boost::property_tree::ptree GetProfileController<Serialize>::get_queryset(int profile_id) {
-    //profile = worker->get_profile(profile_id);
+    err_code rc;
+    profile = worker->get_profile(profile_id, rc);
     return serialize(profile);
 };
