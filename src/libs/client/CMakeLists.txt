@@ -27,4 +27,5 @@ target_include_directories(client
         "../unit_of_work/include"
         "../serialize/include"
         "../models/include"
+        "../repositories/include"
 )

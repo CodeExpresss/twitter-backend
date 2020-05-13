@@ -22,22 +22,6 @@ template<> struct Serialize<Profile> {
     }
 };
 
-template<> struct Serialize<std::vector<Profile>> {
-    boost::property_tree::ptree operator() (std::vector<Profile> profiles) {
-        boost::property_tree::ptree profiles_tree,
-                                    item_tree;
-
-        for(auto& profile : profiles) {
-            item_tree.put("nickname", profile.get_username());
-            item_tree.put("birthday", profile.get_birthday());
-            profiles_tree.add_child("profile", item_tree);
-        }
-
-        return profiles_tree;
-    }
-};
-
-
 template<> struct Serialize<std::vector<Tag>> {
     boost::property_tree::ptree  operator() (std::vector<Tag> tags) {
         boost::property_tree::ptree tags_tree;

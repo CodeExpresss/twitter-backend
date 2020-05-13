@@ -10,9 +10,10 @@ std::vector<int> SubscriptionRepository::get_by_id(int id, err_code &rc)
 	{
 		if (ctrl->run_query(query, query_result))
 		{
-            for (int i = 0; i < query_result.size(); i++)
-                if (query_result[i][1].compare("t"))
+            for (int i = 0; i < query_result.size(); i++) {
+                if (!query_result[i][1].compare("t"))
                     result.push_back(std::stoi(query_result[i][0]));
+            }
 			rc = OK;
 		}
 		else

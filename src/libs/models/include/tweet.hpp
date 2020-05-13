@@ -11,6 +11,8 @@ public:
         : tweet_id(tweet_id), profile_id(profile_id), tags(std::move(tags)),
         text(std::move(text)), date(std::move(date)), image(std::move(image)), is_visible(is_visible) {}
 
+    Tweet(std::string _text, int profile_id): profile_id(profile_id), text(std::move(_text)) {};
+
     Tweet() = default;
     ~Tweet() = default;
 
