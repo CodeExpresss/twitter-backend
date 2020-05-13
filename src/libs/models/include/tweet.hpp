@@ -6,7 +6,11 @@
 
 class Tweet {
 public:
-    Tweet(std::string _text, int _profile_id): profile_id(_profile_id), text(std::move(_text)) {}
+    Tweet(int tweet_id, int profile_id, std::vector<Tag>& tags,
+            std::string& text, std::string& date, std::string& image, bool is_visible = 1)
+        : tweet_id(tweet_id), profile_id(profile_id), tags(std::move(tags)),
+        text(std::move(text)), date(std::move(date)), image(std::move(image)), is_visible(is_visible) {}
+
     Tweet() = default;
     ~Tweet() = default;
 

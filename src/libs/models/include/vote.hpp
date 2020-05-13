@@ -5,7 +5,7 @@
 
 class Vote {
 public:
-    Vote(int profile_id, int tweet_id): profile_id(profile_id), tweet_id(tweet_id), is_visible(1) {};
+    Vote(int profile_id, int tweet_id, bool is_visible = 1): profile_id(profile_id), tweet_id(tweet_id), is_visible(is_visible) {};
     Vote() = default;
     ~Vote() = default;
 

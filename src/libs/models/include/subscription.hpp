@@ -5,6 +5,11 @@
 
 class Subscription {
 public:
+    Subscription(int inviter_id, int invitee_id, bool is_active = 1)
+        : inviter_id(inviter_id),
+        invitee_id(invitee_id),
+        is_active(is_active) {}
+
 	std::vector<User> get_invitees();
 	bool change_state();
 

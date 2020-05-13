@@ -7,7 +7,8 @@
 
 class User {
 public:
-    User(int id, std::string _email, std::string _password): user_id(id), password(std::move(_password)), email(std::move(_email)) {};
+    User(int id, std::string password, std::string& email, std::string& session, bool is_active = 1)
+        : user_id(id), password(std::move(password)), email(std::move(email)), session(std::move(session)), is_active(is_active) {};
     User() = default;
     ~User() = default;
 
@@ -32,8 +33,8 @@ private:
     int user_id;
     std::string password;
     std::string email;
-    bool is_active;
     std::string session;
+    bool is_active;
 
     bool change_password();
     bool change_email();
