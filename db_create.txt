@@ -1,0 +1,87 @@
+-- first only 3 command
+CREATE DATABASE twitter WITH ENCODING = 'UTF8';
+CREATE USER twitter_user WITH PASSWORD 'twitter_password';
+ALTER ROLE twitter_user SUPERUSER;
+
+-- connect to twitter before execution following commands
+-- for psql:
+-- \c twitter
+CREATE TABLE users (
+	id serial PRIMARY KEY, 
+	password varchar(32), 
+	email varchar(64), 
+	is_active BOOLEAN, 
+	session int,
+	UNIQUE(email)
+);
+
+CREATE TABLE profile (
+	id serial PRIMARY KEY,
+	user_id serial,
+	username varchar(64),
+	avatar bytea,
+	birthday date,
+	CONSTRAINT profile_user FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+CREATE TABLE tweet (
+	id serial PRIMARY KEY,
+	profile_id serial,
+	text varchar(140),
+	create_date timestamp,
+	image bytea ARRAY[4],
+	is_visible BOOLEAN
+);
+
+CREATE TABLE tag (
+	id serial PRIMARY KEY,
+	text varchar(64)
+);
+
+CREATE TABLE tweet_tag (
+	id serial PRIMARY KEY,
+	tweet_id serial,
+	tag_id serial,
+	CONSTRAINT to_tweet FOREIGN KEY(tweet_id) REFERENCES tweet(id),
+	CONSTRAINT to_tag FOREIGN KEY(tag_id) REFERENCES tag(id)
+);
+
+CREATE TABLE vote (
+	profile_id serial,
+	tweet_id serial,
+	is_vote BOOLEAN,
+	CONSTRAINT pk_vote PRIMARY KEY(profile_id, tweet_id),
+	CONSTRAINT vote_profile FOREIGN KEY(profile_id) REFERENCES profile(id),
+	CONSTRAINT vote_tweet FOREIGN KEY(tweet_id) REFERENCES tweet(id)
+);
+
+CREATE TABLE subscription (
+	inviter_id serial,
+	invitee_id serial,
+	is_active BOOLEAN,
+	CONSTRAINT pk_subscription PRIMARY KEY(inviter_id, invitee_id),
+	CONSTRAINT inviter FOREIGN KEY(inviter_id) REFERENCES profile(id),
+	CONSTRAINT invitee FOREIGN KEY(invitee_id) REFERENCES profile(id)
+);
+
+CREATE TYPE content  as (
+	tweet_id int,
+	text varchar(140),
+	create_date timestamp,
+	image bytea ARRAY[4],
+	tag varchar(64) ARRAY,
+	username varchar(64),
+	avatar bytea
+);
+
+CREATE TABLE newsfeed (
+	id serial PRIMARY KEY,
+	user_id serial,
+	news content ARRAY
+);
+
+-- test data
+insert into users values (1, 'password', 'myemail@mail.ru', true, 7);
+insert into profile values (3, 1, 'user1', 'avatar', '2000-01-31');
+insert into tweet values (2, 3, 'My first tweet', '2020-05-06 00:01', null, false);
+	
