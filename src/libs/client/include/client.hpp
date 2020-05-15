@@ -200,12 +200,6 @@ void HTTPClient::routing_post_method() {
         auto email = json_response.get<std::string>("email");
         auto password = json_response.get<std::string>("password");
 
-        std::shared_ptr<LoginController<Serialize<User>>> cont =
-                    make_shared<LoginController<Serialize<User>>>(worker,
-        email, password);
-
-        json_response = cont->get_queryset();
-
         std::shared_ptr<LoginController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
                     make_shared<LoginController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
         email, password);
@@ -254,14 +248,8 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, create_tweet_regex)) {
 
-        auto text = json_response.get<std::string>("id");
+        auto text = json_response.get<std::string>("text");
         auto id = json_response.get<int>("id");
-
-        std::shared_ptr<AddTweetController<Serialize<Tweet>>> cont =
-                    make_shared<AddTweetController<Serialize<Tweet>>>(worker,
-        text, id);
-
-        json_response = cont->get_queryset();
 
         std::shared_ptr<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
                     make_shared<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
