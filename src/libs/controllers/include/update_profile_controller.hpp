@@ -7,12 +7,12 @@ template <class Serialize>
 class UpdateProfileController {
 public:
     explicit UpdateProfileController(std::shared_ptr<UnitOfWork> _worker,
-            int profile_id, int user_id,
+            int profile_id,
             std::string username,
             std::string birthday,
             std::string avatar ):
                 worker(_worker),
-                profile(profile_id, user_id, std::move(username), std::move(birthday), std::move(avatar)) {};
+                profile(profile_id, profile_id, std::move(username), std::move(birthday), std::move(avatar)) {};
 
     ~UpdateProfileController() = default;
 

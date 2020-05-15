@@ -46,7 +46,8 @@ private:
     static std::regex profile_update_regex;
     static std::regex create_tweet_regex;
     static std::regex vote_tweet_regex;
-    static std::regex subscription_regex;
+    static std::regex get_subscription_regex;
+    static std::regex make_subscription_regex;
 
     std::string get_query_string(const std::string& url) {
         std::string result;
@@ -113,7 +114,7 @@ std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
 std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/current/.+");
 std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/.+");
 std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/.+");
-std::regex HTTPClient::subscription_regex = std::regex("/api/user/subscription/.+");
+std::regex HTTPClient::get_subscription_regex = std::regex("/api/user/subscription/.+");
 //регулярные выражения для POST
 std::regex HTTPClient::register_regex = std::regex("/api/user/register/");
 std::regex HTTPClient::login_regex = std::regex("/api/user/login/");
@@ -121,6 +122,7 @@ std::regex HTTPClient::user_update_regex = std::regex("/api/user/update/");
 std::regex HTTPClient::profile_update_regex = std::regex("/api/profile/update/");
 std::regex HTTPClient::create_tweet_regex = std::regex("/api/tweet/create/");
 std::regex HTTPClient::vote_tweet_regex = std::regex("/api/tweet/vote/");
+std::regex HTTPClient::make_subscription_regex = std::regex("/api/user/make_subscription");
 
 void HTTPClient::start() {
     read_request();
@@ -148,6 +150,8 @@ void HTTPClient::process_request() {
 
     switch (request.method()) {
         case http::verb::get:
+            response.set(http::field::content_type, "application/json");
+            response.set("Access-Control-Allow-Origin", "*");
             response.result(http::status::ok);
             routing_get_method();
             break;
@@ -171,9 +175,12 @@ void HTTPClient::process_request() {
 void HTTPClient::routing_post_method() {
 
     boost::property_tree::ptree json_response;
+    boost::property_tree::ptree json_request;
 
     std::string request_string = request.target().to_string();
     std::stringstream ss;
+    ss << request.body().data();
+    boost::property_tree::read_json(ss, json_request);
 
     if (std::regex_match(request_string, register_regex)) { // регистрация
 
@@ -190,14 +197,14 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, login_regex)) { // логин
 
-//	std::string email = request.body().find("email");
-//	std::string password = request.body().find("password");
-//
-//	std::shared_ptr<LoginController<Serialize<User>>> cont =
-//                make_shared<LoginController<Serialize<User>>>(worker,
-//	email, password);
-//
-//	json_response = cont->get_queryset();
+        auto email = json_response.get<std::string>("email");
+        auto password = json_response.get<std::string>("password");
+
+        std::shared_ptr<LoginController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+                    make_shared<LoginController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
+        email, password);
+
+        json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str() << "\n\r";
@@ -206,15 +213,15 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, user_update_regex)) {
 
-//	int id = std::stoi(request.body().find("id");
-//	std::string email = request.body().find("email");
-//	std::string password = request.body().find("password");
-//
-//	std::shared_ptr<UpdateUserController<Serialize<User>>> cont =
-//                make_shared<UpdateUserController<Serialize<User>>>(worker,
-//	id, email, password);
-//
-//	json_response = cont->get_queryset();
+        auto id = json_response.get<int>("id");
+        auto email = json_response.get<std::string>("email");
+        auto password = json_response.get<std::string>("password");
+
+        std::shared_ptr<UpdateUserController<Serialize<User>>> cont =
+                    make_shared<UpdateUserController<Serialize<User>>>(worker,
+        id, email, password);
+
+        json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str() << "\n\r";
@@ -223,16 +230,16 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, profile_update_regex)) {
 
-//	int id = std::stoi(request.body().find("id");
-//	std::string username = request.body().find("username");
-//	std::string birthday = request.body().find("birthday");
-//	std::string avatar = request.body().find("avatar");
-//
-//	std::shared_ptr<UpdateProfileController<Serialize<Profile>>> cont =
-//                make_shared<UpdateProfileController<Serialize<Profile>>>(worker,
-//	id, username, birthday, avatar);
-//
-//	json_response = cont->get_queryset();
+        auto id = json_response.get<int>("id");
+        auto username = json_response.get<std::string>("username");
+        auto birthday = json_response.get<std::string>("birthday");
+        auto avatar = json_response.get<std::string>("avatar");
+
+        std::shared_ptr<UpdateProfileController<Serialize<Profile>>> cont =
+                    make_shared<UpdateProfileController<Serialize<Profile>>>(worker,
+        id, username, birthday, avatar);
+
+        json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str() << "\n\r";
@@ -241,14 +248,14 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, create_tweet_regex)) {
 
-//	std::string text = request.body().find("text");
-//	int id = std::stoi(request.body().find("id"));
-//
-//	std::shared_ptr<AddTweetController<Serialize<Tweet>>> cont =
-//                make_shared<AddTweetController<Serialize<Tweet>>>(worker,
-//	text, id);
-//
-//	json_response = cont->get_queryset();
+        auto text = json_response.get<std::string>("text");
+        auto id = json_response.get<int>("id");
+
+        std::shared_ptr<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+                    make_shared<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
+        text, id);
+
+        json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str() << "\n\r";
@@ -257,19 +264,33 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, vote_tweet_regex)) {
 
-//	int profile_id = std::stoi(request.body().find("profile_id"));
-//	int tweet_id = std::stoi(request.body().find("tweet_id"));
-//
-//	std::shared_ptr<VoteController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
-//                make_shared<VoteController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
-//	profile_id, tweet_id);
-//
-//	json_response = cont->get_queryset();
+        auto profile_id = json_response.get<int>("profile_id");
+        auto tweet_id = json_response.get<int>("tweet_id");
+
+        std::shared_ptr<VoteController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+                    make_shared<VoteController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
+        profile_id, tweet_id);
+
+        json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str() << "\n\r";
 
         return;
+
+    } else if (std::regex_match(request_string, make_subscription_regex)) {
+
+        auto inviter_id = json_response.get<int>("inviter_id");
+        auto invitee_id = json_response.get<int>("invitee_id");
+
+//        std::shared_ptr<VoteController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+//                make_shared<VoteController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
+//                                                                                                   profile_id, tweet_id);
+
+//        json_response = cont->get_queryset();
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str() << "\n\r";
 
     } else {
         std::cout << "Bad gateway" << std::endl;
@@ -315,14 +336,14 @@ void HTTPClient::routing_get_method() {
         json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
-    } else if (std::regex_match(request_string, subscription_regex)) {
+    } else if (std::regex_match(request_string, get_subscription_regex)) {
 
         std::shared_ptr<SubscriptionController<Serialize<std::vector<Profile>>>> cont =
-                                                                                         make_shared<SubscriptionController<Serialize<std::vector<Profile>>>>(worker);
+            make_shared<SubscriptionController<Serialize<std::vector<Profile>>>>(worker);
 
         json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 

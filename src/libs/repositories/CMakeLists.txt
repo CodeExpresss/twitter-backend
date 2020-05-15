@@ -4,7 +4,7 @@ project(repositories)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -I /usr/include/postgresql")
+set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -I /usr/include/postgresql -L /usr/lib/postgresql/9.5/lib/ -lpq")
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -17,6 +17,7 @@ set(INC
     include/tweet_repository.hpp
     include/user_repository.hpp
     include/vote_repository.hpp
+        include/news_feed_repository.hpp
 )
 
 set(SRC
@@ -26,6 +27,7 @@ set(SRC
     source/tweet_repository.cpp
     source/user_repository.cpp
     source/vote_repository.cpp
+        source/news_feed_repository.cpp
 )
 
 add_library(repositories STATIC
