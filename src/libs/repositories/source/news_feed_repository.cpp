@@ -1,0 +1,1 @@
+#include "news_feed_repository.hpp"
