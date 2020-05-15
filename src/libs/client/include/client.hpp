@@ -148,6 +148,8 @@ void HTTPClient::process_request() {
 
     switch (request.method()) {
         case http::verb::get:
+            response.set(http::field::content_type, "application/json");
+            response.set("Access-Control-Allow-Origin", "*");
             response.result(http::status::ok);
             routing_get_method();
             break;
@@ -315,7 +317,7 @@ void HTTPClient::routing_get_method() {
         json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
