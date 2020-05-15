@@ -15,6 +15,8 @@ template<> struct Serialize<Profile> {
     boost::property_tree::ptree operator() (Profile profile) {
         boost::property_tree::ptree profile_tree;
 
+        profile_tree.put("user_id", profile.get_user_id());
+        profile_tree.put("profile_id", profile.get_profile_id());
         profile_tree.put("nickname", profile.get_username());
         profile_tree.put("birthday", profile.get_birthday());
 

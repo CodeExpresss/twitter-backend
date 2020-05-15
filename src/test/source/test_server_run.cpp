@@ -14,6 +14,6 @@ int main(int argc, char** argv) {
 }
 
 TEST(server_working, server_receiving_requests) {
-    HTTPServer server {"0.0.0.0", "8000"};
+    HTTPServer server {"127.0.0.1", "8000"};
     server.start_server();
 }
