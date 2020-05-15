@@ -201,6 +201,12 @@ void HTTPClient::routing_post_method() {
 //
 //	json_response = cont->get_queryset();
 
+        std::shared_ptr<LoginController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+                    make_shared<LoginController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
+        email, password);
+
+        json_response = cont->get_queryset();
+
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str() << "\n\r";
 
@@ -251,6 +257,12 @@ void HTTPClient::routing_post_method() {
 //	text, id);
 //
 //	json_response = cont->get_queryset();
+
+        std::shared_ptr<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+                    make_shared<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
+        text, id);
+
+        json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str() << "\n\r";

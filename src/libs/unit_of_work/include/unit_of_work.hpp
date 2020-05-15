@@ -41,7 +41,7 @@ public:
 
         return profiles;
     }
-    Profile profile_update(int profile_id) {}
+    Profile profile_update(Profile profile_id) {}
     std::vector<std::tuple<Tweet, Profile>> get_like_tweets(int profile_id) {}
     std::pair<unsigned short int, std::string> vote(Vote vote) {}
     std::pair<unsigned short int, std::string> create_tweet(Tweet tweet) {}
