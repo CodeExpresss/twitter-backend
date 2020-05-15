@@ -1,6 +1,0 @@
-*.o
-*.exe
-Makefile
-
-**/build/**
-.idea/
