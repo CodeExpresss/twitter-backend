@@ -1,0 +1,123 @@
+#include "tweet_repository.hpp"
+#include "boost/format.hpp"
+
+void TweetRepository::create(Tweet& item, err_code& rc) {
+    int profile_id = item.get_profile_id();
+    std::vector<Tag> tags = item.get_tags();
+    std::string text = item.get_text();
+    std::string date = item.get_date();
+    std::string image = item.get_image();
+    bool is_visible = item.get_is_visible();
+
+    std::vector<std::vector<std::string>> query_result = {};
+    std::string query = (boost::format("insert into tweet values(%1%, %2%, %3%, %4%, %5%);")
+        % profile_id % text % date % image % boost::io::group(std::boolalpha, is_visible)).str();
+    if (auto ctrl = db_controller.lock())
+    {
+        if (ctrl->run_query(query, query_result)) {
+            rc = OK;
+        }
+        else {
+            rc = NOT_EXIST;
+        }
+    }
+    else {
+        rc = NO_CTRL;
+    }
+}
+
+Tweet TweetRepository::get_by_id(int id, err_code& rc) {
+    std::string query_tweet = (boost::format("select * from tweet where id = %1%;") % id).str();
+    std::vector<std::vector<std::string>> query_result = {};
+
+    int tweet_id = 0;
+    int profile_id = 0;
+    std::string text = "";
+    std::string date = "";
+    std::string image = "";
+    bool is_visible = 0;
+    if (auto ctrl = db_controller.lock()) {
+        if (ctrl->run_query(query_tweet, query_result)) {
+            is_visible = !((query_result[0][5]).compare("t")) ? false : true;
+            //if (!is_visible.compare("t")) {
+            tweet_id = std::stoi(query_result[0][0]);
+            profile_id = std::stoi(query_result[0][1]);
+            text = query_result[0][2];
+            date = query_result[0][3];
+            image = query_result[0][4];
+/*            }*/
+            //else {
+            /*}*/
+
+
+            rc = OK;
+        }
+        else {
+            rc = NOT_EXIST;
+        }
+    }
+    else {
+        rc = NO_CTRL;
+    }
+
+    std::string query_tweet_tag = (boost::format("select tag_id from tweet_tag where tweet_id = %1%;") % tweet_id).str();
+    std::vector<Tag> tags_id;
+    if (auto ctrl = db_controller.lock()) {
+        if (ctrl->run_query(query_tweet_tag, query_result)) {
+            for (size_t i = 0; i < query_result.size(); i++) {
+                tags_id.push_back(Tag(std::stoi(query_result[i][0])));
+            }
+
+            rc = OK;
+        }
+        else {
+            rc = NOT_EXIST;
+        }
+    }
+    else {
+        rc = NO_CTRL;
+    }
+
+    //std::string query_tag;
+    //std::vector<Tag> tags;
+    //int tag_id = 0;
+    //std::string title = "";
+    //for (size_t i = 0; i < tags_id.size(); i++) {
+        //query_tag = (boost::format("select * from tag where tag_id = %1%;") % tags_id[i]).str();
+
+        //if (auto ctrl = db_controller.lock()) {
+            //if (ctrl->run_query(query_tweet_tag, query_result)) {
+                //tag_id = std::stoi(query_result[0][0]);
+                //title = query_result[0][1];
+
+                //tags.push_back(Tag(tag_id, title));
+                //rc = OK;
+            //}
+            //else {
+                //rc = NOT_EXIST;
+            //}
+        //}
+        //else {
+            //rc = NO_CTRL;
+        //}
+    //}
+
+    Tweet tweet(tweet_id, profile_id, tags_id, text, date, image, is_visible);
+    return tweet;
+}
+
+void TweetRepository::erase(int id, err_code &rc) {
+	std::vector<std::vector<std::string>> query_result = {};
+	std::string query = (boost::format("update tweet set is_visible = false where tweet_id = %1%;") % id).str();
+	if (auto ctrl = db_controller.lock()) {
+		if (ctrl->run_query(query, query_result)) {
+			rc = OK;
+        }
+		else {
+			rc = NOT_EXIST;
+        }
+	}
+	else {
+		rc = NO_CTRL;
+    }
+}
