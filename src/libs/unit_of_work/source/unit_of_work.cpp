@@ -4,7 +4,7 @@
 #include "subscription_repository.hpp"
 
 std::vector<Profile> UnitOfWork::get_subscriptions(int profile_id, err_code& rc) {
-    std::vector<int> profiles_id = subscription_repository->get_by_id(profile_id, rc);
+    std::vector<int> profiles_id = subscription_repository->get_by_invitee_id(profile_id, rc);
     std::vector<Profile> profiles;
 
     for (auto i: profiles_id) {
@@ -22,13 +22,34 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
     if (rc != OK) {
         return std::pair<unsigned short, std::string>(404, "err");
     }
+    //if (tags.size)
 
-/*    for (auto tag: tags) {*/
-        //tag_repository->create(tag, rc);
+    for (auto tag: tags) {
+        tag_repository->create(tag, rc);
+        if (rc != OK) {
+            return std::pair<unsigned short, std::string>(404, "err");
+        }
+    }
+
+    return std::pair<unsigned short, std::string>(200, "Ok");
+}
+
+std::pair<unsigned short int, std::string> UnitOfWork::following(Subscription subscription) {
+    err_code rc;
+
+    //bool status = subscription_repository->check_subscription(subscription, rc);
+    //if (rc == NOT_EXIST) {
+        //subscription.set_is_active(true);
+        //subscription_repository->create(subscription, rc);
         //if (rc != OK) {
             //return std::pair<unsigned short, std::string>(404, "err");
         //}
+    //}
+    //else if (rc == OK) {
+        //subscription.set_is_active(!status);
+        //subscription_repository->update(subscription, rc);
     /*}*/
+
 
     //auto subs = subscription_repository->get_by_id(tweet.get_profile_id(), rc);
     //здесь вставить функцию получения подписчиков
@@ -40,6 +61,11 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
 
     for (int i : subs) {
         news_feed_repository->update(updates, i, rc);
+      
+    subscription_repository->create(subscription, rc);
+    if (rc != OK) {
+        return std::pair<unsigned short, std::string>(404, "err");
+
     }
 
     return std::pair<unsigned short, std::string>(200, "Ok");
