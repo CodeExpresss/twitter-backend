@@ -39,7 +39,7 @@ Tweet TweetRepository::get_by_id(int id, err_code& rc) {
     bool is_visible = 0;
     if (auto ctrl = db_controller.lock()) {
         if (ctrl->run_query(query_tweet, query_result)) {
-            is_visible = !((query_result[0][5]).compare("t")) ? false : true;
+            is_visible = !((query_result[0][5]).compare("t")) ? true : false;
             //if (!is_visible.compare("t")) {
             tweet_id = std::stoi(query_result[0][0]);
             profile_id = std::stoi(query_result[0][1]);
