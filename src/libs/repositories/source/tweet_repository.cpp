@@ -6,11 +6,12 @@ void TweetRepository::create(Tweet& item, err_code& rc) {
     std::vector<Tag> tags = item.get_tags();
     std::string text = item.get_text();
     std::string date = item.get_date();
-    std::string image = item.get_image();
+    //std::string image = item.get_image();
+    std::string image = "NULL";
     bool is_visible = item.get_is_visible();
 
     std::vector<std::vector<std::string>> query_result = {};
-    std::string query = (boost::format("insert into tweet values(%1%, %2%, %3%, %4%, %5%);")
+    std::string query = (boost::format("insert into tweet values(DEFAULT, %1%, '%2%', '%3%', %4%, %5%);")
         % profile_id % text % date % image % boost::io::group(std::boolalpha, is_visible)).str();
     if (auto ctrl = db_controller.lock())
     {
