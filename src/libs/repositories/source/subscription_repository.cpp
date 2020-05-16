@@ -25,10 +25,38 @@ std::vector<int> SubscriptionRepository::get_by_id(int id, err_code &rc)
 	return result;
 }
 
+bool SubscriptionRepository::check_subscription(Subscription& item, err_code& rc) {
+	std::vector<std::vector<std::string>> query_result = {};
+    int inviter_id = item.get_inviter_id();
+    int invitee_id = item.get_invitee_id();
+    std::string query =
+        (boost::format("select is_active from subscription where inviter_id = %1%, invitee_id = %2%;") % inviter_id % invitee_id).str();
+    bool result = false;
+	if (auto ctrl = db_controller.lock()) {
+		if (ctrl->run_query(query, query_result)) {
+            if (query_result.size() != 0) {
+                result = !query_result[0][0].compare("t") ? true : false;
+                rc = OK;
+            }
+            else {
+                rc = NOT_EXIST;
+            }
+		}
+/*        else {*/
+            //rc = ;
+        /*}*/
+	}
+	else {
+		rc = NO_CTRL;
+    }
+
+	return result;
+}
+
 void SubscriptionRepository::create(Subscription &item, err_code &rc)
 {
 	/*int inviter_id = item.get_inviter_id();
-	int invitee_id = item.get_inviter_id();
+	int invitee_id = item.get_inviter_id(); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     bool visible = item.get_is_active()
 	std::vector<std::vector<std::string>> query_result = {};
 	std::string query = 
@@ -69,7 +97,7 @@ void SubscriptionRepository::update(Subscription &item, err_code &rc)
 void SubscriptionRepository::erase(int id, err_code &rc)
 {
 	std::vector<std::vector<std::string>> query_result = {};
-	std::string query = 
+	std::string query =
 		(boost::format("update subscription set is_active = false where invitee_id = %1%;") % id).str();
 	if (auto ctrl = db_controller.lock())
 	{
