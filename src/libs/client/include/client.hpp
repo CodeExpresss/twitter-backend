@@ -157,12 +157,14 @@ void HTTPClient::process_request() {
             break;
         case http::verb::post:
             response.result(http::status::ok);
+            response.set("Access-Control-Allow-Origin", "*");
             routing_post_method();
             break;
         default:
             // неопределённый метод запроса
             response.result(http::status::bad_request);
-            response.set(http::field::content_type, "text/plain");
+            response.set("Access-Control-Allow-Origin", "*");
+            response.set(http::field::content_type, "application/json");
             beast::ostream(response.body())
                     << "Invalid request-method '"
                     << std::string(request.method_string())
@@ -182,7 +184,7 @@ void HTTPClient::routing_post_method() {
     ss << request.body().data();
     boost::property_tree::read_json(ss, json_request);
 
-    if (std::regex_match(request_string, register_regex)) { // регистрация
+    if (std::regex_match(request_string, register_regex)) { // регистрац~ия
 
 //	std::shared_ptr<SignUpController<Serialize<Profile>>> cont =
 //                make_shared<SignUpController<Serialize<Profile>>>(worker);
@@ -248,8 +250,8 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, create_tweet_regex)) {
 
-        auto text = json_response.get<std::string>("text");
-        auto id = json_response.get<int>("id");
+        auto text = json_request.get<std::string>("text");
+        auto id = json_request.get<int>("id");
 
         std::shared_ptr<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
                     make_shared<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,

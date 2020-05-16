@@ -20,15 +20,15 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
     std::vector<Tag> tags = tweet.get_tags();
     tweet_repository->create(tweet, rc);
     if (rc != OK) {
-        return std::pair<unsigned short, std::string>(rc, "err");
+        return std::make_pair(404, "err");
     }
 
     for (auto tag: tags) {
         tag_repository->create(tag, rc);
-        return std::pair<unsigned short, std::string>(rc, "err");
+        return std::make_pair(404, "err");
     }
 
-    return std::pair<unsigned short, std::string>(rc, "Ok");
+    return std::make_pair(200, "ok");
 }
 /*Profile UnitOfWork::get_profile(int profile_id) {*/
     //Profile _profile;

@@ -48,6 +48,7 @@ template<> struct Serialize<std::pair<unsigned short int, std::string>> {
         info_tree.put("status", code);
         info_tree.put("message", message);
 
+        return info_tree;
     }
 };
 
