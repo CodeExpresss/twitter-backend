@@ -14,5 +14,6 @@
 #include "update_user_controller.hpp"
 #include "get_auth_user_controller.hpp"
 #include "vote_controller.hpp"
+#include "follow_controller.hpp"
 
 #endif //APP_CONTROLLERS_TYPES_HPP

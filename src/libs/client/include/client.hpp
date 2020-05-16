@@ -46,6 +46,7 @@ private:
     static std::regex profile_update_regex;
     static std::regex create_tweet_regex;
     static std::regex vote_tweet_regex;
+    static std::regex follow_regex;
     static std::regex get_subscription_regex;
     static std::regex make_subscription_regex;
 
@@ -122,6 +123,7 @@ std::regex HTTPClient::user_update_regex = std::regex("/api/user/update/");
 std::regex HTTPClient::profile_update_regex = std::regex("/api/profile/update/");
 std::regex HTTPClient::create_tweet_regex = std::regex("/api/tweet/create/");
 std::regex HTTPClient::vote_tweet_regex = std::regex("/api/tweet/vote/");
+std::regex HTTPClient::follow_regex = std::regex("/api/profile/follow/");
 std::regex HTTPClient::make_subscription_regex = std::regex("/api/user/make_subscription");
 
 void HTTPClient::start() {
@@ -194,7 +196,7 @@ void HTTPClient::routing_post_method() {
 
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -210,9 +212,21 @@ void HTTPClient::routing_post_method() {
         json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
+
+    } else if(std::regex_match(request_string, follow_regex)) {
+        auto inviter_id = json_request.get<int>("inviter_id");
+        auto invitee_id = json_request.get<int>("invitee_id");
+
+        std::shared_ptr<FollowController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+                make_shared<FollowController<Serialize<std::pair<unsigned short int, std::string>>>>(worker, inviter_id, invitee_id);
+
+        json_response = cont->get_queryset();
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str();
 
     } else if (std::regex_match(request_string, user_update_regex)) {
 
@@ -227,7 +241,7 @@ void HTTPClient::routing_post_method() {
         json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -245,7 +259,7 @@ void HTTPClient::routing_post_method() {
         json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -261,7 +275,7 @@ void HTTPClient::routing_post_method() {
         json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -277,7 +291,7 @@ void HTTPClient::routing_post_method() {
         json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -293,14 +307,14 @@ void HTTPClient::routing_post_method() {
 //        json_response = cont->get_queryset();
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
     } else {
         std::cout << "Bad gateway" << std::endl;
 
         response.result(http::status::not_found);
         response.set(http::field::content_type, "text/plain");
-        beast::ostream(response.body()) << "File not found\r\n";
+        beast::ostream(response.body()) << "File not found";
     }
 }
 
@@ -327,7 +341,7 @@ void HTTPClient::routing_get_method() {
         json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -351,7 +365,7 @@ void HTTPClient::routing_get_method() {
         json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -363,7 +377,7 @@ void HTTPClient::routing_get_method() {
         //json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
         boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str() << "\n\r";
+        beast::ostream(response.body()) << ss.str();
 
         return;
 
@@ -372,7 +386,7 @@ void HTTPClient::routing_get_method() {
 
         response.result(http::status::not_found);
         response.set(http::field::content_type, "text/plain");
-        beast::ostream(response.body()) << "File not found\r\n";
+        beast::ostream(response.body()) << "File not found";
     }
 }
 
