@@ -15,6 +15,7 @@ public:
         user_repository = make_shared<UserRepository>(controller);
         vote_repository = make_shared<VoteRepository>(controller);
         subscription_repository = make_shared<SubscriptionRepository>(controller);
+        news_feed_repository = make_shared<NewsFeedRepository>(controller);
     }
 
     ~UnitOfWork() = default;
@@ -26,11 +27,16 @@ public:
     std::pair<unsigned short int, std::string> logout(User user) {}
     std::pair<unsigned short int, std::string> following(Subscription subscription);
     User user_update(User user) {}
+
     User get_user() {}
+
     Profile get_profile(int profile_id, err_code &rc) {
 		  return profile_repositrory->get_by_id(profile_id, rc);
+
     }
+
     std::vector<Tag> get_tag_list();
+
     std::vector<Profile> get_subscriptions(int profile_id, err_code& rc);/* {*/
         //std::vector<int> profiles_id = subscription_repository->get_by_id(profile_id, rc);
         //std::vector<Profile> profiles;
@@ -41,6 +47,7 @@ public:
 
         //return profiles;
     //}
+
     Profile profile_update(Profile profile_id) {}
     std::vector<std::tuple<Tweet, Profile>> get_like_tweets(int profile_id) {}
     std::pair<unsigned short int, std::string> vote(Vote vote) {}
@@ -61,6 +68,7 @@ private:
     std::shared_ptr<UserRepository> user_repository;
     std::shared_ptr<VoteRepository> vote_repository;
     std::shared_ptr<SubscriptionRepository> subscription_repository;
+    std::shared_ptr<NewsFeedRepository> news_feed_repository;
 };
 
 #endif // UNIT_OF_WORK_HPP

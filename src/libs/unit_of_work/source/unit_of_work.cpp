@@ -50,9 +50,22 @@ std::pair<unsigned short int, std::string> UnitOfWork::following(Subscription su
         //subscription_repository->update(subscription, rc);
     /*}*/
 
+
+    //auto subs = subscription_repository->get_by_id(tweet.get_profile_id(), rc);
+    //здесь вставить функцию получения подписчиков
+    std::vector<int> subs;
+    subs.push_back(2);
+    std::pair<Tweet, Profile> updates;
+    updates.first = tweet;
+    updates.second = profile_repositrory->get_by_id(tweet.get_profile_id(), rc);
+
+    for (int i : subs) {
+        news_feed_repository->update(updates, i, rc);
+      
     subscription_repository->create(subscription, rc);
     if (rc != OK) {
         return std::pair<unsigned short, std::string>(404, "err");
+
     }
 
     return std::pair<unsigned short, std::string>(200, "Ok");
