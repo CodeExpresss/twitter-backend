@@ -1,12 +1,12 @@
 #include "../include/user_repository.hpp"
 
-User UserRepository::get_by_id(int id, err_code &rc) 
+User UserRepository::get_by_id(int id, err_code &rc)
 {
 	std::vector<std::vector<std::string>> query_result = {};
 	int user_id = 0;
 	std::string password = "", email = "", session = "";
 	bool is_active = false;
-    std::string query = 
+    std::string query =
         (boost::format("select * from users where id = %1%;") % id).str();
 	if (auto ctrl = db_controller.lock())
 	{
@@ -21,7 +21,7 @@ User UserRepository::get_by_id(int id, err_code &rc)
 				is_active = true;
 				rc = OK;
 			}
-			else 
+			else
 				rc = DELETED;
 		}
 		else
@@ -29,9 +29,37 @@ User UserRepository::get_by_id(int id, err_code &rc)
 	}
 	else
 		rc = NO_CTRL;
-	
+
 	User u = User(user_id, password, email, session, is_active);
 	return u;
+}
+
+bool UserRepository::check_user_email(User& item, err_code& rc) {
+	std::vector<std::vector<std::string>> query_result = {};
+    std::string email = item.get_email();
+    std::string query =
+        (boost::format("select is_active from users where email = %1%;")
+         % email).str();
+    bool result = false;
+	if (auto ctrl = db_controller.lock()) {
+		if (ctrl->run_query(query, query_result) && query_result.size() > 0) {
+            if (!query_result[0][0].compare("t")) {
+                result =  true;
+                rc = OK;
+            }
+            else {
+                rc = DELETED;
+            }
+		}
+        else {
+            rc = NOT_EXIST;
+        }
+	}
+	else {
+		rc = NO_CTRL;
+    }
+
+	return result;
 }
 
 void UserRepository::create(User &item, err_code &rc)

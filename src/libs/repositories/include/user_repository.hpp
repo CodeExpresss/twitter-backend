@@ -9,6 +9,7 @@ public:
     UserRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {};
     ~UserRepository() = default;
 
+    bool check_user_email(User& item, err_code& rc);
     std::vector<User> get_where() {}
     User get_by_id(int id, err_code &rc);
     void create(User &item, err_code &rc);
