@@ -10,6 +10,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(INC
     include/create_tweet_controller.hpp
+    include/follow_controller.hpp
     include/get_profile_controller.hpp
     include/index_controller.hpp
     include/login_controller.hpp
