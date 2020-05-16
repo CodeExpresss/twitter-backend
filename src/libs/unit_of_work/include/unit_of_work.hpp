@@ -26,25 +26,27 @@ public:
     std::pair<unsigned short int, std::string> logout(User user) {}
     User user_update(User user) {}
     User get_user() {}
-    Profile get_profile(int profile_id, err_code &rc)
-    {
+    Profile get_profile(int profile_id, err_code &rc) {
 		  return profile_repositrory->get_by_id(profile_id, rc);
     }
     std::vector<Tag> get_tag_list();
-    std::vector<Profile> get_subscriptions(int profile_id, err_code& rc) {
-        std::vector<int> profiles_id = subscription_repository->get_by_id(profile_id, rc);
-        std::vector<Profile> profiles;
+    std::vector<Profile> get_subscriptions(int profile_id, err_code& rc);/* {*/
+        //std::vector<int> profiles_id = subscription_repository->get_by_id(profile_id, rc);
+        //std::vector<Profile> profiles;
 
-        for (auto i: profiles_id) {
-            profiles.push_back(profile_repositrory->get_by_id(i, rc));
-        }
+        //for (auto i: profiles_id) {
+            //profiles.push_back(profile_repositrory->get_by_id(i, rc));
+        //}
 
-        return profiles;
-    }
+        //return profiles;
+    //}
     Profile profile_update(Profile profile_id) {}
     std::vector<std::tuple<Tweet, Profile>> get_like_tweets(int profile_id) {}
     std::pair<unsigned short int, std::string> vote(Vote vote) {}
-    std::pair<unsigned short int, std::string> create_tweet(Tweet tweet) {}
+    std::pair<unsigned short int, std::string> create_tweet(Tweet tweet);/* {*/
+        //std::vector<Tag> tags = tweet.get_tags();
+        
+    /*}*/
     std::pair<unsigned short int, std::string> delete_tweet() {}
 
 private:
