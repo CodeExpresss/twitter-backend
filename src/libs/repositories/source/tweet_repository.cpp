@@ -38,20 +38,20 @@ Tweet TweetRepository::get_by_id(int id, err_code& rc) {
     std::string image = "";
     bool is_visible = 0;
     if (auto ctrl = db_controller.lock()) {
-        if (ctrl->run_query(query_tweet, query_result)) {
+        if (ctrl->run_query(query_tweet, query_result) && query_result.size() > 0) {
             is_visible = !((query_result[0][5]).compare("t")) ? true : false;
-            //if (!is_visible.compare("t")) {
-            tweet_id = std::stoi(query_result[0][0]);
-            profile_id = std::stoi(query_result[0][1]);
-            text = query_result[0][2];
-            date = query_result[0][3];
-            image = query_result[0][4];
-/*            }*/
-            //else {
-            /*}*/
+            if (is_visible) {
+                tweet_id = std::stoi(query_result[0][0]);
+                profile_id = std::stoi(query_result[0][1]);
+                text = query_result[0][2];
+                date = query_result[0][3];
+                image = query_result[0][4];
 
-
-            rc = OK;
+                rc = OK;
+            }
+            else {
+                rc = NOT_EXIST;
+            }
         }
         else {
             rc = NOT_EXIST;
@@ -68,12 +68,11 @@ Tweet TweetRepository::get_by_id(int id, err_code& rc) {
             for (size_t i = 0; i < query_result.size(); i++) {
                 tags_id.push_back(Tag(std::stoi(query_result[i][0])));
             }
-
-            rc = OK;
+            //rc = OK;
         }
-        else {
-            rc = NOT_EXIST;
-        }
+/*        else {*/
+            //rc = NOT_EXIST;
+        /*}*/
     }
     else {
         rc = NO_CTRL;
