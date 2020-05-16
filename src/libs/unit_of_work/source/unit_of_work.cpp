@@ -23,10 +23,10 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
         return std::make_pair(404, "err");
     }
 
-    for (auto tag: tags) {
-        tag_repository->create(tag, rc);
-        return std::make_pair(404, "err");
-    }
+//    for (auto tag: tags) {
+//        tag_repository->create(tag, rc);
+//        return std::make_pair(404, "err");
+//    }
 
     return std::make_pair(200, "ok");
 }

@@ -183,6 +183,7 @@ void HTTPClient::routing_post_method() {
     std::stringstream ss;
     ss << request.body().data();
     boost::property_tree::read_json(ss, json_request);
+    ss.str(std::string());
 
     if (std::regex_match(request_string, register_regex)) { // регистрац~ия
 
@@ -199,8 +200,8 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, login_regex)) { // логин
 
-        auto email = json_response.get<std::string>("email");
-        auto password = json_response.get<std::string>("password");
+        auto email = json_request.get<std::string>("email");
+        auto password = json_request.get<std::string>("password");
 
         std::shared_ptr<LoginController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
                     make_shared<LoginController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
@@ -215,9 +216,9 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, user_update_regex)) {
 
-        auto id = json_response.get<int>("id");
-        auto email = json_response.get<std::string>("email");
-        auto password = json_response.get<std::string>("password");
+        auto id = json_request.get<int>("id");
+        auto email = json_request.get<std::string>("email");
+        auto password = json_request.get<std::string>("password");
 
         std::shared_ptr<UpdateUserController<Serialize<User>>> cont =
                     make_shared<UpdateUserController<Serialize<User>>>(worker,
@@ -232,10 +233,10 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, profile_update_regex)) {
 
-        auto id = json_response.get<int>("id");
-        auto username = json_response.get<std::string>("username");
-        auto birthday = json_response.get<std::string>("birthday");
-        auto avatar = json_response.get<std::string>("avatar");
+        auto id = json_request.get<int>("id");
+        auto username = json_request.get<std::string>("username");
+        auto birthday = json_request.get<std::string>("birthday");
+        auto avatar = json_request.get<std::string>("avatar");
 
         std::shared_ptr<UpdateProfileController<Serialize<Profile>>> cont =
                     make_shared<UpdateProfileController<Serialize<Profile>>>(worker,
@@ -266,8 +267,8 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, vote_tweet_regex)) {
 
-        auto profile_id = json_response.get<int>("profile_id");
-        auto tweet_id = json_response.get<int>("tweet_id");
+        auto profile_id = json_request.get<int>("profile_id");
+        auto tweet_id = json_request.get<int>("tweet_id");
 
         std::shared_ptr<VoteController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
                     make_shared<VoteController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
@@ -282,8 +283,8 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, make_subscription_regex)) {
 
-        auto inviter_id = json_response.get<int>("inviter_id");
-        auto invitee_id = json_response.get<int>("invitee_id");
+        auto inviter_id = json_request.get<int>("inviter_id");
+        auto invitee_id = json_request.get<int>("invitee_id");
 
 //        std::shared_ptr<VoteController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
 //                make_shared<VoteController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
