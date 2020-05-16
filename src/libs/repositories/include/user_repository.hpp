@@ -10,10 +10,10 @@ public:
     ~UserRepository() = default;
 
     std::vector<User> get_where() {}
-    User get_by_id(int id) {}
-    void create(User item) {}
-    void update(User item) {}
-    void erase(int id) {}
+    User get_by_id(int id, err_code &rc);
+    void create(User &item, err_code &rc);
+    void update(User &item, err_code &rc);
+    void erase(int id, err_code &rc);
 
 private:
     std::weak_ptr<DBController<DBConnection>> db_controller;

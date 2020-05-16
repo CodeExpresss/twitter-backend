@@ -11,10 +11,10 @@ public:
 
 
     std::vector<Vote> get_where() {}
-    Vote get_by_id(int id) {}
-    void create(Vote item) {}
-    void update(Vote item) {}
-    void erase(int id) {}
+    bool get_by_id(int p_id, int t_id, err_code &rc);
+    void create(Vote &item, err_code &rc);
+    void update(Vote &item, err_code &rc);
+    void erase(int p_id, int t_id, err_code &rc);
 
 private:
     std::weak_ptr<DBController<DBConnection>> db_controller;
