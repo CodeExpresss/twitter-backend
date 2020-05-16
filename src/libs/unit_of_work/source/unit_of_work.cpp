@@ -30,6 +30,18 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
         //}
     /*}*/
 
+    auto subs = subscription_repository->get_by_id(tweet.get_profile_id(), rc);
+    std::vector<std::pair<Tweet, Profile>> updates;
+
+    for (int i : subs) {
+        std::pair<Tweet, Profile> upd;
+        upd.first = tweet;
+        upd.second = profile_repositrory->get_by_id(i, rc);
+        updates.push_back(upd);
+    }
+
+    news_feed_repository->update(updates, rc);
+
     return std::pair<unsigned short, std::string>(200, "Ok");
 }
 /*Profile UnitOfWork::get_profile(int profile_id) {*/

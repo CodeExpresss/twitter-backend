@@ -30,3 +30,20 @@ std::vector<std::pair<Tweet, Profile>> NewsFeedRepository::get_by_id(int id, err
 
     return result;
 }
+
+void NewsFeedRepository::update(std::vector<std::pair<Tweet, Profile>> &item, err_code &rc) {
+    for (auto i : item) {
+        std::string query =
+                (boost::format("update newsfeed set news = news || "
+                               "row(%1%, '%2%', '%3%', %4%, %5%, '%6%', %7%, '%8%')::content")
+                 % i.first.get_tweet_id()
+                 % i.first.get_text()
+                 % i.first.get_date()
+                 % i.first.get_image()
+                 % i.first.get_tags()
+                 % i.second.get_username()
+                 % i.second.get_profile_id()
+                 % i.second.get_avatar()
+                ).str();
+    }
+}
