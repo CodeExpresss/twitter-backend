@@ -20,8 +20,8 @@ public:
 
     ~UnitOfWork() = default;
 
-    std::pair<unsigned short int, std::string> sing_up(User user, Profile profile) {}
-    std::vector<std::tuple<Tweet, Profile>> get_index_tweet(int profile_id) {}
+    std::pair<unsigned short int, std::string> sing_up(User user, Profile profile);
+    std::vector<std::pair<Tweet, Profile>> get_index_tweet(int profile_id);
     std::pair<unsigned short int, std::string> login(User user) {}
     std::pair<unsigned short int, std::string> authenticate() {}
     std::pair<unsigned short int, std::string> logout(User user) {}

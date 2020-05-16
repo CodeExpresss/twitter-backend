@@ -8,8 +8,9 @@ std::vector<int> SubscriptionRepository::get_by_inviter_id(int id, err_code &rc)
 	if (auto ctrl = db_controller.lock()) {
 		if (ctrl->run_query(query, query_result)) {
             for (int i = 0; i < query_result.size(); i++) {
-                if (!query_result[i][1].compare("t"))
+                if (!query_result[i][1].compare("t")) {
                     result.push_back(std::stoi(query_result[i][0]));
+                }
             }
 			rc = OK;
 		}
@@ -57,18 +58,18 @@ bool SubscriptionRepository::check_subscription(Subscription& item, err_code& rc
          % inviter_id % invitee_id).str();
     bool result = false;
 	if (auto ctrl = db_controller.lock()) {
-		if (ctrl->run_query(query, query_result)) {
-            if (query_result.size() != 0) {
-                result = !query_result[0][0].compare("t") ? true : false;
+		if (ctrl->run_query(query, query_result) && query_result.size() > 0) {
+            if (!query_result[0][0].compare("t")) {
+                result =  true;
                 rc = OK;
             }
             else {
-                rc = NOT_EXIST;
+                rc = DELETED;
             }
 		}
-/*        else {*/
-            //rc = ;
-        /*}*/
+        else {
+            rc = NOT_EXIST;
+        }
 	}
 	else {
 		rc = NO_CTRL;

@@ -29,6 +29,36 @@ Profile ProfileRepository::get_by_id(int id, err_code &rc)
 	return p;
 }
 
+bool ProfileRepository::check_profile_username(Profile& item, err_code& rc) {
+	std::vector<std::vector<std::string>> query_result = {};
+    std::string username = item.get_username();
+    std::string query =
+        (boost::format("select id from profile where username = %1%;")
+         % username).str();
+    bool result = false;
+	if (auto ctrl = db_controller.lock()) {
+		if (ctrl->run_query(query, query_result) && query_result.size() > 0) {
+/*            if (!query_result[0][0].compare("t")) {*/
+                //result =  true;
+                //rc = OK;
+            //}
+            //else {
+                //rc = DELETED;
+            /*}*/
+            result = true;
+            rc = OK;
+		}
+        else {
+            rc = NOT_EXIST;
+        }
+	}
+	else {
+		rc = NO_CTRL;
+    }
+
+	return result;
+}
+
 void ProfileRepository::create(Profile &item, err_code &rc)
 {
 	int id = item.get_profile_id();
