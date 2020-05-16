@@ -4,7 +4,7 @@
 #include "subscription_repository.hpp"
 
 std::vector<Profile> UnitOfWork::get_subscriptions(int profile_id, err_code& rc) {
-    std::vector<int> profiles_id = subscription_repository->get_by_id(profile_id, rc);
+    std::vector<int> profiles_id = subscription_repository->get_by_invitee_id(profile_id, rc);
     std::vector<Profile> profiles;
 
     for (auto i: profiles_id) {
@@ -22,13 +22,14 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
     if (rc != OK) {
         return std::pair<unsigned short, std::string>(404, "err");
     }
+    //if (tags.size)
 
-/*    for (auto tag: tags) {*/
-        //tag_repository->create(tag, rc);
-        //if (rc != OK) {
-            //return std::pair<unsigned short, std::string>(404, "err");
-        //}
-    /*}*/
+    for (auto tag: tags) {
+        tag_repository->create(tag, rc);
+        if (rc != OK) {
+            return std::pair<unsigned short, std::string>(404, "err");
+        }
+    }
 
     return std::pair<unsigned short, std::string>(200, "Ok");
 }
