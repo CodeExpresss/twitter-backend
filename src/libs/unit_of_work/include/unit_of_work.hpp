@@ -24,6 +24,7 @@ public:
     std::pair<unsigned short int, std::string> login(User user) {}
     std::pair<unsigned short int, std::string> authenticate() {}
     std::pair<unsigned short int, std::string> logout(User user) {}
+    std::pair<unsigned short int, std::string> following(Subscription subscription);
     User user_update(User user) {}
     User get_user() {}
     Profile get_profile(int profile_id, err_code &rc) {
@@ -45,7 +46,7 @@ public:
     std::pair<unsigned short int, std::string> vote(Vote vote) {}
     std::pair<unsigned short int, std::string> create_tweet(Tweet tweet);/* {*/
         //std::vector<Tag> tags = tweet.get_tags();
-        
+
     /*}*/
     std::pair<unsigned short int, std::string> delete_tweet() {}
 
