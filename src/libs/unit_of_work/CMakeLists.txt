@@ -20,6 +20,10 @@ set(SRC
 add_library(unit_of_work STATIC
     ${SRC})
 
+target_link_libraries(unit_of_work
+    repositories
+)
+
 target_include_directories(unit_of_work
     PUBLIC
         "include"

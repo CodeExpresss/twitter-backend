@@ -7,7 +7,7 @@ class Profile {
 public:
     Profile() : profile_id(1), user_id(1), username("user"), avatar("avatar"), birthday("birthday") {}
 
-    Profile(int profile_id, int user_id, std::string username, std::string birthday, std::string avatar):
+    Profile(int profile_id, int user_id, std::string username, std::string avatar, std::string birthday):
     profile_id(profile_id),
     user_id(user_id),
     username(std::move(username)),

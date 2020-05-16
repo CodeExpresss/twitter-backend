@@ -9,11 +9,11 @@ public:
     TweetRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {};
     ~TweetRepository() = default;
 
-    std::vector<Tweet> get_where() {}
-    Tweet get_by_id(int id) {}
-    void create(Tweet item) {}
-    void update(Tweet item) {}
-    void erase(int id) {}
+    std::vector<Tweet> get_where();
+    Tweet get_by_id(int id, err_code& rc);
+    void create(Tweet& item, err_code& rc);
+    void update(Tweet& item, err_code& rc);
+    void erase(int id, err_code& rc);
 
 private:
     std::weak_ptr<DBController<DBConnection>> db_controller;

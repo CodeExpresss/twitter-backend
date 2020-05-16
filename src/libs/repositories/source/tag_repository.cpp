@@ -25,8 +25,7 @@ Tag TagRepository::get_by_id(int id, err_code& rc) {
     return tag;
 }
 
-void TagRepository::create(Tag& item, err_code& rc)
-{
+void TagRepository::create(Tag& item, err_code& rc) {
     int tag_id = item.get_tag_id();
     std::string title = item.get_title();
     std::vector<std::vector<std::string>> query_result = {};
@@ -44,13 +43,12 @@ void TagRepository::create(Tag& item, err_code& rc)
         rc = NO_CTRL;
 }
 
-void TagRepository::update(Tag& item, err_code &rc)
-{
+void TagRepository::update(Tag& item, err_code &rc) {
     int tag_id = item.get_tag_id();
     std::string title = item.get_title();
     std::vector<std::vector<std::string>> query_result = {};
     std::string query =
-        (boost::format("update tag set text = '%1%' where id = %2%;")
+        (boost::format("update tag set title = '%1%' where id = %2%;")
         % title % tag_id).str();
     if (auto ctrl = db_controller.lock())
     {
