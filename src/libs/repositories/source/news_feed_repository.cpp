@@ -31,19 +31,28 @@ std::vector<std::pair<Tweet, Profile>> NewsFeedRepository::get_by_id(int id, err
     return result;
 }
 
-void NewsFeedRepository::update(std::vector<std::pair<Tweet, Profile>> &item, err_code &rc) {
-    for (auto i : item) {
-        std::string query =
-                (boost::format("update newsfeed set news = news || "
-                               "row(%1%, '%2%', '%3%', %4%, %5%, '%6%', %7%, '%8%')::content")
-                 % i.first.get_tweet_id()
-                 % i.first.get_text()
-                 % i.first.get_date()
-                 % i.first.get_image()
-                 % i.first.get_tags()
-                 % i.second.get_username()
-                 % i.second.get_profile_id()
-                 % i.second.get_avatar()
-                ).str();
-    }
+void NewsFeedRepository::update(std::pair<Tweet, Profile> &item, int profile_id, err_code &rc) {
+    std::vector<std::vector<std::string>> query_result = {};
+
+    std::string query =
+            (boost::format("update newsfeed set news = news || "
+                           "row(%1%, '%2%', '%3%', %4%, %5%, '%6%', %7%, '%8%')::content where id = %9%")
+             % item.first.get_tweet_id()
+             % item.first.get_text()
+             % item.first.get_date()
+             % "array[null]"
+             % "array[null]"
+             % item.second.get_username()
+             % item.second.get_profile_id()
+             % item.second.get_avatar()
+             % profile_id
+            ).str();
+
+    if (auto ctrl = db_controller.lock()) {
+        if (ctrl->run_query(query, query_result)) {
+            rc = OK;
+        } else
+            rc = NOT_EXIST;
+    } else
+        rc = NO_CTRL;
 }
