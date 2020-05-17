@@ -38,20 +38,20 @@ Tweet TweetRepository::get_by_id(int id, err_code& rc) {
     std::string image = "";
     bool is_visible = 0;
     if (auto ctrl = db_controller.lock()) {
-        if (ctrl->run_query(query_tweet, query_result)) {
-            is_visible = !((query_result[0][5]).compare("t")) ? false : true;
-            //if (!is_visible.compare("t")) {
-            tweet_id = std::stoi(query_result[0][0]);
-            profile_id = std::stoi(query_result[0][1]);
-            text = query_result[0][2];
-            date = query_result[0][3];
-            image = query_result[0][4];
-/*            }*/
-            //else {
-            /*}*/
+        if (ctrl->run_query(query_tweet, query_result) && query_result.size() > 0) {
+            is_visible = !((query_result[0][5]).compare("t")) ? true : false;
+            if (is_visible) {
+                tweet_id = std::stoi(query_result[0][0]);
+                profile_id = std::stoi(query_result[0][1]);
+                text = query_result[0][2];
+                date = query_result[0][3];
+                image = query_result[0][4];
 
-
-            rc = OK;
+                rc = OK;
+            }
+            else {
+                rc = NOT_EXIST;
+            }
         }
         else {
             rc = NOT_EXIST;
@@ -68,12 +68,11 @@ Tweet TweetRepository::get_by_id(int id, err_code& rc) {
             for (size_t i = 0; i < query_result.size(); i++) {
                 tags_id.push_back(Tag(std::stoi(query_result[i][0])));
             }
-
-            rc = OK;
+            //rc = OK;
         }
-        else {
-            rc = NOT_EXIST;
-        }
+/*        else {*/
+            //rc = NOT_EXIST;
+        /*}*/
     }
     else {
         rc = NO_CTRL;
@@ -122,3 +121,42 @@ void TweetRepository::erase(int id, err_code &rc) {
 		rc = NO_CTRL;
     }
 }
+
+std::vector<Tweet> TweetRepository::get_by_profile_id(int profile_id, err_code& rc) {
+    std::string query_tweet = (boost::format("select * from tweet where profile_id = %1%;") % profile_id).str();
+    std::vector<std::vector<std::string>> query_result = {};
+    std::vector<Tweet> tweets;
+    std::vector<Tag> tags;
+
+    int tweet_id = 0;
+    std::string text = "";
+    std::string date = "";
+    std::string image = "";
+    bool is_visible = 0;
+    if (auto ctrl = db_controller.lock()) {
+        if (ctrl->run_query(query_tweet, query_result) && query_result.size() > 0) {
+            for (int i = 0; i < query_result.size(); i++) {
+                is_visible = !((query_result[0][5]).compare("t")) ? true : false;
+                if (is_visible) {
+                    tweet_id = std::stoi(query_result[0][0]);
+                    profile_id = std::stoi(query_result[0][1]);
+                    text = query_result[0][2];
+                    date = query_result[0][3];
+                    image = query_result[0][4];
+
+                    tweets.push_back(Tweet(tweet_id, profile_id, tags, text, date, image, is_visible));
+                }
+            }
+            rc = OK;
+        }
+        else {
+        rc = NOT_EXIST;
+        }
+    }
+    else {
+        rc = NO_CTRL;
+    }
+
+    return tweets;
+}
+

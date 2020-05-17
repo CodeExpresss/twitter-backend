@@ -15,6 +15,7 @@ public:
     void update(Tweet& item, err_code& rc);
     void erase(int id, err_code& rc);
 
+    std::vector<Tweet> get_by_profile_id(int profile_id, err_code& rc);
 private:
     std::weak_ptr<DBController<DBConnection>> db_controller;
 };

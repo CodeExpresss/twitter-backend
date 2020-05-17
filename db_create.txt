@@ -64,13 +64,14 @@ CREATE TABLE subscription (
 	CONSTRAINT invitee FOREIGN KEY(invitee_id) REFERENCES profile(id)
 );
 
-CREATE TYPE content  as (
+CREATE TYPE content as (
 	tweet_id int,
 	text varchar(140),
 	create_date timestamp,
 	image bytea ARRAY[4],
 	tag varchar(64) ARRAY,
 	username varchar(64),
+	profile_id int,
 	avatar bytea
 );
 
@@ -80,8 +81,25 @@ CREATE TABLE newsfeed (
 	news content ARRAY
 );
 
+create or replace function newsfeed_to_str(pid int)
+returns table(p_id int, u_id int, tweet_id int, tweet_text varchar(140), tweet_date timestamp, images bytea[], tags varchar(64)[], username varchar(64), profile_id int, avatar bytea)
+as $$
+declare
+	r record;
+        news content;
+begin
+	for r in select * from newsfeed where id = pid
+	loop
+		foreach news in array r.news
+                loop
+                        return query select r.id, r.user_id, news.tweet_id, news.text, news.create_date, news.image, news.tag, news.username, news.profile_id, news.avatar;
+                end loop;
+	end loop;
+end
+$$ language plpgsql;
+
 -- test data
 insert into users values (1, 'password', 'myemail@mail.ru', true, 7);
 insert into profile values (3, 1, 'user1', 'avatar', '2000-01-31');
 insert into tweet values (2, 3, 'My first tweet', '2020-05-06 00:01', null, false);
-	
+insert into newsfeed values (1, 1, array[row(145, 'greate text', '2020-05-12',array[null], array['tag1'],'user1', 3, 'avatar')::content, row(1, 'another tweet', '2020-05-16', array[null], array['mytag'], 'user0', 5 , null)::content]);
