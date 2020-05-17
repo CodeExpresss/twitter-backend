@@ -371,10 +371,10 @@ void HTTPClient::routing_get_method() {
 
     } else if (std::regex_match(request_string, get_news_feed_regex)) {
 
-        //std::shared_ptr<IndexController<Serialize< std::vector<std::tuple<Tweet, Profile> > > > > cont =
-        //        make_shared<IndexController<Serialize< std::vector<std::tuple<Tweet, Profile>>>>>(worker);
+        std::shared_ptr<IndexController<Serialize< std::vector<std::pair<Tweet, Profile> > > > > cont =
+                make_shared<IndexController<Serialize< std::vector<std::pair<Tweet, Profile>>>>>(worker);
 
-        //json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
+        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str();

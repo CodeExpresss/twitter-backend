@@ -13,12 +13,17 @@ template<class Type> struct Serialize;
 
 template<> struct Serialize<Profile> {
     boost::property_tree::ptree operator() (Profile profile) {
-        boost::property_tree::ptree profile_tree;
+        boost::property_tree::ptree profile_tree,
+                                    user_tree;
 
-        profile_tree.put("user_id", profile.get_user_id());
-        profile_tree.put("profile_id", profile.get_profile_id());
-        profile_tree.put("nickname", profile.get_username());
-        profile_tree.put("birthday", profile.get_birthday());
+        profile_tree.put("status", 200);
+
+        user_tree.put("user_id", profile.get_user_id());
+        user_tree.put("profile_id", profile.get_profile_id());
+        user_tree.put("nickname", profile.get_username());
+        user_tree.put("birthday", profile.get_birthday());
+
+        profile_tree.add_child("user", user_tree);
 
         return profile_tree;
     }
@@ -127,29 +132,36 @@ template<> struct Serialize<std::tuple<Tweet, Profile>> {
 };
 
 
-template<> struct Serialize<std::vector<std::tuple<Tweet, Profile>>> {
-    boost::property_tree::ptree operator() (std::vector<std::tuple<Tweet, Profile>> wall) {
+template<> struct Serialize<std::vector<std::pair<Tweet, Profile>>> {
+    boost::property_tree::ptree operator() (std::vector<std::pair<Tweet, Profile>> wall) {
         boost::property_tree::ptree wall_tree,
                                     child_item,
                                     child_tweet,
-                                    child_user;
+                                    child_user,
+                                    tree;
 
         Profile profile;
         Tweet tweet;
 
         for(auto& i : wall) {
             std::tie(tweet, profile) = i;
-            child_tweet.put("text", tweet.get_text());
-            child_tweet.put("data", tweet.get_date());
+            child_item.put("id", tweet.get_tweet_id());
+            child_item.put("text", tweet.get_text());
+            child_item.put("data", tweet.get_date());
             child_user.put("username", profile.get_username());
 
             child_item.add_child("tweet", child_tweet);
             child_item.add_child("author", child_user);
 
-            wall_tree.add_child("wall_item", child_item);
+            wall_tree.push_back(std::make_pair("", child_item));
+            child_tweet.clear();
+            child_user.clear();
+            child_item.clear();
         }
 
-        return wall_tree;
+        tree.add_child("data", wall_tree);
+
+        return tree;
     }
 };
 

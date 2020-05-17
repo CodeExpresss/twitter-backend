@@ -12,7 +12,7 @@ public:
         text(std::move(text)), date(std::move(date)), image(std::move(image)), is_visible(is_visible) {}
 
     Tweet(std::string _text, int profile_id): tweet_id(0), profile_id(profile_id),
-        tags(1, 1) , text(std::move(_text)), date("2020-05-16"){};
+        tags(1, 1) , text(std::move(_text)), date("2020-05-16"), is_visible(true){};
 
     Tweet() = default;
     ~Tweet() = default;
