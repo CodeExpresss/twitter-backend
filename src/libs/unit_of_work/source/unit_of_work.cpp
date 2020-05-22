@@ -58,12 +58,12 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
         return std::pair<unsigned short, std::string>(404, "err");
     }
 
-    for (auto tag: tags) {
-        tag_repository->create(tag, rc);
-        if (rc != OK) {
-            return std::pair<unsigned short, std::string>(404, "err");
-        }
-    }
+//    for (auto tag: tags) {
+//        tag_repository->create(tag, rc);
+//        if (rc != OK) {
+//            return std::pair<unsigned short, std::string>(404, "err");
+//        }
+//    }
 
     std::pair<Tweet, Profile> updates;
     updates.first = tweet;
