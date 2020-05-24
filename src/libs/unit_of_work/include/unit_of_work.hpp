@@ -57,6 +57,8 @@ public:
     /*}*/
     std::pair<unsigned short int, std::string> delete_tweet() {}
 
+    std::vector<Tweet> find_by_tag(const std::string& tag, err_code& rc);
+
 private:
     std::vector<Profile> get_sub() {}
     std::vector<Tag> get_tags() {}
