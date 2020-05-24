@@ -10,7 +10,8 @@ public:
     ~TagRepository() = default;
 
     std::vector<Tag> get_where() {}
-    Tag get_by_id(int id, err_code& rc);
+    Tag get_by_title(const std::string& text, err_code& rc);
+    std::vector<int> get_by_id(int id, err_code& rc);
     void create(Tag& item, err_code& rc);
     void update(Tag& item, err_code& rc);
     //void erase(int id, err_code& rc);
