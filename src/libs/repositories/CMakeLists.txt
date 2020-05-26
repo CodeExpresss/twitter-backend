@@ -18,6 +18,7 @@ set(INC
     include/user_repository.hpp
     include/vote_repository.hpp
         include/news_feed_repository.hpp
+        include/session_repository.hpp
 )
 
 set(SRC
@@ -28,6 +29,7 @@ set(SRC
     source/user_repository.cpp
     source/vote_repository.cpp
         source/news_feed_repository.cpp
+        source/session_repository.cpp
 )
 
 add_library(repositories STATIC

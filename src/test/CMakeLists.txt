@@ -175,3 +175,29 @@ target_include_directories(test_news_feed
         )
 
 target_link_libraries(test_news_feed ${GTEST_LIBRARIES} pthread -lgmock)
+
+add_executable(test_session source/session_feature_test.cpp)
+target_link_libraries(test_session -fprofile-arcs -lpq)
+
+target_link_libraries(test_session
+        client
+        controllers
+        data_base
+        models
+        repositories
+        server
+        unit_of_work
+        )
+
+target_include_directories(test_session
+        PUBLIC
+        "include"
+        "../libs/controllers/include"
+        "../libs/serialize/include"
+        "../libs/client/include"
+        "../libs/repositories/include"
+        "../libs/models/include"
+        "../libs/unit_of_work/include"
+        )
+
+target_link_libraries(test_session ${GTEST_LIBRARIES} pthread -lgmock)
