@@ -23,7 +23,7 @@ public:
 
     std::pair<unsigned short int, std::string> sing_up(User user, Profile profile);
     std::vector<std::pair<Tweet, Profile>> get_index_tweet(int profile_id);
-    std::pair<unsigned short int, std::string> login(User user) {}
+    std::pair<int, std::string> login(User user);
     std::pair<unsigned short int, std::string> authenticate() {}
     std::pair<unsigned short int, std::string> logout(User user) {}
     std::pair<unsigned short int, std::string> following(Subscription subscription);
@@ -34,7 +34,7 @@ public:
 
 
     std::pair<int, std::string> create_session(int user_id);
-    std::pair<int, std::string> get_user_id_session(std::string& session_id);
+    int get_user_id_session(std::string& session_id);
     void delete_session(std::string& session_id);
     bool check_session(std::string& session_id);
 
