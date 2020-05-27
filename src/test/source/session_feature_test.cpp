@@ -20,6 +20,7 @@ TEST(session_tests, sessions_working) {
     err_code ec;
     std::string s_id = repository.create(1, ec);
     EXPECT_EQ(repository.check_session(s_id, ec), true);
+    EXPECT_EQ(repository.get_profile_id(s_id, ec), 1);
     repository.erase(s_id, ec);
     EXPECT_EQ(repository.check_session(s_id, ec), false);
 }
