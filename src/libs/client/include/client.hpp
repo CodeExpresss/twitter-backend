@@ -50,6 +50,8 @@ private:
     static std::regex get_subscription_regex;
     static std::regex make_subscription_regex;
 
+    static int profile_id;
+
     std::string get_query_string(const std::string& url) {
         std::string result;
 
@@ -95,7 +97,6 @@ private:
     HTTPClient&operator= (HTTPClient&&) = delete;
 
     void read_request();
-
     // Метод для обработки запроса
     void process_request();
 
@@ -108,6 +109,8 @@ private:
 
     // Проверить время подключения
     void check_deadline();
+
+    void session();
 };
 
 std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
@@ -131,6 +134,16 @@ void HTTPClient::start() {
     check_deadline();
 }
 
+void HTTPClient::session() {
+    std::string session_id;
+    for (int i = request[http::field::cookie].find("=") + 1; i < request[http::field::cookie].size(); i++) {
+        session_id += request[http::field::cookie][i];
+    }
+
+    std::shared_ptr<SessionController> cont = make_shared<SessionController>(worker);
+    profile_id = cont->get_profile_id(session_id);
+}
+
 void HTTPClient::read_request() {
     auto self = shared_from_this();
 
@@ -149,7 +162,10 @@ void HTTPClient::read_request() {
 void HTTPClient::process_request() {
     response.version(request.version());
     response.keep_alive(false);
-    std::cout << "Cookie" << request[http::field::cookie] << std::endl;
+
+    session();
+
+    cout << profile_id;
 
     response.set("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
     response.set("Access-Control-Allow-Credentials", "true");
@@ -395,7 +411,7 @@ void HTTPClient::write_response() {
     auto self = shared_from_this();
 
     response.set(http::field::content_length, response.body().size());
-    response.set(http::field::set_cookie, "sessionid=38afes7a8; HttpOnly; Path=/");
+    response.set(http::field::set_cookie, "sessionid=ddd; HttpOnly; Path=/");
 
     http::async_write(
             socket,

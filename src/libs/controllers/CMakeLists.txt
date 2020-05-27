@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage")
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(INC
+    include/session_controller.hpp
     include/view_profile_controller.hpp
     include/create_tweet_controller.hpp
     include/follow_controller.hpp
@@ -28,6 +29,7 @@ set(INC
 
 set(SRC
     source/controller_header.cpp
+    source/session_controller.cpp
 )
 
 add_library(controllers STATIC

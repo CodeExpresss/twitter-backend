@@ -16,5 +16,6 @@
 #include "vote_controller.hpp"
 #include "follow_controller.hpp"
 #include "view_profile_controller.hpp"
+#include "session_controller.hpp"
 
 #endif //APP_CONTROLLERS_TYPES_HPP
