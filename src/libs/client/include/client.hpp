@@ -176,215 +176,6 @@ void HTTPClient::process_request() {
     write_response();
 }
 
-/*
-void my_handle_read(const boost::system::error_code& e, std::size_t bytes_transferred)
-{
-	if (!e)
-	{
-		std::stringstream strm1;
-		std::string buffer_data = buffer_.data();
-		strm1 << buffer_data;
-		
-		std::string method;
-		std::smatch match_method;
-		std::regex regex_method ("\\b([^ ]*)( )([^ ]*)( HTTP/1.1)([^ ]*)");
-		
-		std::string content_type;
-		std::smatch match_content_type;
-		std::regex regex_content_type ("\\b(Content-type: )([^ ]*)");
-		
-		std::string line;
-		
-		while (std::getline(strm1, line)) {
-			if (std::regex_search(line, match_method, regex_method)) {
-				method = match_method[0];
-				method = method.substr(0, method.find(' '));
-				boost::trim(method);
-				//std::cout << method << std::endl;
-			}
-			if (std::regex_search(line, match_content_type, regex_content_type))     {
-				content_type = match_content_type[0];
-				boost::erase_all(content_type, "Content-type:");
-				boost::trim(content_type);
-				//std::cout << content_type << std::endl;
-			}
-		}
-		
-		if (method == "POST") {
-			if (content_type == "multipart/form-data") {
-				
-				std::string content_length;
-				std::smatch match_content_length;
-				std::regex regex_content_length ("\\b(Content-Length: )([^ ]*)");
-				
-				std::string filename;
-				std::smatch match_filename;
-				std::regex regex_filename ("\\b(filename)([^ ]*)");
-				
-				std::string action;
-				std::smatch match_action;
-				std::regex regex_action ("\\b(name)([^ ]*)");
-				
-				std::string boundary;
-				std::smatch match_boundary;
-				std::regex regex_boundary ("([-]{10,}[0-9]{10,})");
-				
-				std::string line;
-				
-				strm1.clear();
-				strm1 << buffer_data;
-				while (std::getline(strm1, line)) {
-					if (std::regex_search(line, match_content_length, regex_content_length)) {
-						//Content-Length: 14710
-						content_length = match_content_length[0];
-						boost::erase_all(content_length, "Content-Length:");
-						boost::trim(content_length);
-						//std::cout << content_length << std::endl;
-					}
-					if (std::regex_search(line, match_filename, regex_filename)) {
-						filename = match_filename[0];
-						boost::erase_all(filename, "\"");
-						boost::erase_all(action, ";");
-						boost::erase_all(filename, "filename=");
-						std::size_t found = filename.find_last_of(".");
-						std::size_t len = filename.length();
-						std::string mime = filename.substr(found, len);
-						boost::trim(filename);
-						//std::cout << filename << std::endl;
-						//std::cout << mime << std::endl;
-					}
-					if (std::regex_search(line, match_action, regex_action)) {
-						action = match_action[0];
-						boost::erase_all(action, "\"");
-						boost::erase_all(action, ";");
-						boost::erase_all(action, "name=");
-						boost::trim(action);
-						//std::cout << action << std::endl;
-					}
-					if (std::regex_search(line, match_boundary, regex_boundary)) {
-						boundary = match_boundary[0];
-						boost::trim(boundary);
-						//std::cout << boundary << std::endl;
-					}
-				}
-				
-				//pubseekpos works as expected, but useless here
-				//strmbuffer_.pubseekpos(bytes_transferred);
-				
-				//content length minus bytes_transfered does NOT yield
-				//the right result. The number, 392, is the 'magic' number
-				//adjustment for this file size, approx 14.2kb, that i found
-				//by trial and error.
-				//Adjusting the magic number is necessary for every image size
-				//in order to avoid a segfault.
-				//bytes_transferred, for each read(), is the only 'reliable'
-				//number with which to work, as far as i know.
-				//If there is a brainier way of calculating this,
-				//i don't care, anymore.
-				int n_content_length = std::stoi(content_length);
-				int transfer = n_content_length - bytes_transferred + 392;
-				auto self(shared_from_this());
-				boost::asio::async_read(
-						socket_,
-						strmbuffer_,
-						boost::asio::transfer_exactly(transfer),
-						strand_.wrap(
-								[this, self, boundary](boost::system::error_code ec, std::size_t bytes_transferred)
-								{
-									std::stringstream strm2;
-									strm2 << &strmbuffer_;
-									std::string line;
-									unsigned bufsize = 512;
-									while (std::getline(strm2, line))
-									{
-										if(line.length() == 1){
-											std::string output_file = "../../upload/test.png";
-											std::ofstream outfile(output_file);
-											char c;
-											unsigned bl = boundary.length();
-											bool endfile = false;
-											if(outfile){
-												char buffer[bufsize];
-												while(!endfile){
-													unsigned j = 0;
-													unsigned k;
-													while(j < bufsize && strm2.get(c) && !endfile){
-														buffer[j] = c;
-														k = 0;
-														while(boundary[bl - 1 - k] == buffer[j - k]){
-															if(k >= bl - 1){
-																endfile = true;
-																break;
-															}
-															k++;
-														}
-														j++;
-													}
-													outfile.write(buffer, j);
-													j = 0;
-												};
-												outfile.close();
-												std::cout << "outfile close" << std::endl;
-												break;
-											}
-										}
-									}
-								}
-						)
-				);
-			}
-			else {
-				// POST AJAX
-				std::cout << "connection " << method << std::endl;
-			}
-		}
-		else {
-			boost::tribool result;
-			boost::tie(result, boost::tuples::ignore) = request_parser_.parse(
-					request_, buffer_.data(), buffer_.data() + bytes_transferred);
-			
-			if (result)
-			{
-				request_handler_.handle_request(
-						request_,
-						reply_);
-				
-				boost::asio::async_write(
-						socket_,
-						reply_.to_buffers(),
-						strand_.wrap(
-								boost::bind(
-										&connection::handle_write,
-										shared_from_this(),
-										boost::asio::placeholders::error)
-						));
-			}
-			else if (!result)
-			{
-				reply_ = reply::stock_reply(reply::bad_request);
-				boost::asio::async_write(
-						socket_,
-						reply_.to_buffers(),
-						strand_.wrap(
-								boost::bind(&connection::handle_write, shared_from_this(),
-								            boost::asio::placeholders::error)));
-			}
-			else
-			{
-				socket_.async_read_some(
-						boost::asio::buffer(buffer_),
-						strand_.wrap(
-								boost::bind(
-										&connection::handle_read,
-										shared_from_this(),
-										boost::asio::placeholders::error,
-										boost::asio::placeholders::bytes_transferred)));
-			}
-		}
-	}
-}
-*/
-
 void HTTPClient::routing_post_method() {
 
     boost::property_tree::ptree json_response;
@@ -392,25 +183,20 @@ void HTTPClient::routing_post_method() {
 
     //boost::beast::http::body_type::value_type x;
 	{ //получение приходящих бинарных данных (post multipart/form-data)
-		std::ofstream f("/home/nick/twitter_backend_data.png");
+		std::ofstream f("picture/twitter_backend_data.png");
 		//f << request.body().data();
 		auto b = request.body();
 		std::stringstream ss(b);
-		std::string mstr;
-		size_t count = 0;
-		while (getline(ss, mstr)) {
-			std::cout << "string = " << mstr << std::endl;
-			if (++count == 4) {
-				break;
-			}
+		std::string boundary, tmp;
+		getline(ss, boundary);
+		while (getline(ss, tmp) && tmp.length() > 1) {
+			//std::cout << "tmp.length() = " << tmp.length() << "; tmp = " << tmp << std::endl;
 		}
-		while (getline(ss, mstr)) {
-			f << mstr << '\n';
-			if (++count == 1320) {
-				break;
-			}
+		//std::cout << "tellg = " << ss.tellg() << std::endl;
+		const size_t skip_last = boundary.length() + 5;
+		for (auto it = b.begin() + ss.tellg(); it < b.end() - skip_last; it++) {
+			f << *it;
 		}
-		std::cout << "count = " << count << std::endl;
 		//f << b;
 		f.flush();
 		f.close();
