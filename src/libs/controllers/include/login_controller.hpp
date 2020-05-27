@@ -13,7 +13,7 @@ public:
 
     ~LoginController() = default;
 
-    boost::property_tree::ptree get_queryset();
+    std::string get_queryset();
 private:
     std::shared_ptr<UnitOfWork> worker;
 

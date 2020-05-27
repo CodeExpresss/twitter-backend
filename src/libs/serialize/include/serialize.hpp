@@ -29,6 +29,32 @@ template<> struct Serialize<Profile> {
     }
 };
 
+
+template<> struct Serialize<std::pair<Profile, bool>> {
+    boost::property_tree::ptree operator() (std::pair<Profile, bool> info) {
+        boost::property_tree::ptree profile_tree,
+                user_tree;
+
+        Profile profile;
+        bool is_follow;
+
+        std::tie(profile, is_follow) = info;
+
+        profile_tree.put("status", 200);
+        profile_tree.put("is_follow", is_follow);
+
+        user_tree.put("user_id", profile.get_user_id());
+        user_tree.put("profile_id", profile.get_profile_id());
+        user_tree.put("nickname", profile.get_username());
+        user_tree.put("birthday", profile.get_birthday());
+
+        profile_tree.add_child("user", user_tree);
+
+        return profile_tree;
+    }
+};
+
+
 template<> struct Serialize<std::vector<Tag>> {
     boost::property_tree::ptree  operator() (std::vector<Tag> tags) {
         boost::property_tree::ptree tags_tree;

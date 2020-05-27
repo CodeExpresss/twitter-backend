@@ -95,7 +95,6 @@ private:
     HTTPClient&operator= (HTTPClient&&) = delete;
 
     void read_request();
-
     // Метод для обработки запроса
     void process_request();
 
@@ -108,12 +107,15 @@ private:
 
     // Проверить время подключения
     void check_deadline();
+
+    void session();
 };
 
+int profile_id;
 std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
 //регулярные выражения для GET
-std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/current/.+");
-std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/.+");
+std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/.+");
+std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/");
 std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/.+");
 std::regex HTTPClient::get_subscription_regex = std::regex("/api/user/subscription/.+");
 //регулярные выражения для POST
@@ -129,6 +131,16 @@ std::regex HTTPClient::make_subscription_regex = std::regex("/api/user/make_subs
 void HTTPClient::start() {
     read_request();
     check_deadline();
+}
+
+void HTTPClient::session() {
+    std::string session_id;
+    for (int i = request[http::field::cookie].find("=") + 1; i < request[http::field::cookie].size(); i++) {
+        session_id += request[http::field::cookie][i];
+    }
+
+    std::shared_ptr<SessionController> cont = make_shared<SessionController>(worker);
+    profile_id = cont->get_profile_id(session_id);
 }
 
 void HTTPClient::read_request() {
@@ -150,22 +162,24 @@ void HTTPClient::process_request() {
     response.version(request.version());
     response.keep_alive(false);
 
+    session();
+
+    response.set("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
+    response.set("Access-Control-Allow-Credentials", "true");
+
     switch (request.method()) {
         case http::verb::get:
             response.set(http::field::content_type, "application/json");
-            response.set("Access-Control-Allow-Origin", "*");
             response.result(http::status::ok);
             routing_get_method();
             break;
         case http::verb::post:
             response.result(http::status::ok);
-            response.set("Access-Control-Allow-Origin", "*");
             routing_post_method();
             break;
         default:
             // неопределённый метод запроса
             response.result(http::status::bad_request);
-            response.set("Access-Control-Allow-Origin", "*");
             response.set(http::field::content_type, "application/json");
             beast::ostream(response.body())
                     << "Invalid request-method '"
@@ -187,7 +201,8 @@ void HTTPClient::routing_post_method() {
     boost::property_tree::read_json(ss, json_request);
     ss.str(std::string());
 
-    if (std::regex_match(request_string, register_regex)) { // регистрац~ия
+    if(profile_id == -1) {
+        if (std::regex_match(request_string, register_regex)) { // регистрац~ия
 
 //	std::shared_ptr<SignUpController<Serialize<Profile>>> cont =
 //                make_shared<SignUpController<Serialize<Profile>>>(worker);
@@ -195,28 +210,43 @@ void HTTPClient::routing_post_method() {
 //        json_response = cont->get_queryset();
 
 
-        boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str();
+            boost::property_tree::json_parser::write_json(ss, json_response);
+            beast::ostream(response.body()) << ss.str();
 
-        return;
+            return;
 
-    } else if (std::regex_match(request_string, login_regex)) { // логин
+        } else if (std::regex_match(request_string, login_regex)) { // логин
 
-        auto email = json_request.get<std::string>("email");
-        auto password = json_request.get<std::string>("password");
+            auto email = json_request.get<std::string>("email");
+            auto password = json_request.get<std::string>("password");
 
-        std::shared_ptr<LoginController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
+            std::shared_ptr<LoginController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
                     make_shared<LoginController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
-        email, password);
+                                                                                                        email, password);
 
-        json_response = cont->get_queryset();
+            std::string session = cont->get_queryset();
+            std::string query =
+                    (boost::format("sessionid=%1%; HttpOnly; Path=/")
+                     % session).str();
+            response.set(http::field::set_cookie, query);
 
-        boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str();
+            json_response.put("status", 200);
 
-        return;
+            boost::property_tree::json_parser::write_json(ss, json_response);
+            beast::ostream(response.body()) << ss.str();
 
-    } else if(std::regex_match(request_string, follow_regex)) {
+            return;
+
+        } else {
+            std::cout << "Bad gateway" << std::endl;
+
+            response.result(http::status::not_found);
+            response.set(http::field::content_type, "text/plain");
+            beast::ostream(response.body()) << "File not found";
+        }
+    }
+
+    if(std::regex_match(request_string, follow_regex)) {
         auto inviter_id = json_request.get<int>("inviter_id");
         auto invitee_id = json_request.get<int>("invitee_id");
 
@@ -327,6 +357,15 @@ void HTTPClient::routing_get_method() {
     auto query_string_map = get_map_from_query( get_query_string(request_string) );
     std::stringstream ss;
 
+    if(profile_id == -1) {
+        std::cout << "Bad gateway" << std::endl;
+
+        response.result(http::status::not_found);
+        response.set(http::field::content_type, "text/plain");
+        beast::ostream(response.body()) << "File not found";
+        return;
+    }
+
     if (request.target() == "/echo") {
         response.set(http::field::content_type, "text/html");
         beast::ostream(response.body())
@@ -338,7 +377,7 @@ void HTTPClient::routing_get_method() {
         std::shared_ptr<GetProfileController<Serialize<Profile>>> cont =
                 make_shared<GetProfileController<Serialize<Profile>>>(worker);
 
-        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
+        json_response = cont->get_queryset(profile_id);
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str();
@@ -374,7 +413,7 @@ void HTTPClient::routing_get_method() {
         std::shared_ptr<IndexController<Serialize< std::vector<std::pair<Tweet, Profile> > > > > cont =
                 make_shared<IndexController<Serialize< std::vector<std::pair<Tweet, Profile>>>>>(worker);
 
-        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
+        json_response = cont->get_queryset(profile_id);
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str();
