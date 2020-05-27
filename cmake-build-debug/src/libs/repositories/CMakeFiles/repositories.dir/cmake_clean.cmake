@@ -1,6 +1,7 @@
 file(REMOVE_RECURSE
   "CMakeFiles/repositories.dir/source/news_feed_repository.cpp.o"
   "CMakeFiles/repositories.dir/source/profile_repository.cpp.o"
+  "CMakeFiles/repositories.dir/source/session_repository.cpp.o"
   "CMakeFiles/repositories.dir/source/subscription_repository.cpp.o"
   "CMakeFiles/repositories.dir/source/tag_repository.cpp.o"
   "CMakeFiles/repositories.dir/source/tweet_repository.cpp.o"

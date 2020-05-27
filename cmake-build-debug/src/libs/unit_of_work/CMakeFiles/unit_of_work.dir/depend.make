@@ -14,6 +14,7 @@ src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../src/libs/repositories/include/news_feed_repository.hpp
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../src/libs/repositories/include/profile_repository.hpp
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../src/libs/repositories/include/repositories_header.hpp
+src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../src/libs/repositories/include/session_repository.hpp
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../src/libs/repositories/include/subscription_repository.hpp
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../src/libs/repositories/include/tag_repository.hpp
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o: ../src/libs/repositories/include/tweet_repository.hpp

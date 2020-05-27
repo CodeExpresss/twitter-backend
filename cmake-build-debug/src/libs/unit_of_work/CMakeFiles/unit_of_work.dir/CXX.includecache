@@ -11,7 +11,7 @@ memory
 -
 string
 -
-libpq-fe.h
+postgresql/libpq-fe.h
 -
 
 ../src/libs/data_base/include/DBController.hpp
@@ -98,6 +98,10 @@ boost/format.hpp
 ../../data_base/include/DBConnection.hpp
 ../src/libs/data_base/include/DBConnection.hpp
 
+../src/libs/repositories/include/session_repository.hpp
+repositories_header.hpp
+../src/libs/repositories/include/repositories_header.hpp
+
 ../src/libs/repositories/include/subscription_repository.hpp
 repositories_header.hpp
 ../src/libs/repositories/include/repositories_header.hpp
@@ -163,6 +167,8 @@ vote_repository.hpp
 ../src/libs/unit_of_work/include/vote_repository.hpp
 news_feed_repository.hpp
 ../src/libs/unit_of_work/include/news_feed_repository.hpp
+session_repository.hpp
+../src/libs/unit_of_work/include/session_repository.hpp
 
 /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/source/unit_of_work.cpp
 unit_of_work_header.hpp

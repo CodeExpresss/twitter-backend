@@ -3,3 +3,28 @@
 
 src/libs/controllers/CMakeFiles/controllers.dir/source/controller_header.cpp.o: ../src/libs/controllers/source/controller_header.cpp
 
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/controllers/include/controller_header.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/controllers/include/session_controller.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/data_base/include/DBConnection.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/data_base/include/DBController.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/data_base/include/templates/DBController_impl.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/models/include/models_header.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/models/include/profile.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/models/include/subscription.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/models/include/tag.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/models/include/tweet.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/models/include/user.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/models/include/vote.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/news_feed_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/profile_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/repositories_header.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/session_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/subscription_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/tag_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/tweet_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/user_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/repositories/include/vote_repository.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/unit_of_work/include/unit_of_work.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/unit_of_work/include/unit_of_work_header.hpp
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/controllers/source/session_controller.cpp
+

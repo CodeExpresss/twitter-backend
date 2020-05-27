@@ -148,6 +148,19 @@ src/libs/repositories/CMakeFiles/repositories.dir/source/news_feed_repository.cp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/repositories.dir/source/news_feed_repository.cpp.s"
 	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/news_feed_repository.cpp" -o CMakeFiles/repositories.dir/source/news_feed_repository.cpp.s
 
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: src/libs/repositories/CMakeFiles/repositories.dir/flags.make
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: ../src/libs/repositories/source/session_repository.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o"
+	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories" && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/repositories.dir/source/session_repository.cpp.o -c "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/session_repository.cpp"
+
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/repositories.dir/source/session_repository.cpp.i"
+	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/session_repository.cpp" > CMakeFiles/repositories.dir/source/session_repository.cpp.i
+
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/repositories.dir/source/session_repository.cpp.s"
+	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/session_repository.cpp" -o CMakeFiles/repositories.dir/source/session_repository.cpp.s
+
 # Object files for target repositories
 repositories_OBJECTS = \
 "CMakeFiles/repositories.dir/source/profile_repository.cpp.o" \
@@ -156,7 +169,8 @@ repositories_OBJECTS = \
 "CMakeFiles/repositories.dir/source/tweet_repository.cpp.o" \
 "CMakeFiles/repositories.dir/source/user_repository.cpp.o" \
 "CMakeFiles/repositories.dir/source/vote_repository.cpp.o" \
-"CMakeFiles/repositories.dir/source/news_feed_repository.cpp.o"
+"CMakeFiles/repositories.dir/source/news_feed_repository.cpp.o" \
+"CMakeFiles/repositories.dir/source/session_repository.cpp.o"
 
 # External object files for target repositories
 repositories_EXTERNAL_OBJECTS =
@@ -168,9 +182,10 @@ src/libs/repositories/librepositories.a: src/libs/repositories/CMakeFiles/reposi
 src/libs/repositories/librepositories.a: src/libs/repositories/CMakeFiles/repositories.dir/source/user_repository.cpp.o
 src/libs/repositories/librepositories.a: src/libs/repositories/CMakeFiles/repositories.dir/source/vote_repository.cpp.o
 src/libs/repositories/librepositories.a: src/libs/repositories/CMakeFiles/repositories.dir/source/news_feed_repository.cpp.o
+src/libs/repositories/librepositories.a: src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o
 src/libs/repositories/librepositories.a: src/libs/repositories/CMakeFiles/repositories.dir/build.make
 src/libs/repositories/librepositories.a: src/libs/repositories/CMakeFiles/repositories.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX static library librepositories.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Linking CXX static library librepositories.a"
 	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories" && $(CMAKE_COMMAND) -P CMakeFiles/repositories.dir/cmake_clean_target.cmake
 	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/repositories.dir/link.txt --verbose=$(VERBOSE)
 

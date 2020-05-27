@@ -1,2 +1,2 @@
-/usr/bin/ar qc libcontrollers.a  CMakeFiles/controllers.dir/source/controller_header.cpp.o
+/usr/bin/ar qc libcontrollers.a  CMakeFiles/controllers.dir/source/controller_header.cpp.o CMakeFiles/controllers.dir/source/session_controller.cpp.o
 /usr/bin/ranlib libcontrollers.a

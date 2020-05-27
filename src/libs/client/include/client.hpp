@@ -197,18 +197,29 @@ void HTTPClient::routing_post_method() {
 
     //boost::beast::http::body_type::value_type x;
 	{ //получение приходящих бинарных данных (post multipart/form-data)
-		std::ofstream f("picture/twitter_backend_data.png");
+		std::ofstream f("pictures/twitter_backend_data.png");
 		//f << request.body().data();
 		auto b = request.body();
 		std::stringstream ss(b);
 		std::string boundary, tmp;
 		getline(ss, boundary);
+		std::regex regex1("^Content-Disposition: form-data(; name=\"([^\"]+)\")?(; filename=\"([^\"]+)\")?$"),
+		regex2("^Content-Type:[ ]*(.*)$");
+		size_t skip = boundary.length() + 3;
 		while (getline(ss, tmp) && tmp.length() > 1) {
-			//std::cout << "tmp.length() = " << tmp.length() << "; tmp = " << tmp << std::endl;
+			skip++;
+			if (std::regex_search(tmp, regex1)) {
+				auto sri_start = std::sregex_iterator(tmp.begin(), tmp.end(), regex1);
+				auto sri_end = std::sregex_iterator();
+				for (auto it = sri_start; it != sri_end; it++) {
+					std::smatch sm = *it;
+					//std::cout << "parsed (size = " << sm.size() << "): " << sm.str() << std::endl;
+				}
+			} else if (std::regex_search(tmp, regex2)) {
+				//std::cout << "second regex found..." << std::endl;
+			}
 		}
-		//std::cout << "tellg = " << ss.tellg() << std::endl;
-		const size_t skip_last = boundary.length() + 5;
-		for (auto it = b.begin() + ss.tellg(); it < b.end() - skip_last; it++) {
+		for (auto it = b.begin() + ss.tellg(); it < b.end() - skip; it++) {
 			f << *it;
 		}
 		//f << b;

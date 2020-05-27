@@ -11,12 +11,10 @@ memory
 -
 string
 -
-libpq-fe.h
+postgresql/libpq-fe.h
 -
 
 /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/source/DBConnection.cpp
 ../include/DBConnection.hpp
 /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/DBConnection.hpp
-
-/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/source/DBController.cpp
 

@@ -70,17 +70,32 @@ src/libs/controllers/CMakeFiles/controllers.dir/source/controller_header.cpp.s: 
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/controllers.dir/source/controller_header.cpp.s"
 	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/source/controller_header.cpp" -o CMakeFiles/controllers.dir/source/controller_header.cpp.s
 
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: src/libs/controllers/CMakeFiles/controllers.dir/flags.make
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o: ../src/libs/controllers/source/session_controller.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o"
+	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers" && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/controllers.dir/source/session_controller.cpp.o -c "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/source/session_controller.cpp"
+
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/controllers.dir/source/session_controller.cpp.i"
+	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/source/session_controller.cpp" > CMakeFiles/controllers.dir/source/session_controller.cpp.i
+
+src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/controllers.dir/source/session_controller.cpp.s"
+	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers" && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/source/session_controller.cpp" -o CMakeFiles/controllers.dir/source/session_controller.cpp.s
+
 # Object files for target controllers
 controllers_OBJECTS = \
-"CMakeFiles/controllers.dir/source/controller_header.cpp.o"
+"CMakeFiles/controllers.dir/source/controller_header.cpp.o" \
+"CMakeFiles/controllers.dir/source/session_controller.cpp.o"
 
 # External object files for target controllers
 controllers_EXTERNAL_OBJECTS =
 
 src/libs/controllers/libcontrollers.a: src/libs/controllers/CMakeFiles/controllers.dir/source/controller_header.cpp.o
+src/libs/controllers/libcontrollers.a: src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o
 src/libs/controllers/libcontrollers.a: src/libs/controllers/CMakeFiles/controllers.dir/build.make
 src/libs/controllers/libcontrollers.a: src/libs/controllers/CMakeFiles/controllers.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libcontrollers.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libcontrollers.a"
 	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers" && $(CMAKE_COMMAND) -P CMakeFiles/controllers.dir/cmake_clean_target.cmake
 	cd "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers" && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/controllers.dir/link.txt --verbose=$(VERBOSE)
 

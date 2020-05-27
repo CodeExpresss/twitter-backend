@@ -21,6 +21,13 @@ src/libs/repositories/CMakeFiles/repositories.dir/source/profile_repository.cpp.
 src/libs/repositories/CMakeFiles/repositories.dir/source/profile_repository.cpp.o: ../src/libs/repositories/include/repositories_header.hpp
 src/libs/repositories/CMakeFiles/repositories.dir/source/profile_repository.cpp.o: ../src/libs/repositories/source/profile_repository.cpp
 
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: ../src/libs/data_base/include/DBConnection.hpp
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: ../src/libs/data_base/include/DBController.hpp
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: ../src/libs/data_base/include/templates/DBController_impl.hpp
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: ../src/libs/repositories/include/repositories_header.hpp
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: ../src/libs/repositories/include/session_repository.hpp
+src/libs/repositories/CMakeFiles/repositories.dir/source/session_repository.cpp.o: ../src/libs/repositories/source/session_repository.cpp
+
 src/libs/repositories/CMakeFiles/repositories.dir/source/subscription_repository.cpp.o: ../src/libs/models/include/models_header.hpp
 src/libs/repositories/CMakeFiles/repositories.dir/source/subscription_repository.cpp.o: ../src/libs/models/include/subscription.hpp
 src/libs/repositories/CMakeFiles/repositories.dir/source/subscription_repository.cpp.o: ../src/libs/models/include/user.hpp

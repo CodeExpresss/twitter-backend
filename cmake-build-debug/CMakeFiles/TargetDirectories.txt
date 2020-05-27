@@ -26,6 +26,7 @@
 /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/client/CMakeFiles/client.dir
 /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/rebuild_cache.dir
 /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/tests_gmock.dir
-/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/test_news_feed.dir
-/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/tests_gmock_server.dir
 /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/edit_cache.dir
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/tests_gmock_server.dir
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/test_session.dir
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/CMakeFiles/test_news_feed.dir

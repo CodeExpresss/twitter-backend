@@ -83,6 +83,7 @@ set(CMAKE_DEPEND_INFO_FILES
   "src/libs/server/CMakeFiles/server.dir/DependInfo.cmake"
   "src/libs/client/CMakeFiles/client.dir/DependInfo.cmake"
   "src/test/CMakeFiles/tests_gmock.dir/DependInfo.cmake"
-  "src/test/CMakeFiles/test_news_feed.dir/DependInfo.cmake"
   "src/test/CMakeFiles/tests_gmock_server.dir/DependInfo.cmake"
+  "src/test/CMakeFiles/test_session.dir/DependInfo.cmake"
+  "src/test/CMakeFiles/test_news_feed.dir/DependInfo.cmake"
   )

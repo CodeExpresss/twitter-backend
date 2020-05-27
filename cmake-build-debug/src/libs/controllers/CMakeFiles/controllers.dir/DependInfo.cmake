@@ -5,6 +5,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/source/controller_header.cpp" "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers/CMakeFiles/controllers.dir/source/controller_header.cpp.o"
+  "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/source/session_controller.cpp" "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers/CMakeFiles/controllers.dir/source/session_controller.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

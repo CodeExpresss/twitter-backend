@@ -11,6 +11,7 @@ src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/index_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/login_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/logout_controller.hpp
+src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/session_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/signup_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/subscription_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/tags_controller.hpp
@@ -29,6 +30,7 @@ src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/tweet_like_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/update_profile_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/update_user_controller.hpp
+src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/view_profile_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/controllers/include/vote_controller.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/data_base/include/DBConnection.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/data_base/include/DBController.hpp
@@ -42,6 +44,7 @@ src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/repositories/include/news_feed_repository.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/repositories/include/profile_repository.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/repositories/include/repositories_header.hpp
+src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/repositories/include/session_repository.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/repositories/include/subscription_repository.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/repositories/include/tag_repository.hpp
 src/test/CMakeFiles/tests_gmock_server.dir/source/test_server_run.cpp.o: ../src/libs/repositories/include/tweet_repository.hpp

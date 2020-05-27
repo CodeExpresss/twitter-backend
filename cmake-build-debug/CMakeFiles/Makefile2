@@ -240,8 +240,9 @@ src/libs/unit_of_work/clean: src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/c
 
 # Recursive "all" directory target.
 src/test/all: src/test/CMakeFiles/tests_gmock.dir/all
-src/test/all: src/test/CMakeFiles/test_news_feed.dir/all
 src/test/all: src/test/CMakeFiles/tests_gmock_server.dir/all
+src/test/all: src/test/CMakeFiles/test_session.dir/all
+src/test/all: src/test/CMakeFiles/test_news_feed.dir/all
 
 .PHONY : src/test/all
 
@@ -252,8 +253,9 @@ src/test/preinstall:
 
 # Recursive "clean" directory target.
 src/test/clean: src/test/CMakeFiles/tests_gmock.dir/clean
-src/test/clean: src/test/CMakeFiles/test_news_feed.dir/clean
 src/test/clean: src/test/CMakeFiles/tests_gmock_server.dir/clean
+src/test/clean: src/test/CMakeFiles/test_session.dir/clean
+src/test/clean: src/test/CMakeFiles/test_news_feed.dir/clean
 
 .PHONY : src/test/clean
 
@@ -264,7 +266,7 @@ src/test/clean: src/test/CMakeFiles/tests_gmock_server.dir/clean
 src/libs/data_base/CMakeFiles/data_base.dir/all:
 	$(MAKE) -f src/libs/data_base/CMakeFiles/data_base.dir/build.make src/libs/data_base/CMakeFiles/data_base.dir/depend
 	$(MAKE) -f src/libs/data_base/CMakeFiles/data_base.dir/build.make src/libs/data_base/CMakeFiles/data_base.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=5,6,7 "Built target data_base"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=6,7,8 "Built target data_base"
 .PHONY : src/libs/data_base/CMakeFiles/data_base.dir/all
 
 # Build rule for subdir invocation for target.
@@ -291,7 +293,7 @@ src/libs/data_base/CMakeFiles/data_base.dir/clean:
 src/libs/models/CMakeFiles/models.dir/all:
 	$(MAKE) -f src/libs/models/CMakeFiles/models.dir/build.make src/libs/models/CMakeFiles/models.dir/depend
 	$(MAKE) -f src/libs/models/CMakeFiles/models.dir/build.make src/libs/models/CMakeFiles/models.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=8,9,10,11,12,13,14 "Built target models"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=9,10,11,12,13,14,15 "Built target models"
 .PHONY : src/libs/models/CMakeFiles/models.dir/all
 
 # Build rule for subdir invocation for target.
@@ -318,12 +320,12 @@ src/libs/models/CMakeFiles/models.dir/clean:
 src/libs/repositories/CMakeFiles/repositories.dir/all:
 	$(MAKE) -f src/libs/repositories/CMakeFiles/repositories.dir/build.make src/libs/repositories/CMakeFiles/repositories.dir/depend
 	$(MAKE) -f src/libs/repositories/CMakeFiles/repositories.dir/build.make src/libs/repositories/CMakeFiles/repositories.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=15,16,17,18,19,20,21,22 "Built target repositories"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=16,17,18,19,20,21,22,23,24 "Built target repositories"
 .PHONY : src/libs/repositories/CMakeFiles/repositories.dir/all
 
 # Build rule for subdir invocation for target.
 src/libs/repositories/CMakeFiles/repositories.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 8
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 9
 	$(MAKE) -f CMakeFiles/Makefile2 src/libs/repositories/CMakeFiles/repositories.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
 .PHONY : src/libs/repositories/CMakeFiles/repositories.dir/rule
@@ -345,12 +347,12 @@ src/libs/repositories/CMakeFiles/repositories.dir/clean:
 src/libs/controllers/CMakeFiles/controllers.dir/all:
 	$(MAKE) -f src/libs/controllers/CMakeFiles/controllers.dir/build.make src/libs/controllers/CMakeFiles/controllers.dir/depend
 	$(MAKE) -f src/libs/controllers/CMakeFiles/controllers.dir/build.make src/libs/controllers/CMakeFiles/controllers.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=3,4 "Built target controllers"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=3,4,5 "Built target controllers"
 .PHONY : src/libs/controllers/CMakeFiles/controllers.dir/all
 
 # Build rule for subdir invocation for target.
 src/libs/controllers/CMakeFiles/controllers.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 3
 	$(MAKE) -f CMakeFiles/Makefile2 src/libs/controllers/CMakeFiles/controllers.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
 .PHONY : src/libs/controllers/CMakeFiles/controllers.dir/rule
@@ -372,12 +374,12 @@ src/libs/controllers/CMakeFiles/controllers.dir/clean:
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/all: src/libs/repositories/CMakeFiles/repositories.dir/all
 	$(MAKE) -f src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/build.make src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/depend
 	$(MAKE) -f src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/build.make src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=33,34 "Built target unit_of_work"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=37,38 "Built target unit_of_work"
 .PHONY : src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/all
 
 # Build rule for subdir invocation for target.
 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 10
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 11
 	$(MAKE) -f CMakeFiles/Makefile2 src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
 .PHONY : src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/rule
@@ -399,7 +401,7 @@ src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/clean:
 src/libs/serialize/CMakeFiles/serialize.dir/all:
 	$(MAKE) -f src/libs/serialize/CMakeFiles/serialize.dir/build.make src/libs/serialize/CMakeFiles/serialize.dir/depend
 	$(MAKE) -f src/libs/serialize/CMakeFiles/serialize.dir/build.make src/libs/serialize/CMakeFiles/serialize.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=23,24 "Built target serialize"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=25,26 "Built target serialize"
 .PHONY : src/libs/serialize/CMakeFiles/serialize.dir/all
 
 # Build rule for subdir invocation for target.
@@ -426,7 +428,7 @@ src/libs/serialize/CMakeFiles/serialize.dir/clean:
 src/libs/server/CMakeFiles/server.dir/all:
 	$(MAKE) -f src/libs/server/CMakeFiles/server.dir/build.make src/libs/server/CMakeFiles/server.dir/depend
 	$(MAKE) -f src/libs/server/CMakeFiles/server.dir/build.make src/libs/server/CMakeFiles/server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=25,26 "Built target server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=27,28 "Built target server"
 .PHONY : src/libs/server/CMakeFiles/server.dir/all
 
 # Build rule for subdir invocation for target.
@@ -486,12 +488,12 @@ src/test/CMakeFiles/tests_gmock.dir/all: src/libs/server/CMakeFiles/server.dir/a
 src/test/CMakeFiles/tests_gmock.dir/all: src/libs/client/CMakeFiles/client.dir/all
 	$(MAKE) -f src/test/CMakeFiles/tests_gmock.dir/build.make src/test/CMakeFiles/tests_gmock.dir/depend
 	$(MAKE) -f src/test/CMakeFiles/tests_gmock.dir/build.make src/test/CMakeFiles/tests_gmock.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=29,30 "Built target tests_gmock"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=33,34 "Built target tests_gmock"
 .PHONY : src/test/CMakeFiles/tests_gmock.dir/all
 
 # Build rule for subdir invocation for target.
 src/test/CMakeFiles/tests_gmock.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 28
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 30
 	$(MAKE) -f CMakeFiles/Makefile2 src/test/CMakeFiles/tests_gmock.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
 .PHONY : src/test/CMakeFiles/tests_gmock.dir/rule
@@ -507,39 +509,6 @@ src/test/CMakeFiles/tests_gmock.dir/clean:
 .PHONY : src/test/CMakeFiles/tests_gmock.dir/clean
 
 #=============================================================================
-# Target rules for target src/test/CMakeFiles/test_news_feed.dir
-
-# All Build rule for target.
-src/test/CMakeFiles/test_news_feed.dir/all: src/libs/data_base/CMakeFiles/data_base.dir/all
-src/test/CMakeFiles/test_news_feed.dir/all: src/libs/models/CMakeFiles/models.dir/all
-src/test/CMakeFiles/test_news_feed.dir/all: src/libs/repositories/CMakeFiles/repositories.dir/all
-src/test/CMakeFiles/test_news_feed.dir/all: src/libs/controllers/CMakeFiles/controllers.dir/all
-src/test/CMakeFiles/test_news_feed.dir/all: src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/all
-src/test/CMakeFiles/test_news_feed.dir/all: src/libs/server/CMakeFiles/server.dir/all
-src/test/CMakeFiles/test_news_feed.dir/all: src/libs/client/CMakeFiles/client.dir/all
-	$(MAKE) -f src/test/CMakeFiles/test_news_feed.dir/build.make src/test/CMakeFiles/test_news_feed.dir/depend
-	$(MAKE) -f src/test/CMakeFiles/test_news_feed.dir/build.make src/test/CMakeFiles/test_news_feed.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=27,28 "Built target test_news_feed"
-.PHONY : src/test/CMakeFiles/test_news_feed.dir/all
-
-# Build rule for subdir invocation for target.
-src/test/CMakeFiles/test_news_feed.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 28
-	$(MAKE) -f CMakeFiles/Makefile2 src/test/CMakeFiles/test_news_feed.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
-.PHONY : src/test/CMakeFiles/test_news_feed.dir/rule
-
-# Convenience name for target.
-test_news_feed: src/test/CMakeFiles/test_news_feed.dir/rule
-
-.PHONY : test_news_feed
-
-# clean rule for target.
-src/test/CMakeFiles/test_news_feed.dir/clean:
-	$(MAKE) -f src/test/CMakeFiles/test_news_feed.dir/build.make src/test/CMakeFiles/test_news_feed.dir/clean
-.PHONY : src/test/CMakeFiles/test_news_feed.dir/clean
-
-#=============================================================================
 # Target rules for target src/test/CMakeFiles/tests_gmock_server.dir
 
 # All Build rule for target.
@@ -552,12 +521,12 @@ src/test/CMakeFiles/tests_gmock_server.dir/all: src/libs/server/CMakeFiles/serve
 src/test/CMakeFiles/tests_gmock_server.dir/all: src/libs/client/CMakeFiles/client.dir/all
 	$(MAKE) -f src/test/CMakeFiles/tests_gmock_server.dir/build.make src/test/CMakeFiles/tests_gmock_server.dir/depend
 	$(MAKE) -f src/test/CMakeFiles/tests_gmock_server.dir/build.make src/test/CMakeFiles/tests_gmock_server.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=31,32 "Built target tests_gmock_server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=35,36 "Built target tests_gmock_server"
 .PHONY : src/test/CMakeFiles/tests_gmock_server.dir/all
 
 # Build rule for subdir invocation for target.
 src/test/CMakeFiles/tests_gmock_server.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 28
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 30
 	$(MAKE) -f CMakeFiles/Makefile2 src/test/CMakeFiles/tests_gmock_server.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
 .PHONY : src/test/CMakeFiles/tests_gmock_server.dir/rule
@@ -571,6 +540,72 @@ tests_gmock_server: src/test/CMakeFiles/tests_gmock_server.dir/rule
 src/test/CMakeFiles/tests_gmock_server.dir/clean:
 	$(MAKE) -f src/test/CMakeFiles/tests_gmock_server.dir/build.make src/test/CMakeFiles/tests_gmock_server.dir/clean
 .PHONY : src/test/CMakeFiles/tests_gmock_server.dir/clean
+
+#=============================================================================
+# Target rules for target src/test/CMakeFiles/test_session.dir
+
+# All Build rule for target.
+src/test/CMakeFiles/test_session.dir/all: src/libs/data_base/CMakeFiles/data_base.dir/all
+src/test/CMakeFiles/test_session.dir/all: src/libs/models/CMakeFiles/models.dir/all
+src/test/CMakeFiles/test_session.dir/all: src/libs/repositories/CMakeFiles/repositories.dir/all
+src/test/CMakeFiles/test_session.dir/all: src/libs/controllers/CMakeFiles/controllers.dir/all
+src/test/CMakeFiles/test_session.dir/all: src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/all
+src/test/CMakeFiles/test_session.dir/all: src/libs/server/CMakeFiles/server.dir/all
+src/test/CMakeFiles/test_session.dir/all: src/libs/client/CMakeFiles/client.dir/all
+	$(MAKE) -f src/test/CMakeFiles/test_session.dir/build.make src/test/CMakeFiles/test_session.dir/depend
+	$(MAKE) -f src/test/CMakeFiles/test_session.dir/build.make src/test/CMakeFiles/test_session.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=31,32 "Built target test_session"
+.PHONY : src/test/CMakeFiles/test_session.dir/all
+
+# Build rule for subdir invocation for target.
+src/test/CMakeFiles/test_session.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 30
+	$(MAKE) -f CMakeFiles/Makefile2 src/test/CMakeFiles/test_session.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
+.PHONY : src/test/CMakeFiles/test_session.dir/rule
+
+# Convenience name for target.
+test_session: src/test/CMakeFiles/test_session.dir/rule
+
+.PHONY : test_session
+
+# clean rule for target.
+src/test/CMakeFiles/test_session.dir/clean:
+	$(MAKE) -f src/test/CMakeFiles/test_session.dir/build.make src/test/CMakeFiles/test_session.dir/clean
+.PHONY : src/test/CMakeFiles/test_session.dir/clean
+
+#=============================================================================
+# Target rules for target src/test/CMakeFiles/test_news_feed.dir
+
+# All Build rule for target.
+src/test/CMakeFiles/test_news_feed.dir/all: src/libs/data_base/CMakeFiles/data_base.dir/all
+src/test/CMakeFiles/test_news_feed.dir/all: src/libs/models/CMakeFiles/models.dir/all
+src/test/CMakeFiles/test_news_feed.dir/all: src/libs/repositories/CMakeFiles/repositories.dir/all
+src/test/CMakeFiles/test_news_feed.dir/all: src/libs/controllers/CMakeFiles/controllers.dir/all
+src/test/CMakeFiles/test_news_feed.dir/all: src/libs/unit_of_work/CMakeFiles/unit_of_work.dir/all
+src/test/CMakeFiles/test_news_feed.dir/all: src/libs/server/CMakeFiles/server.dir/all
+src/test/CMakeFiles/test_news_feed.dir/all: src/libs/client/CMakeFiles/client.dir/all
+	$(MAKE) -f src/test/CMakeFiles/test_news_feed.dir/build.make src/test/CMakeFiles/test_news_feed.dir/depend
+	$(MAKE) -f src/test/CMakeFiles/test_news_feed.dir/build.make src/test/CMakeFiles/test_news_feed.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" --progress-num=29,30 "Built target test_news_feed"
+.PHONY : src/test/CMakeFiles/test_news_feed.dir/all
+
+# Build rule for subdir invocation for target.
+src/test/CMakeFiles/test_news_feed.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 30
+	$(MAKE) -f CMakeFiles/Makefile2 src/test/CMakeFiles/test_news_feed.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles" 0
+.PHONY : src/test/CMakeFiles/test_news_feed.dir/rule
+
+# Convenience name for target.
+test_news_feed: src/test/CMakeFiles/test_news_feed.dir/rule
+
+.PHONY : test_news_feed
+
+# clean rule for target.
+src/test/CMakeFiles/test_news_feed.dir/clean:
+	$(MAKE) -f src/test/CMakeFiles/test_news_feed.dir/build.make src/test/CMakeFiles/test_news_feed.dir/clean
+.PHONY : src/test/CMakeFiles/test_news_feed.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
