@@ -20,5 +20,6 @@
 #include "profile_repository.hpp"
 #include "vote_repository.hpp"
 #include "news_feed_repository.hpp"
+#include "session_repository.hpp"
 
 #endif // UNIT_OF_WORK_HEADER_HPP
