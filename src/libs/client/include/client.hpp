@@ -112,7 +112,7 @@ private:
 
 std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
 //регулярные выражения для GET
-std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/current/.+");
+std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/.+");
 std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/.+");
 std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/.+");
 std::regex HTTPClient::get_subscription_regex = std::regex("/api/user/subscription/.+");
@@ -149,23 +149,24 @@ void HTTPClient::read_request() {
 void HTTPClient::process_request() {
     response.version(request.version());
     response.keep_alive(false);
+    std::cout << "Cookie" << request[http::field::cookie] << std::endl;
+
+    response.set("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
+    response.set("Access-Control-Allow-Credentials", "true");
 
     switch (request.method()) {
         case http::verb::get:
             response.set(http::field::content_type, "application/json");
-            response.set("Access-Control-Allow-Origin", "*");
             response.result(http::status::ok);
             routing_get_method();
             break;
         case http::verb::post:
             response.result(http::status::ok);
-            response.set("Access-Control-Allow-Origin", "*");
             routing_post_method();
             break;
         default:
             // неопределённый метод запроса
             response.result(http::status::bad_request);
-            response.set("Access-Control-Allow-Origin", "*");
             response.set(http::field::content_type, "application/json");
             beast::ostream(response.body())
                     << "Invalid request-method '"
@@ -394,6 +395,7 @@ void HTTPClient::write_response() {
     auto self = shared_from_this();
 
     response.set(http::field::content_length, response.body().size());
+    response.set(http::field::set_cookie, "sessionid=38afes7a8; HttpOnly; Path=/");
 
     http::async_write(
             socket,

@@ -26,6 +26,11 @@ public:
     std::pair<unsigned short int, std::string> authenticate() {}
     std::pair<unsigned short int, std::string> logout(User user) {}
     std::pair<unsigned short int, std::string> following(Subscription subscription);
+    bool check_subscriptions(Subscription& sub, err_code rc) {
+        bool status = subscription_repository->check_subscription(sub, rc);
+        return status;
+    }
+
     User user_update(User user) {}
 
     User get_user() {}
