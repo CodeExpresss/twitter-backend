@@ -49,6 +49,7 @@ private:
     static std::regex follow_regex;
     static std::regex get_subscription_regex;
     static std::regex make_subscription_regex;
+    static std::regex tag_search_regex;
 
     std::string get_query_string(const std::string& url) {
         std::string result;
@@ -118,6 +119,7 @@ std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/.+");
 std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/");
 std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/.+");
 std::regex HTTPClient::get_subscription_regex = std::regex("/api/user/subscription/.+");
+std::regex HTTPClient::tag_search_regex = std::regex("/api/tweet/tag/.+");
 //регулярные выражения для POST
 std::regex HTTPClient::register_regex = std::regex("/api/user/register/");
 std::regex HTTPClient::login_regex = std::regex("/api/user/login/");
@@ -414,6 +416,18 @@ void HTTPClient::routing_get_method() {
                 make_shared<IndexController<Serialize< std::vector<std::pair<Tweet, Profile>>>>>(worker);
 
         json_response = cont->get_queryset(profile_id);
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str();
+
+        return;
+
+    } else if (std::regex_match(request_string, tag_search_regex)) {
+
+        std::shared_ptr<TagSearchController<Serialize< std::vector<std::pair<Tweet, Profile> > > > > cont =
+                make_shared<TagSearchController<Serialize< std::vector<std::pair<Tweet, Profile>>>>>(worker);
+
+        json_response = cont->get_queryset(query_string_map["tag"]);
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str();
