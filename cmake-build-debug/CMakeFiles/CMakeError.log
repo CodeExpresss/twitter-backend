@@ -1,0 +1,58 @@
+Performing C SOURCE FILE Test CMAKE_HAVE_LIBC_PTHREAD failed with the following output:
+Change Dir: /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_34a42/fast && /usr/bin/make -f CMakeFiles/cmTC_34a42.dir/build.make CMakeFiles/cmTC_34a42.dir/build
+make[1]: вход в каталог «/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp»
+Building C object CMakeFiles/cmTC_34a42.dir/src.c.o
+/usr/bin/cc   -g -O0 -Wall -W -fprofile-arcs -ftest-coverage -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_34a42.dir/src.c.o   -c "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp/src.c"
+Linking C executable cmTC_34a42
+/home/nick/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/201.7223.86/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_34a42.dir/link.txt --verbose=1
+/usr/bin/cc -g -O0 -Wall -W -fprofile-arcs -ftest-coverage -DCMAKE_HAVE_LIBC_PTHREAD  -fprofile-arcs -ftest-coverage  CMakeFiles/cmTC_34a42.dir/src.c.o  -o cmTC_34a42 
+/usr/bin/ld: CMakeFiles/cmTC_34a42.dir/src.c.o: в функции «main»:
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp/src.c:11: неопределённая ссылка на «pthread_create»
+/usr/bin/ld: /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp/src.c:12: неопределённая ссылка на «pthread_detach»
+/usr/bin/ld: /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp/src.c:13: неопределённая ссылка на «pthread_join»
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_34a42.dir/build.make:87: cmTC_34a42] Ошибка 1
+make[1]: выход из каталога «/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp»
+make: *** [Makefile:121: cmTC_34a42/fast] Ошибка 2
+
+
+Source file was:
+#include <pthread.h>
+
+void* test_func(void* data)
+{
+  return data;
+}
+
+int main(void)
+{
+  pthread_t thread;
+  pthread_create(&thread, NULL, test_func, NULL);
+  pthread_detach(thread);
+  pthread_join(thread, NULL);
+  pthread_atfork(NULL, NULL, NULL);
+  pthread_exit(NULL);
+
+  return 0;
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/make cmTC_8bc7b/fast && /usr/bin/make -f CMakeFiles/cmTC_8bc7b.dir/build.make CMakeFiles/cmTC_8bc7b.dir/build
+make[1]: вход в каталог «/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp»
+Building C object CMakeFiles/cmTC_8bc7b.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -g -O0 -Wall -W -fprofile-arcs -ftest-coverage -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_8bc7b.dir/CheckFunctionExists.c.o   -c /home/nick/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/201.7223.86/bin/cmake/linux/share/cmake-3.16/Modules/CheckFunctionExists.c
+Linking C executable cmTC_8bc7b
+/home/nick/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/201.7223.86/bin/cmake/linux/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8bc7b.dir/link.txt --verbose=1
+/usr/bin/cc -g -O0 -Wall -W -fprofile-arcs -ftest-coverage -DCHECK_FUNCTION_EXISTS=pthread_create  -fprofile-arcs -ftest-coverage  CMakeFiles/cmTC_8bc7b.dir/CheckFunctionExists.c.o  -o cmTC_8bc7b  -lpthreads 
+/usr/bin/ld: невозможно найти -lpthreads
+collect2: error: ld returned 1 exit status
+make[1]: *** [CMakeFiles/cmTC_8bc7b.dir/build.make:87: cmTC_8bc7b] Ошибка 1
+make[1]: выход из каталога «/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/CMakeFiles/CMakeTmp»
+make: *** [Makefile:121: cmTC_8bc7b/fast] Ошибка 2
+
+
+

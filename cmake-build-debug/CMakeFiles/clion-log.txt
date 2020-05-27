@@ -1,0 +1,4 @@
+/home/nick/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/201.7223.86/bin/cmake/linux/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" "/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend"
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug

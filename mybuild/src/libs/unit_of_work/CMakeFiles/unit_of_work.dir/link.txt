@@ -1,0 +1,2 @@
+/usr/bin/ar qc libunit_of_work.a  CMakeFiles/unit_of_work.dir/source/unit_of_work.cpp.o
+/usr/bin/ranlib libunit_of_work.a

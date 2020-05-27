@@ -1,0 +1,937 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="app"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\src\;CMake Files\src\libs\;CMake Files\src\libs\data_base\;CMake Files\src\libs\models\;CMake Files\src\libs\repositories\;CMake Files\src\libs\controllers\;CMake Files\src\libs\unit_of_work\;CMake Files\src\libs\serialize\;CMake Files\src\libs\server\;CMake Files\src\libs\client\;CMake Files\src\test\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="data_base">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/data_base/libdata_base.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/data_base"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/data_base"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 data_base"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="data_base/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/data_base/libdata_base.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/data_base"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/data_base"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 data_base/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/data_base/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="models">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/models/libmodels.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/models"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/models"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 models"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="models/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/models/libmodels.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/models"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/models"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 models/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/models/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="repositories">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories/librepositories.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 repositories"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="repositories/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories/librepositories.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/repositories"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 repositories/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/repositories/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="controllers">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers/libcontrollers.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 controllers"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="controllers/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers/libcontrollers.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/controllers"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 controllers/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/controllers/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="unit_of_work">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/libunit_of_work.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 unit_of_work"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="unit_of_work/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/libunit_of_work.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 unit_of_work/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/unit_of_work/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="serialize">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/serialize/libserialize.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/serialize"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/serialize"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize/../models/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 serialize"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="serialize/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/serialize/libserialize.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/serialize"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/serialize"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize/../models/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 serialize/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/serialize/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/server/libserver.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/server"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/server"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 server"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="server/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/server/libserver.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/server"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/server"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 server/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/server/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/client/libclient.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/client"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/client"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 client"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="client/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/client/libclient.a" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/client"/>
+				<Option object_output="./"/>
+				<Option type="2"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/libs/client"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 client/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/libs/client/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests_gmock">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/tests_gmock" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 tests_gmock"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests_gmock/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/tests_gmock" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 tests_gmock/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_news_feed">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/test_news_feed" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 test_news_feed"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="test_news_feed/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/test_news_feed" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 test_news_feed/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests_gmock_server">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/tests_gmock_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 tests_gmock_server"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="tests_gmock_server/fast">
+				<Option output="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test/tests_gmock_server" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/cmake-build-debug/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/../libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../repositories/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../client/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../controllers/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/../serialize/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../models/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../data_base/include"/>
+					<Add directory="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/../repositories/include"/>
+					<Add directory="/usr/include/c++/9"/>
+					<Add directory="/usr/include/x86_64-linux-gnu/c++/9"/>
+					<Add directory="/usr/include/c++/9/backward"/>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 tests_gmock_server/fast"/>
+					<CompileFile command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j4 -f &quot;/home/nick/Desktop/МГТУ/Технопарк/Программирование\ на\ C\ и\ CPP/twitter-backend/cmake-build-debug/src/test/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/source/client.cpp">
+			<Option target="client"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/source/controller_header.cpp">
+			<Option target="controllers"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/source/DBConnection.cpp">
+			<Option target="data_base"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/source/DBController.cpp">
+			<Option target="data_base"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/source/profile.cpp">
+			<Option target="models"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/source/subscription.cpp">
+			<Option target="models"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/source/tag.cpp">
+			<Option target="models"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/source/tweet.cpp">
+			<Option target="models"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/source/user.cpp">
+			<Option target="models"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/source/vote.cpp">
+			<Option target="models"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/news_feed_repository.cpp">
+			<Option target="repositories"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/profile_repository.cpp">
+			<Option target="repositories"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/subscription_repository.cpp">
+			<Option target="repositories"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/tag_repository.cpp">
+			<Option target="repositories"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/tweet_repository.cpp">
+			<Option target="repositories"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/user_repository.cpp">
+			<Option target="repositories"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/vote_repository.cpp">
+			<Option target="repositories"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize/source/serialize.cpp">
+			<Option target="serialize"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/source/server.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/source/unit_of_work.cpp">
+			<Option target="unit_of_work"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/source/main.cpp">
+			<Option target="tests_gmock"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/source/test_news_feed.cpp">
+			<Option target="test_news_feed"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/source/test_server_run.cpp">
+			<Option target="tests_gmock_server"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\data_base\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/models/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\models\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\repositories\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/controllers/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\controllers\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/unit_of_work/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\unit_of_work\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/serialize/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\serialize\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/server/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\server\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/client/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\libs\client\"/>
+		</Unit>
+		<Unit filename="/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/test/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\src\test\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

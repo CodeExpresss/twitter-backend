@@ -1,0 +1,204 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../src/libs/data_base/include/DBConnection.hpp
+memory
+-
+string
+-
+libpq-fe.h
+-
+
+../src/libs/data_base/include/DBController.hpp
+iostream
+-
+fstream
+-
+mutex
+-
+condition_variable
+-
+queue
+-
+vector
+-
+DBConnection.hpp
+../src/libs/data_base/include/DBConnection.hpp
+templates/DBController_impl.hpp
+../src/libs/data_base/include/templates/DBController_impl.hpp
+
+../src/libs/data_base/include/templates/DBController_impl.hpp
+../DBController.hpp
+../src/libs/data_base/include/DBController.hpp
+
+../src/libs/models/include/models_header.hpp
+vector
+-
+string
+-
+
+../src/libs/models/include/profile.hpp
+models_header.hpp
+../src/libs/models/include/models_header.hpp
+
+../src/libs/models/include/subscription.hpp
+user.hpp
+../src/libs/models/include/user.hpp
+
+../src/libs/models/include/tag.hpp
+models_header.hpp
+../src/libs/models/include/models_header.hpp
+
+../src/libs/models/include/tweet.hpp
+models_header.hpp
+../src/libs/models/include/models_header.hpp
+tag.hpp
+../src/libs/models/include/tag.hpp
+
+../src/libs/models/include/user.hpp
+utility
+-
+models_header.hpp
+../src/libs/models/include/models_header.hpp
+
+../src/libs/models/include/vote.hpp
+models_header.hpp
+../src/libs/models/include/models_header.hpp
+
+../src/libs/repositories/include/news_feed_repository.hpp
+repositories_header.hpp
+../src/libs/repositories/include/repositories_header.hpp
+tweet.hpp
+../src/libs/repositories/include/tweet.hpp
+profile.hpp
+../src/libs/repositories/include/profile.hpp
+
+../src/libs/repositories/include/repositories_header.hpp
+memory
+-
+vector
+-
+string
+-
+boost/format.hpp
+-
+../../data_base/include/DBController.hpp
+../src/libs/data_base/include/DBController.hpp
+../../data_base/include/DBConnection.hpp
+../src/libs/data_base/include/DBConnection.hpp
+
+../src/libs/repositories/include/tweet_repository.hpp
+repositories_header.hpp
+../src/libs/repositories/include/repositories_header.hpp
+tweet.hpp
+../src/libs/repositories/include/tweet.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/DBConnection.hpp
+memory
+-
+string
+-
+libpq-fe.h
+-
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/DBController.hpp
+iostream
+-
+fstream
+-
+mutex
+-
+condition_variable
+-
+queue
+-
+vector
+-
+DBConnection.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/DBConnection.hpp
+templates/DBController_impl.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/templates/DBController_impl.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/templates/DBController_impl.hpp
+../DBController.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/DBController.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/profile_repository.hpp
+repositories_header.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/repositories_header.hpp
+profile.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/profile.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/repositories_header.hpp
+memory
+-
+vector
+-
+string
+-
+boost/format.hpp
+-
+../../data_base/include/DBController.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/DBController.hpp
+../../data_base/include/DBConnection.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/data_base/include/DBConnection.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/subscription_repository.hpp
+repositories_header.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/repositories_header.hpp
+subscription.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/subscription.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/tag_repository.hpp
+repositories_header.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/repositories_header.hpp
+tag.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/tag.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/user_repository.hpp
+repositories_header.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/repositories_header.hpp
+user.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/user.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/vote_repository.hpp
+repositories_header.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/repositories_header.hpp
+vote.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/vote.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/news_feed_repository.cpp
+news_feed_repository.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/news_feed_repository.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/profile_repository.cpp
+../include/profile_repository.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/profile_repository.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/subscription_repository.cpp
+../include/subscription_repository.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/subscription_repository.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/tag_repository.cpp
+../include/tag_repository.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/tag_repository.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/tweet_repository.cpp
+tweet_repository.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/tweet_repository.hpp
+boost/format.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/boost/format.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/user_repository.cpp
+../include/user_repository.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/user_repository.hpp
+
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/source/vote_repository.cpp
+../include/vote_repository.hpp
+/home/nick/Desktop/МГТУ/Технопарк/Программирование на C и CPP/twitter-backend/src/libs/repositories/include/vote_repository.hpp
+
