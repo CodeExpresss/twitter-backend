@@ -1,2 +1,0 @@
-/usr/bin/ar qc libmodels.a  CMakeFiles/models.dir/source/profile.cpp.o CMakeFiles/models.dir/source/subscription.cpp.o CMakeFiles/models.dir/source/tag.cpp.o CMakeFiles/models.dir/source/tweet.cpp.o CMakeFiles/models.dir/source/user.cpp.o CMakeFiles/models.dir/source/vote.cpp.o
-/usr/bin/ranlib libmodels.a
