@@ -174,3 +174,14 @@ bool UnitOfWork::check_session(std::string &session_id) {
     //Profile _profile;
     //return _profile;
 /*}*/
+
+std::vector<Tweet> UnitOfWork::find_by_tag(const std::string& tag, err_code& rc)
+{
+    std::vector<Tweet> tweets = {};
+    Tag searching_tag = tag_repository->get_by_title(tag, rc);
+    std::vector<int> tweets_id = tag_repository->get_by_id(searching_tag.get_tag_id(), rc);
+    for (auto i: tweets_id) {
+        tweets.push_back(tweet_repository->get_by_id(i, rc));
+    }
+    return tweets;
+}
