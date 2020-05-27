@@ -16,6 +16,7 @@ public:
         vote_repository = make_shared<VoteRepository>(controller);
         subscription_repository = make_shared<SubscriptionRepository>(controller);
         news_feed_repository = make_shared<NewsFeedRepository>(controller);
+        session_repository = make_shared<SessionRepository>(controller);
     }
 
     ~UnitOfWork() = default;
@@ -30,6 +31,13 @@ public:
         bool status = subscription_repository->check_subscription(sub, rc);
         return status;
     }
+
+
+    std::pair<int, std::string> create_session(int user_id);
+    std::pair<int, std::string> get_user_id_session(std::string& session_id);
+    void delete_session(std::string& session_id);
+    bool check_session(std::string& session_id);
+
 
     User user_update(User user) {}
 
@@ -74,6 +82,7 @@ private:
     std::shared_ptr<VoteRepository> vote_repository;
     std::shared_ptr<SubscriptionRepository> subscription_repository;
     std::shared_ptr<NewsFeedRepository> news_feed_repository;
+    std::shared_ptr<SessionRepository> session_repository;
 };
 
 #endif // UNIT_OF_WORK_HPP
