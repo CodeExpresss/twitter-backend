@@ -2,6 +2,17 @@
 #include "unit_of_work.hpp"
 #include "repositories_header.hpp"
 
+std::pair<int, std::string> UnitOfWork::login(User user) {
+    err_code rc;
+    User _user = user_repository->get_by_email(user.get_email(), rc);
+    if(rc == OK) {
+        if( user.get_password() == _user.get_password()) {
+            return create_session(_user.get_user_id());
+        }
+    }
+}
+
+
 std::pair<unsigned short int, std::string> UnitOfWork::sing_up(User user, Profile profile) {
     err_code rc;
     bool status = user_repository->check_user_email(user, rc);
@@ -135,9 +146,42 @@ std::vector<std::pair<Tweet, Profile>> UnitOfWork::get_index_tweet(int profile_i
     return contents;
 }
 
+std::pair<int, std::string> UnitOfWork::create_session(int user_id) {
+    err_code rc;
+    std::string session_id = session_repository->create(user_id, rc);
 
+    return std::pair<int, std::string>(user_id, session_id);
+}
+
+int UnitOfWork::get_user_id_session(std::string &session_id) {
+    err_code rc;
+    int user_id = session_repository->get_profile_id(session_id, rc);
+
+    return user_id;
+}
+
+void UnitOfWork::delete_session(std::string &session_id) {
+    err_code rc;
+    session_repository->erase(session_id, rc);
+}
+
+bool UnitOfWork::check_session(std::string &session_id) {
+    err_code rc;
+    return session_repository->check_session(session_id, rc);
+}
 
 /*Profile UnitOfWork::get_profile(int profile_id) {*/
     //Profile _profile;
     //return _profile;
 /*}*/
+
+std::vector<Tweet> UnitOfWork::find_by_tag(const std::string& tag, err_code& rc)
+{
+    std::vector<Tweet> tweets = {};
+    Tag searching_tag = tag_repository->get_by_title(tag, rc);
+    std::vector<int> tweets_id = tag_repository->get_by_id(searching_tag.get_tag_id(), rc);
+    for (auto i: tweets_id) {
+        tweets.push_back(tweet_repository->get_by_id(i, rc));
+    }
+    return tweets;
+}
