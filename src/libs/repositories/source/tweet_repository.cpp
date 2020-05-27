@@ -136,13 +136,13 @@ std::vector<Tweet> TweetRepository::get_by_profile_id(int profile_id, err_code& 
     if (auto ctrl = db_controller.lock()) {
         if (ctrl->run_query(query_tweet, query_result) && query_result.size() > 0) {
             for (int i = 0; i < query_result.size(); i++) {
-                is_visible = !((query_result[0][5]).compare("t")) ? true : false;
+                is_visible = query_result[i][5] == "t" ? true : false;
                 if (is_visible) {
-                    tweet_id = std::stoi(query_result[0][0]);
-                    profile_id = std::stoi(query_result[0][1]);
-                    text = query_result[0][2];
-                    date = query_result[0][3];
-                    image = query_result[0][4];
+                    tweet_id = std::stoi(query_result[i][0]);
+                    profile_id = std::stoi(query_result[i][1]);
+                    text = query_result[i][2];
+                    date = query_result[i][3];
+                    image = query_result[i][4];
 
                     tweets.push_back(Tweet(tweet_id, profile_id, tags, text, date, image, is_visible));
                 }

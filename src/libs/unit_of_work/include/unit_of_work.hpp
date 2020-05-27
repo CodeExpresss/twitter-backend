@@ -16,16 +16,29 @@ public:
         vote_repository = make_shared<VoteRepository>(controller);
         subscription_repository = make_shared<SubscriptionRepository>(controller);
         news_feed_repository = make_shared<NewsFeedRepository>(controller);
+        session_repository = make_shared<SessionRepository>(controller);
     }
 
     ~UnitOfWork() = default;
 
     std::pair<unsigned short int, std::string> sing_up(User user, Profile profile);
     std::vector<std::pair<Tweet, Profile>> get_index_tweet(int profile_id);
-    std::pair<unsigned short int, std::string> login(User user) {}
+    std::pair<int, std::string> login(User user);
     std::pair<unsigned short int, std::string> authenticate() {}
     std::pair<unsigned short int, std::string> logout(User user) {}
     std::pair<unsigned short int, std::string> following(Subscription subscription);
+    bool check_subscriptions(Subscription& sub, err_code rc) {
+        bool status = subscription_repository->check_subscription(sub, rc);
+        return status;
+    }
+
+
+    std::pair<int, std::string> create_session(int user_id);
+    int get_user_id_session(std::string& session_id);
+    void delete_session(std::string& session_id);
+    bool check_session(std::string& session_id);
+
+
     User user_update(User user) {}
 
     User get_user() {}
@@ -57,6 +70,8 @@ public:
     /*}*/
     std::pair<unsigned short int, std::string> delete_tweet() {}
 
+    std::vector<Tweet> find_by_tag(const std::string& tag, err_code& rc);
+
 private:
     std::vector<Profile> get_sub() {}
     std::vector<Tag> get_tags() {}
@@ -69,6 +84,7 @@ private:
     std::shared_ptr<VoteRepository> vote_repository;
     std::shared_ptr<SubscriptionRepository> subscription_repository;
     std::shared_ptr<NewsFeedRepository> news_feed_repository;
+    std::shared_ptr<SessionRepository> session_repository;
 };
 
 #endif // UNIT_OF_WORK_HPP
