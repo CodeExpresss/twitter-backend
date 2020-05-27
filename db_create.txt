@@ -5,7 +5,7 @@ ALTER ROLE twitter_user SUPERUSER;
 
 -- connect to twitter before execution following commands
 -- for psql:
--- \c twitter
+\c twitter
 CREATE TABLE users (
 	id serial PRIMARY KEY, 
 	password varchar(32), 
@@ -100,6 +100,6 @@ $$ language plpgsql;
 
 -- test data
 insert into users values (1, 'password', 'myemail@mail.ru', true, 7);
-insert into profile values (3, 1, 'user1', 'avatar', '2000-01-31');
-insert into tweet values (2, 3, 'My first tweet', '2020-05-06 00:01', null, false);
+insert into profile values (1, 1, 'user1', 'avatar', '2000-01-31');
+insert into tweet values (1, 1, 'My first tweet', '2020-05-06 00:01', null, true);
 insert into newsfeed values (1, 1, array[row(145, 'greate text', '2020-05-12',array[null], array['tag1'],'user1', 3, 'avatar')::content, row(1, 'another tweet', '2020-05-16', array[null], array['mytag'], 'user0', 5 , null)::content]);
