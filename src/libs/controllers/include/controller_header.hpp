@@ -3,6 +3,7 @@
 
 #include <utility>
 
+#include "subscription.hpp"
 #include "unit_of_work.hpp"
 
 //class AbstractController {
