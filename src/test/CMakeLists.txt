@@ -27,13 +27,14 @@ add_definitions(-fprofile-arcs -ftest-coverage)
 target_link_libraries(tests_gmock -fprofile-arcs)
 
 target_link_libraries(tests_gmock
+    models
+    data_base
+    repositories
+    unit_of_work
     client
     controllers
-    data_base
-    models
-    repositories
     server
-    unit_of_work)
+)
 
 target_include_directories(tests_gmock
     PUBLIC
@@ -128,13 +129,13 @@ add_executable(tests_gmock_server source/test_server_run.cpp)
 target_link_libraries(tests_gmock_server -fprofile-arcs -lpq)
 
 target_link_libraries(tests_gmock_server
+    models
+    data_base
+    repositories
+    unit_of_work
     client
     controllers
-    data_base
-    models
-    repositories
     server
-    unit_of_work
 )
 
 target_include_directories(tests_gmock_server
@@ -154,14 +155,14 @@ add_executable(test_news_feed source/test_news_feed.cpp)
 target_link_libraries(test_news_feed -fprofile-arcs -lpq)
 
 target_link_libraries(test_news_feed
-        client
-        controllers
-        data_base
-        models
-        repositories
-        server
-        unit_of_work
-        )
+    models
+    data_base
+    repositories
+    unit_of_work
+    client
+    controllers
+    server
+)
 
 target_include_directories(test_news_feed
         PUBLIC
@@ -180,10 +181,10 @@ add_executable(test_session source/session_feature_test.cpp)
 target_link_libraries(test_session -fprofile-arcs -lpq)
 
 target_link_libraries(test_session
+        models
         client
         controllers
         data_base
-        models
         repositories
         server
         unit_of_work
@@ -192,12 +193,12 @@ target_link_libraries(test_session
 target_include_directories(test_session
         PUBLIC
         "include"
+        "../libs/models/include"
+        "../libs/repositories/include"
+        "../libs/unit_of_work/include"
         "../libs/controllers/include"
         "../libs/serialize/include"
         "../libs/client/include"
-        "../libs/repositories/include"
-        "../libs/models/include"
-        "../libs/unit_of_work/include"
         )
 
 target_link_libraries(test_session ${GTEST_LIBRARIES} pthread -lgmock)
