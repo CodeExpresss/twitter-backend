@@ -6,7 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -I /usr/include/postgresql/ -lpq")
 
-
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(INC
@@ -19,6 +18,12 @@ set(SRC
 
 add_library(client STATIC
     ${SRC})
+
+target_link_libraries(client
+    models
+    serialize
+    controllers
+)
 
 target_include_directories(client
     PUBLIC

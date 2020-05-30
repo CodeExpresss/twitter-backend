@@ -21,6 +21,11 @@ add_library(server STATIC
 
 target_link_libraries(server
     models
+    client
+    repositories
+    data_base
+    unit_of_work
+    serialize
 )
 
 target_include_directories(server
