@@ -19,6 +19,10 @@ set(SRC
 add_library(server STATIC
     ${SRC})
 
+target_link_libraries(server
+    models
+)
+
 target_include_directories(server
     PUBLIC
         "include"
