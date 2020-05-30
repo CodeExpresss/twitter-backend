@@ -35,6 +35,10 @@ set(SRC
 add_library(repositories STATIC
     ${SRC})
 
+target_link_libraries(repositories
+    data_base
+)
+
 target_include_directories(repositories
     PUBLIC
         "include"
