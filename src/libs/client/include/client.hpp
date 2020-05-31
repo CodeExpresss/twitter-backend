@@ -6,7 +6,6 @@
 #include <boost/beast/version.hpp>
 #include <boost/asio.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#include <boost/regex.hpp>
 #include <boost/algorithm/string.hpp>
 #include <regex>
 #include <chrono>
@@ -196,38 +195,7 @@ void HTTPClient::routing_post_method() {
     boost::property_tree::ptree json_request;
 
     //boost::beast::http::body_type::value_type x;
-	{ //получение приходящих бинарных данных (post multipart/form-data)
-		std::ofstream f("pictures/twitter_backend_data.png");
-		//f << request.body().data();
-		auto b = request.body();
-		std::stringstream ss(b);
-		std::string boundary, tmp;
-		getline(ss, boundary);
-		std::regex regex1("^Content-Disposition: form-data(; name=\"([^\"]+)\")?(; filename=\"([^\"]+)\")?$"),
-		regex2("^Content-Type:[ ]*(.*)$");
-		size_t skip = boundary.length() + 3;
-		while (getline(ss, tmp) && tmp.length() > 1) {
-			skip++;
-			if (std::regex_search(tmp, regex1)) {
-				auto sri_start = std::sregex_iterator(tmp.begin(), tmp.end(), regex1);
-				auto sri_end = std::sregex_iterator();
-				for (auto it = sri_start; it != sri_end; it++) {
-					std::smatch sm = *it;
-					//std::cout << "parsed (size = " << sm.size() << "): " << sm.str() << std::endl;
-				}
-			} else if (std::regex_search(tmp, regex2)) {
-				//std::cout << "second regex found..." << std::endl;
-			}
-		}
-		for (auto it = b.begin() + ss.tellg(); it < b.end() - skip; it++) {
-			f << *it;
-		}
-		//f << b;
-		f.flush();
-		f.close();
-		std::cout << "OK" << std::endl;
-		return;
-	}
+	
     std::string request_string = request.target().to_string();
     std::stringstream ss;
     ss << request.body().data();
@@ -327,7 +295,47 @@ void HTTPClient::routing_post_method() {
         return;
 
     } else if (std::regex_match(request_string, create_tweet_regex)) {
-
+    	std::cout << "here" << std::endl;
+	    {
+		    std::ofstream f("/home/nick/twitter_backend_data2.txt");
+		    f << ss.rdbuf();
+		    f.flush();
+		    f.close();
+		    std::cout << "OK" << std::endl;
+	    }
+	    /*{ //получение приходящих бинарных данных (post multipart/form-data)
+		    std::ofstream f("/home/nick/twitter_backend_data.png");
+		    //f << request.body().data();
+		    const auto b = request.body();
+		    std::stringstream sss(b);
+		    std::string boundary, tmp;
+		    getline(sss, boundary);
+		    const std::regex regex1("^Content-Disposition: form-data(; name=\"([^\"]+)\")?(; filename=\"([^\"]+)\")?$"),
+				    regex2("^Content-Type:[ ]*(.*)$");
+		    size_t skip = boundary.length() + 3;
+		    while (getline(sss, tmp) && tmp.length() > 1) {
+			    skip++;
+			    if (std::regex_search(tmp, regex1)) {
+				    const auto sri_start = std::sregex_iterator(tmp.begin(), tmp.end(), regex1);
+				    const auto sri_end = std::sregex_iterator();
+				    for (auto it = sri_start; it != sri_end; it++) {
+					    const std::smatch sm = *it;
+					    //std::cout << "parsed (size = " << sm.size() << "): " << sm.str() << std::endl;
+				    }
+			    } else if (std::regex_search(tmp, regex2)) {
+				    //std::cout << "second regex found..." << std::endl;
+			    }
+		    }
+		    const auto end = b.end() - skip;
+		    for (auto it = b.begin() + sss.tellg(); it < end; it++) {
+			    f << *it;
+		    }
+		    //f << b;
+		    f.flush();
+		    f.close();
+		    std::cout << "OK" << std::endl;
+	    }*/
+	    
         auto text = json_request.get<std::string>("text");
         auto id = json_request.get<int>("id");
 
