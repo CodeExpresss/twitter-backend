@@ -1,16 +1,15 @@
 #include "../include/tag_repository.hpp"
 
-Tag TagRepository::get_by_id(int id, err_code& rc) {
+Tag TagRepository::get_by_title(const std::string& text, err_code& rc) {
     std::string query;
-    query = (boost::format("select * from tag where id = %1%;") % id).str();
+    query = (boost::format("select * from tag where text = '%1%';") % text).str();
     std::vector<std::vector<std::string>> query_result = {};
-    int tag_id = 0;
+    int id = 0;
     std::string title = "";
     if (auto ctrl = db_controller.lock()) {
         if (ctrl->run_query(query, query_result) && query_result.size() > 0) {
-            tag_id = std::stoi(query_result[0][0]);
+            id = std::stoi(query_result[0][0]);
             title = query_result[0][1];
-
             rc = OK;
         }
         else {
@@ -21,8 +20,31 @@ Tag TagRepository::get_by_id(int id, err_code& rc) {
         rc = NO_CTRL;
     }
 
-    Tag tag(tag_id, title);
+    Tag tag(id, title);
     return tag;
+}
+
+std::vector<int> TagRepository::get_by_id(int id, err_code& rc) {
+    std::string query;
+    query = (boost::format("select tweet_id from tweet_tag where tag_id = %1%;") % id).str();
+    std::vector<std::vector<std::string>> query_result = {};
+    std::vector<int> result = {};
+    if (auto ctrl = db_controller.lock()) {
+        if (ctrl->run_query(query, query_result) && query_result.size() > 0) {
+            for (int i = 0; i < query_result.size(); i++) {
+                result.push_back(std::stoi(query_result[i][0]));
+            }
+            rc = OK;
+        }
+        else {
+            rc = NOT_EXIST;
+        }
+    }
+    else {
+        rc = NO_CTRL;
+    }
+
+    return result;
 }
 
 void TagRepository::create(Tag& item, err_code& rc) {

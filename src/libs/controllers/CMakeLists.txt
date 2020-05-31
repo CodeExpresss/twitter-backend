@@ -35,6 +35,10 @@ set(SRC
 add_library(controllers STATIC
     ${SRC})
 
+target_link_libraries(controllers
+    unit_of_work
+)
+
 target_include_directories(controllers
     PUBLIC
         "include"

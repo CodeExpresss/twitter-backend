@@ -7,7 +7,8 @@ bool VoteRepository::get_by_id(int p_id, int t_id, err_code &rc)
         (boost::format("select * from vote where profile_id = %1% and tweet_id = %2%;") % p_id % t_id).str();
 	if (auto ctrl = db_controller.lock())
 	{
-		if (ctrl->run_query(query, query_result) && query_result.size() == 0)
+		if (ctrl->run_query(query, query_result) && 
+			(query_result.size() == 0 || !query_result[0][2].compare("f")))
 		{
 			rc = OK;
 			return true;

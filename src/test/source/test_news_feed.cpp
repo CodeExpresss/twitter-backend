@@ -11,6 +11,7 @@ using ::testing::SetArgReferee;
 
 #include "news_feed_repository.hpp"
 #include "unit_of_work.hpp"
+#include "server.hpp"
 
 TEST(NewsFeedTests, NewsFeedReturnValue) {
     std::shared_ptr<DBController<DBConnection>> controller =
@@ -35,6 +36,10 @@ TEST(NewsFeedTests, NewsFeedUpdating) {
     worker.create_tweet(tweet);
 }
 
+TEST(server_working, server_receiving_requests) {
+    HTTPServer server {"127.0.0.1", "8000"};
+    server.start_server();
+}
 
 int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
