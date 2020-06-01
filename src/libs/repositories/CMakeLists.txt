@@ -17,8 +17,8 @@ set(INC
     include/tweet_repository.hpp
     include/user_repository.hpp
     include/vote_repository.hpp
-        include/news_feed_repository.hpp
-        include/session_repository.hpp
+    include/news_feed_repository.hpp
+    include/session_repository.hpp
 )
 
 set(SRC
@@ -28,12 +28,16 @@ set(SRC
     source/tweet_repository.cpp
     source/user_repository.cpp
     source/vote_repository.cpp
-        source/news_feed_repository.cpp
-        source/session_repository.cpp
+    source/news_feed_repository.cpp
+    source/session_repository.cpp
 )
 
 add_library(repositories STATIC
     ${SRC})
+
+target_link_libraries(repositories
+    data_base
+)
 
 target_include_directories(repositories
     PUBLIC

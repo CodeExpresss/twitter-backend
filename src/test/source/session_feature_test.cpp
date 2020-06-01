@@ -31,7 +31,7 @@ TEST(session_tests, unit_of_work_tests) {
     UnitOfWork worker;
     std::pair<int, std::string> id_s_id = worker.create_session(1);
     EXPECT_EQ(worker.check_session(id_s_id.second), true);
-    EXPECT_EQ(worker.get_user_id_session(id_s_id.second).first, id_s_id.first);
+    EXPECT_EQ(worker.get_user_id_session(id_s_id.second), id_s_id.first);
     worker.delete_session(id_s_id.second);
     EXPECT_EQ(worker.check_session(id_s_id.second), false);
 }
