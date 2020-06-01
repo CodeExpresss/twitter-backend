@@ -108,7 +108,6 @@ void HTTPClient::routing_post_method() {
 
             json_response = cont->get_queryset();
 
-
             boost::property_tree::json_parser::write_json(ss, json_response);
             beast::ostream(response.body()) << ss.str();
 
@@ -233,20 +232,6 @@ void HTTPClient::routing_post_method() {
         beast::ostream(response.body()) << ss.str();
 
         return;
-
-    } else if (std::regex_match(request_string, make_subscription_regex)) {
-
-        auto inviter_id = json_request.get<int>("inviter_id");
-        auto invitee_id = json_request.get<int>("invitee_id");
-
-//        std::shared_ptr<VoteController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
-//                make_shared<VoteController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
-//                                                                                                   profile_id, tweet_id);
-
-//        json_response = cont->get_queryset();
-
-        boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str();
 
     } else {
         std::cout << "Bad gateway" << std::endl;
