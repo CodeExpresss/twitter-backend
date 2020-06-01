@@ -1,6 +1,8 @@
 #ifndef CLIENT_HPP
 #define CLIENT_HPP
 
+#define NO_AUTH -1
+
 #include <boost/beast/core.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/beast/version.hpp>
@@ -28,7 +30,10 @@ using tcp = boost::asio::ip::tcp;
 class HTTPClient : public std::enable_shared_from_this<HTTPClient> {
 public:
 
-    HTTPClient(tcp::socket socket) : socket(std::move(socket)) {}
+    HTTPClient(tcp::socket socket) :
+    socket(std::move(socket)),
+    profile_id(NO_AUTH)
+    {}
 
     void start();
 
@@ -51,40 +56,16 @@ private:
     static std::regex make_subscription_regex;
     static std::regex tag_search_regex;
 
-    std::string get_query_string(const std::string& url) {
-        std::string result;
-
-        static const std::regex parse_query{ R"((/([^ ?]+)?)?/??\?([^/ ]+\=[^/ ]+))"};
-        std::smatch match;
-
-        if (std::regex_match(url, match, parse_query)) {
-            result = match[match.size() - 1];
-        }
-
-        return result;
-    }
-
-    std::map<std::string, std::string> get_map_from_query(const std::string& query) {
-        std::map<std::string, std::string> data;
-        std::regex pattern("([\\w+%]+)=([^&]*)");
-        auto words_begin = std::sregex_iterator(query.begin(), query.end(), pattern);
-        auto words_end = std::sregex_iterator();
-
-        for (auto i = words_begin; i != words_end; i++)
-        {
-            std::string key = (*i)[1].str();
-            std::string value = (*i)[2].str();
-            data[key] = value;
-        }
-
-        return data;
-    }
+    std::string get_query_string(const std::string& url);
+    std::map<std::string, std::string> get_map_from_query(const std::string& query);
 
     tcp::socket socket; //сокет для подключения конкретного клиента
     beast::flat_buffer buffer{8192}; //буфер для чтения данных
 
     http::request<http::string_body> request; //объект запроса
     http::response<http::dynamic_body> response; //объект ответа
+
+    int profile_id;
 
     //таймер для "протухания" соеденений
     net::steady_timer deadline_{

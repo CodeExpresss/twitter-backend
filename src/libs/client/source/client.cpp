@@ -1,7 +1,5 @@
 #include "client.hpp"
 
-int profile_id;
-
 std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
 //регулярные выражения для GET
 std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/.+");
@@ -92,7 +90,7 @@ void HTTPClient::routing_post_method() {
     boost::property_tree::read_json(ss, json_request);
     ss.str(std::string());
 
-    if(profile_id == -1) {
+    if(profile_id == NO_AUTH) {
         if (std::regex_match(request_string, register_regex)) { // регистрац~ия
 
 //	std::shared_ptr<SignUpController<Serialize<Profile>>> cont =
@@ -248,22 +246,7 @@ void HTTPClient::routing_get_method() {
     auto query_string_map = get_map_from_query( get_query_string(request_string) );
     std::stringstream ss;
 
-    if(profile_id == -1) {
-        std::cout << "Bad gateway" << std::endl;
-
-        response.result(http::status::not_found);
-        response.set(http::field::content_type, "text/plain");
-        beast::ostream(response.body()) << "File not found";
-        return;
-    }
-
-    if (request.target() == "/echo") {
-        response.set(http::field::content_type, "text/html");
-        beast::ostream(response.body())
-                << request.method() << "\n"
-                << request.target() << "\n";
-
-    } else if (std::regex_match(request_string, current_user_regex)) {
+    if (std::regex_match(request_string, current_user_regex)) {
 
         std::shared_ptr<GetProfileController<Serialize<Profile>>> cont =
                 make_shared<GetProfileController<Serialize<Profile>>>(worker);
@@ -275,19 +258,7 @@ void HTTPClient::routing_get_method() {
 
         return;
 
-    } else if (std::regex_match(request_string, get_profile_regex)) {
-
-        std::shared_ptr<GetProfileController<Serialize<Profile>>> cont =
-                make_shared<GetProfileController<Serialize<Profile>>>(worker);
-
-        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
-
-        boost::property_tree::json_parser::write_json(ss, json_response);
-        beast::ostream(response.body()) << ss.str();
-
-        return;
-
-    } else if (std::regex_match(request_string, get_subscription_regex)) {
+    }   else if (std::regex_match(request_string, get_subscription_regex)) {
 
         std::shared_ptr<SubscriptionController<Serialize<std::vector<Profile>>>> cont =
                 make_shared<SubscriptionController<Serialize<std::vector<Profile>>>>(worker);
@@ -299,7 +270,7 @@ void HTTPClient::routing_get_method() {
 
         return;
 
-    } else if (std::regex_match(request_string, get_news_feed_regex)) {
+    } else if (std::regex_match(request_string, get_news_feed_regex) && profile_id != NO_AUTH) {
 
         std::shared_ptr<IndexController<Serialize< std::vector<std::pair<Tweet, Profile> > > > > cont =
                 make_shared<IndexController<Serialize< std::vector<std::pair<Tweet, Profile>>>>>(worker);
@@ -355,4 +326,33 @@ void HTTPClient::check_deadline() {
                     self->socket.close(ec);
                 }
             });
+}
+
+std::string HTTPClient::get_query_string(const std::string& url) {
+    std::string result;
+
+    static const std::regex parse_query{ R"((/([^ ?]+)?)?/??\?([^/ ]+\=[^/ ]+))"};
+    std::smatch match;
+
+    if (std::regex_match(url, match, parse_query)) {
+        result = match[match.size() - 1];
+    }
+
+    return result;
+}
+
+std::map<std::string, std::string> HTTPClient::get_map_from_query(const std::string& query) {
+    std::map<std::string, std::string> data;
+    std::regex pattern("([\\w+%]+)=([^&]*)");
+    auto words_begin = std::sregex_iterator(query.begin(), query.end(), pattern);
+    auto words_end = std::sregex_iterator();
+
+    for (auto i = words_begin; i != words_end; i++)
+    {
+        std::string key = (*i)[1].str();
+        std::string value = (*i)[2].str();
+        data[key] = value;
+    }
+
+    return data;
 }
