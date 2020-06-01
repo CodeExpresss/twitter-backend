@@ -1,12 +1,10 @@
 #include "server.hpp"
 
 void HTTPServer::connection_loop(tcp::acceptor& acceptor, tcp::socket& socket) {
-    acceptor.async_accept(socket,
-                          [&](beast::error_code ec) {
-                              if(!ec)
-                                  std::make_shared<HTTPClient>(std::move(socket))->start();
-                              connection_loop(acceptor, socket);
-                          });
+    acceptor.async_accept(socket, [&](beast::error_code ec) {
+        if (!ec) std::make_shared<HTTPClient>(std::move(socket))->start();
+        connection_loop(acceptor, socket);
+    });
 }
 
 void HTTPServer::start_server() {
@@ -23,7 +21,7 @@ void HTTPServer::start_server() {
 
         io_context.run();
 
-    } catch (std::exception const &e) {
+    } catch (std::exception const& e) {
         std::cerr << "Error: " << e.what() << std::endl;
     }
 }
