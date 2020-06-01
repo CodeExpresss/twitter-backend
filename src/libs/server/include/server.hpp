@@ -10,10 +10,8 @@ using tcp = boost::asio::ip::tcp;
 
 class HTTPServer {
 public:
-    HTTPServer(std::string address, std::string port):
-    _address(std::move(address)),
-    _port(std::move(port))
-    {}
+    HTTPServer(std::string address, std::string port)
+            : _address(std::move(address)), _port(std::move(port)) {}
 
     void start_server();
 

@@ -5,17 +5,20 @@ std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
 std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/.+");
 std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/");
 std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/.+");
-std::regex HTTPClient::get_subscription_regex = std::regex("/api/user/subscription/.+");
+std::regex HTTPClient::get_subscription_regex =
+        std::regex("/api/user/subscription/.+");
 std::regex HTTPClient::tag_search_regex = std::regex("/api/tweet/tag/.+");
 //регулярные выражения для POST
 std::regex HTTPClient::register_regex = std::regex("/api/user/register/");
 std::regex HTTPClient::login_regex = std::regex("/api/user/login/");
 std::regex HTTPClient::user_update_regex = std::regex("/api/user/update/");
-std::regex HTTPClient::profile_update_regex = std::regex("/api/profile/update/");
+std::regex HTTPClient::profile_update_regex =
+        std::regex("/api/profile/update/");
 std::regex HTTPClient::create_tweet_regex = std::regex("/api/tweet/create/");
 std::regex HTTPClient::vote_tweet_regex = std::regex("/api/tweet/vote/");
 std::regex HTTPClient::follow_regex = std::regex("/api/profile/follow/");
-std::regex HTTPClient::make_subscription_regex = std::regex("/api/user/make_subscription");
+std::regex HTTPClient::make_subscription_regex =
+        std::regex("/api/user/make_subscription");
 
 void HTTPClient::start() {
     read_request();
@@ -24,27 +27,24 @@ void HTTPClient::start() {
 
 void HTTPClient::session() {
     std::string session_id;
-    for (int i = request[http::field::cookie].find("=") + 1; i < request[http::field::cookie].size(); i++) {
+    for (int i = request[http::field::cookie].find("=") + 1;
+         i < request[http::field::cookie].size(); i++) {
         session_id += request[http::field::cookie][i];
     }
 
-    std::shared_ptr<SessionController> cont = make_shared<SessionController>(worker);
+    std::shared_ptr<SessionController> cont =
+            make_shared<SessionController>(worker);
     profile_id = cont->get_profile_id(session_id);
 }
 
 void HTTPClient::read_request() {
     auto self = shared_from_this();
 
-    http::async_read(
-            socket,
-            buffer,
-            request,
-            [self](beast::error_code ec,
-                   std::size_t bytes_transferred) {
-                boost::ignore_unused(bytes_transferred);
-                if(!ec)
-                    self->process_request();
-            });
+    http::async_read(socket, buffer, request,
+                     [self](beast::error_code ec, std::size_t bytes_transferred) {
+                         boost::ignore_unused(bytes_transferred);
+                         if (!ec) self->process_request();
+                     });
 }
 
 void HTTPClient::process_request() {
@@ -70,17 +70,15 @@ void HTTPClient::process_request() {
             // неопределённый метод запроса
             response.result(http::status::bad_request);
             response.set(http::field::content_type, "application/json");
-            beast::ostream(response.body())
-                    << "Invalid request-method '"
-                    << std::string(request.method_string())
-                    << "'";
+            beast::ostream(response.body()) << "Invalid request-method '"
+                                            << std::string(request.method_string())
+                                            << "'";
             break;
     }
     write_response();
 }
 
 void HTTPClient::routing_post_method() {
-
     boost::property_tree::ptree json_response;
     boost::property_tree::ptree json_request;
 
@@ -90,8 +88,8 @@ void HTTPClient::routing_post_method() {
     boost::property_tree::read_json(ss, json_request);
     ss.str(std::string());
 
-    if(profile_id == NO_AUTH) {
-        if (std::regex_match(request_string, register_regex)) { // регистрац~ия
+    if (profile_id == NO_AUTH) {
+        if (std::regex_match(request_string, register_regex)) {  // регистрац~ия
 
             auto username = json_request.get<std::string>("username");
             auto email = json_request.get<std::string>("email");
@@ -99,12 +97,8 @@ void HTTPClient::routing_post_method() {
             auto avatar = json_request.get<std::string>("avatar");
             auto birthday = json_request.get<std::string>("birthday");
 
-	        auto cont = make_shared<SignUpController<Serialize<Profile>>>(worker,
-	                        username,
-	                        email,
-	                        password,
-	                        avatar,
-	                        birthday);
+            auto cont = make_shared<SignUpController<Serialize<Profile>>>(
+                    worker, username, email, password, avatar, birthday);
 
             json_response = cont->get_queryset();
 
@@ -113,20 +107,17 @@ void HTTPClient::routing_post_method() {
 
             return;
 
-        } else if (std::regex_match(request_string, login_regex)) { // логин
+        } else if (std::regex_match(request_string, login_regex)) {  // логин
 
             auto email = json_request.get<std::string>("email");
             auto password = json_request.get<std::string>("password");
 
             auto cont = make_shared<LoginController<Serialize<res_data>>>(
-                            worker,
-                            email,
-                            password);
+                    worker, email, password);
 
             std::string session = cont->get_queryset();
             std::string query =
-                    (boost::format("sessionid=%1%; HttpOnly; Path=/")
-                     % session).str();
+                    (boost::format("sessionid=%1%; HttpOnly; Path=/") % session).str();
             response.set(http::field::set_cookie, query);
 
             json_response.put("status", 200);
@@ -145,14 +136,12 @@ void HTTPClient::routing_post_method() {
         }
     }
 
-    if(std::regex_match(request_string, follow_regex)) {
+    if (std::regex_match(request_string, follow_regex)) {
         auto inviter_id = json_request.get<int>("inviter_id");
         auto invitee_id = json_request.get<int>("invitee_id");
 
         auto cont = make_shared<FollowController<Serialize<res_data>>>(
-                        worker,
-                        inviter_id,
-                        invitee_id);
+                worker, inviter_id, invitee_id);
 
         json_response = cont->get_queryset();
 
@@ -160,16 +149,12 @@ void HTTPClient::routing_post_method() {
         beast::ostream(response.body()) << ss.str();
 
     } else if (std::regex_match(request_string, user_update_regex)) {
-
         auto id = json_request.get<int>("id");
         auto email = json_request.get<std::string>("email");
         auto password = json_request.get<std::string>("password");
 
         auto cont = make_shared<UpdateUserController<Serialize<User>>>(
-                        worker,
-                        id,
-                        email,
-                        password);
+                worker, id, email, password);
 
         json_response = cont->get_queryset();
 
@@ -179,18 +164,13 @@ void HTTPClient::routing_post_method() {
         return;
 
     } else if (std::regex_match(request_string, profile_update_regex)) {
-
         auto id = json_request.get<int>("id");
         auto username = json_request.get<std::string>("username");
         auto birthday = json_request.get<std::string>("birthday");
         auto avatar = json_request.get<std::string>("avatar");
 
         auto cont = make_shared<UpdateProfileController<Serialize<Profile>>>(
-                        worker,
-                        id,
-                        username,
-                        birthday,
-                        avatar);
+                worker, id, username, birthday, avatar);
 
         json_response = cont->get_queryset();
 
@@ -200,14 +180,11 @@ void HTTPClient::routing_post_method() {
         return;
 
     } else if (std::regex_match(request_string, create_tweet_regex)) {
-
         auto text = json_request.get<std::string>("text");
         auto id = json_request.get<int>("id");
 
-        auto cont = make_shared<AddTweetController<Serialize<res_data>>>(
-                        worker,
-                        text,
-                        id);
+        auto cont =
+                make_shared<AddTweetController<Serialize<res_data>>>(worker, text, id);
 
         json_response = cont->get_queryset();
 
@@ -217,14 +194,11 @@ void HTTPClient::routing_post_method() {
         return;
 
     } else if (std::regex_match(request_string, vote_tweet_regex)) {
-
         auto _profile_id = json_request.get<int>("profile_id");
         auto tweet_id = json_request.get<int>("tweet_id");
 
         auto cont = make_shared<VoteController<Serialize<res_data>>>(
-                        worker,
-                        _profile_id,
-                        tweet_id);
+                worker, _profile_id, tweet_id);
 
         json_response = cont->get_queryset();
 
@@ -242,17 +216,14 @@ void HTTPClient::routing_post_method() {
     }
 }
 
-
 void HTTPClient::routing_get_method() {
-
     boost::property_tree::ptree json_response;
 
     std::string request_string = request.target().to_string();
-    auto query_string_map = get_map_from_query( get_query_string(request_string) );
+    auto query_string_map = get_map_from_query(get_query_string(request_string));
     std::stringstream ss;
 
     if (std::regex_match(request_string, current_user_regex)) {
-
         auto cont = make_shared<GetProfileController<Serialize<Profile>>>(worker);
 
         json_response = cont->get_queryset(profile_id);
@@ -262,10 +233,10 @@ void HTTPClient::routing_get_method() {
 
         return;
 
-    }   else if (std::regex_match(request_string, get_subscription_regex)) {
-
+    } else if (std::regex_match(request_string, get_subscription_regex)) {
         auto cont =
-                make_shared<SubscriptionController<Serialize<std::vector<Profile>>>>(worker);
+                make_shared<SubscriptionController<Serialize<std::vector<Profile>>>>(
+                        worker);
 
         json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
 
@@ -274,10 +245,9 @@ void HTTPClient::routing_get_method() {
 
         return;
 
-    } else if (std::regex_match(request_string, get_news_feed_regex) && profile_id != NO_AUTH) {
-
-        auto cont =
-                make_shared<IndexController<Serialize<content>>>(worker);
+    } else if (std::regex_match(request_string, get_news_feed_regex) &&
+               profile_id != NO_AUTH) {
+        auto cont = make_shared<IndexController<Serialize<content>>>(worker);
 
         json_response = cont->get_queryset(profile_id);
 
@@ -287,9 +257,7 @@ void HTTPClient::routing_get_method() {
         return;
 
     } else if (std::regex_match(request_string, tag_search_regex)) {
-
-        auto cont =
-                make_shared<TagSearchController<Serialize<content>>>(worker);
+        auto cont = make_shared<TagSearchController<Serialize<content>>>(worker);
 
         json_response = cont->get_queryset(query_string_map["tag"]);
 
@@ -312,30 +280,27 @@ void HTTPClient::write_response() {
 
     response.set(http::field::content_length, response.body().size());
 
-    http::async_write(
-            socket,
-            response,
-            [self](beast::error_code ec, std::size_t) {
-                self->socket.shutdown(tcp::socket::shutdown_send, ec);
-                self->deadline_.cancel();
-            });
+    http::async_write(socket, response,
+                      [self](beast::error_code ec, std::size_t) {
+                          self->socket.shutdown(tcp::socket::shutdown_send, ec);
+                          self->deadline_.cancel();
+                      });
 }
 
 void HTTPClient::check_deadline() {
     auto self = shared_from_this();
 
-    deadline_.async_wait(
-            [self](beast::error_code ec) {
-                if(!ec) {
-                    self->socket.close(ec);
-                }
-            });
+    deadline_.async_wait([self](beast::error_code ec) {
+        if (!ec) {
+            self->socket.close(ec);
+        }
+    });
 }
 
 std::string HTTPClient::get_query_string(const std::string& url) {
     std::string result;
 
-    static const std::regex parse_query{ R"((/([^ ?]+)?)?/??\?([^/ ]+\=[^/ ]+))"};
+    static const std::regex parse_query{R"((/([^ ?]+)?)?/??\?([^/ ]+\=[^/ ]+))"};
     std::smatch match;
 
     if (std::regex_match(url, match, parse_query)) {
@@ -345,14 +310,14 @@ std::string HTTPClient::get_query_string(const std::string& url) {
     return result;
 }
 
-std::map<std::string, std::string> HTTPClient::get_map_from_query(const std::string& query) {
+std::map<std::string, std::string> HTTPClient::get_map_from_query(
+        const std::string& query) {
     std::map<std::string, std::string> data;
     std::regex pattern("([\\w+%]+)=([^&]*)");
     auto words_begin = std::sregex_iterator(query.begin(), query.end(), pattern);
     auto words_end = std::sregex_iterator();
 
-    for (auto i = words_begin; i != words_end; i++)
-    {
+    for (auto i = words_begin; i != words_end; i++) {
         std::string key = (*i)[1].str();
         std::string value = (*i)[2].str();
         data[key] = value;
