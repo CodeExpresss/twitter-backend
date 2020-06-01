@@ -26,6 +26,8 @@ namespace beast = boost::beast;
 namespace http = beast::http;
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
+using res_data = std::pair<unsigned short int, std::string>;
+using content = std::vector<std::pair<Tweet, Profile>>;
 
 class HTTPClient : public std::enable_shared_from_this<HTTPClient> {
 public:

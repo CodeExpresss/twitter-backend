@@ -93,10 +93,20 @@ void HTTPClient::routing_post_method() {
     if(profile_id == NO_AUTH) {
         if (std::regex_match(request_string, register_regex)) { // регистрац~ия
 
-//	std::shared_ptr<SignUpController<Serialize<Profile>>> cont =
-//                make_shared<SignUpController<Serialize<Profile>>>(worker);
-//
-//        json_response = cont->get_queryset();
+            auto username = json_request.get<std::string>("username");
+            auto email = json_request.get<std::string>("email");
+            auto password = json_request.get<std::string>("password");
+            auto avatar = json_request.get<std::string>("avatar");
+            auto birthday = json_request.get<std::string>("birthday");
+
+	        auto cont = make_shared<SignUpController<Serialize<Profile>>>(worker,
+	                        username,
+	                        email,
+	                        password,
+	                        avatar,
+	                        birthday);
+
+            json_response = cont->get_queryset();
 
 
             boost::property_tree::json_parser::write_json(ss, json_response);
@@ -109,9 +119,10 @@ void HTTPClient::routing_post_method() {
             auto email = json_request.get<std::string>("email");
             auto password = json_request.get<std::string>("password");
 
-            std::shared_ptr<LoginController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
-                    make_shared<LoginController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
-                                                                                                        email, password);
+            auto cont = make_shared<LoginController<Serialize<res_data>>>(
+                            worker,
+                            email,
+                            password);
 
             std::string session = cont->get_queryset();
             std::string query =
@@ -139,8 +150,10 @@ void HTTPClient::routing_post_method() {
         auto inviter_id = json_request.get<int>("inviter_id");
         auto invitee_id = json_request.get<int>("invitee_id");
 
-        std::shared_ptr<FollowController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
-                make_shared<FollowController<Serialize<std::pair<unsigned short int, std::string>>>>(worker, inviter_id, invitee_id);
+        auto cont = make_shared<FollowController<Serialize<res_data>>>(
+                        worker,
+                        inviter_id,
+                        invitee_id);
 
         json_response = cont->get_queryset();
 
@@ -153,9 +166,11 @@ void HTTPClient::routing_post_method() {
         auto email = json_request.get<std::string>("email");
         auto password = json_request.get<std::string>("password");
 
-        std::shared_ptr<UpdateUserController<Serialize<User>>> cont =
-                make_shared<UpdateUserController<Serialize<User>>>(worker,
-                                                                   id, email, password);
+        auto cont = make_shared<UpdateUserController<Serialize<User>>>(
+                        worker,
+                        id,
+                        email,
+                        password);
 
         json_response = cont->get_queryset();
 
@@ -171,9 +186,12 @@ void HTTPClient::routing_post_method() {
         auto birthday = json_request.get<std::string>("birthday");
         auto avatar = json_request.get<std::string>("avatar");
 
-        std::shared_ptr<UpdateProfileController<Serialize<Profile>>> cont =
-                make_shared<UpdateProfileController<Serialize<Profile>>>(worker,
-                                                                         id, username, birthday, avatar);
+        auto cont = make_shared<UpdateProfileController<Serialize<Profile>>>(
+                        worker,
+                        id,
+                        username,
+                        birthday,
+                        avatar);
 
         json_response = cont->get_queryset();
 
@@ -187,9 +205,10 @@ void HTTPClient::routing_post_method() {
         auto text = json_request.get<std::string>("text");
         auto id = json_request.get<int>("id");
 
-        std::shared_ptr<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
-                make_shared<AddTweetController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
-                                                                                                       text, id);
+        auto cont = make_shared<AddTweetController<Serialize<res_data>>>(
+                        worker,
+                        text,
+                        id);
 
         json_response = cont->get_queryset();
 
@@ -200,12 +219,13 @@ void HTTPClient::routing_post_method() {
 
     } else if (std::regex_match(request_string, vote_tweet_regex)) {
 
-        auto profile_id = json_request.get<int>("profile_id");
+        auto _profile_id = json_request.get<int>("profile_id");
         auto tweet_id = json_request.get<int>("tweet_id");
 
-        std::shared_ptr<VoteController<Serialize<std::pair<unsigned short int, std::string>>>> cont =
-                make_shared<VoteController<Serialize<std::pair<unsigned short int, std::string>>>>(worker,
-                                                                                                   profile_id, tweet_id);
+        auto cont = make_shared<VoteController<Serialize<res_data>>>(
+                        worker,
+                        _profile_id,
+                        tweet_id);
 
         json_response = cont->get_queryset();
 
@@ -248,8 +268,7 @@ void HTTPClient::routing_get_method() {
 
     if (std::regex_match(request_string, current_user_regex)) {
 
-        std::shared_ptr<GetProfileController<Serialize<Profile>>> cont =
-                make_shared<GetProfileController<Serialize<Profile>>>(worker);
+        auto cont = make_shared<GetProfileController<Serialize<Profile>>>(worker);
 
         json_response = cont->get_queryset(profile_id);
 
@@ -260,7 +279,7 @@ void HTTPClient::routing_get_method() {
 
     }   else if (std::regex_match(request_string, get_subscription_regex)) {
 
-        std::shared_ptr<SubscriptionController<Serialize<std::vector<Profile>>>> cont =
+        auto cont =
                 make_shared<SubscriptionController<Serialize<std::vector<Profile>>>>(worker);
 
         json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
@@ -272,8 +291,8 @@ void HTTPClient::routing_get_method() {
 
     } else if (std::regex_match(request_string, get_news_feed_regex) && profile_id != NO_AUTH) {
 
-        std::shared_ptr<IndexController<Serialize< std::vector<std::pair<Tweet, Profile> > > > > cont =
-                make_shared<IndexController<Serialize< std::vector<std::pair<Tweet, Profile>>>>>(worker);
+        auto cont =
+                make_shared<IndexController<Serialize<content>>>(worker);
 
         json_response = cont->get_queryset(profile_id);
 
@@ -284,8 +303,8 @@ void HTTPClient::routing_get_method() {
 
     } else if (std::regex_match(request_string, tag_search_regex)) {
 
-        std::shared_ptr<TagSearchController<Serialize< std::vector<std::pair<Tweet, Profile> > > > > cont =
-                make_shared<TagSearchController<Serialize< std::vector<std::pair<Tweet, Profile>>>>>(worker);
+        auto cont =
+                make_shared<TagSearchController<Serialize<content>>>(worker);
 
         json_response = cont->get_queryset(query_string_map["tag"]);
 
