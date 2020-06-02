@@ -40,17 +40,16 @@ void HTTPClient::session() {
 void HTTPClient::read_request() {
 	std::cout << "here" << std::endl;
     auto self = shared_from_this();
-
     //http::request_parser<http::string_body> parser(request);
-	//beast::error_code ec;
-    //parser.put(boost::asio::buffer(request.body()), ec);
-    //parser.body_limit(99999);
-    http::async_read(socket, buffer, request,//parser,
-                     [self](beast::error_code ec, std::size_t bytes_transferred) {
-                         boost::ignore_unused(bytes_transferred);
-                         std::cout << "error_code = " << ec << std::endl;
-                         if (!ec) self->process_request();
-                     });
+	//parser.body_limit(8192);
+    http::async_read(socket, buffer, request, [self](beast::error_code ec, std::size_t bytes_transferred) {
+    	std::cout << "bytes_transfered = " << bytes_transferred << std::endl;
+    	boost::ignore_unused(bytes_transferred);
+    	std::cout << "error_code = " << ec << std::endl;
+    	if (!ec) self->process_request();
+    });
+    //http::read(socket, buffer, parser);
+    //std::cout << parser.get() << std::endl;
 }
 
 void HTTPClient::routing_media() {
@@ -61,6 +60,7 @@ void HTTPClient::routing_media() {
 		f.close();
 		std::cout << "OK" << std::endl;
 	}*/
+	//response.result(http::status::bad_request);
 	std::stringstream ln_ss1(request.body()), ln_ss2(request.body());
 	std::string ln_boundary, ln_tmp;
 	std::getline(ln_ss1, ln_boundary); //TODO: break everything if can't getline
@@ -108,34 +108,23 @@ void HTTPClient::routing_media() {
 		std::cout << "Error: file is empty" << std::endl;
 		return;
 	}
+	std::string filename;
 	if (ln_current_file_type == IMAGE) { //TODO: check posted content
-		std::ofstream ln_ofstream_image("/home/nick/image.png"); //TODO: randomized filename
-		for (auto it = request.body().begin() + ln_file_start, it_end =
-				request.body().begin() + ln_file_end - 2; it < it_end; it++) {
-			ln_ofstream_image << *it;
-		}
-		ln_ofstream_image.flush();
-		ln_ofstream_image.close();
+		filename = "/home/nick/image.png";
 	} else {
-		std::ofstream ln_ofstream_audio("/home/nick/audio.mp3");
-		for (auto it = request.body().begin() + ln_file_start, it_end =
-				request.body().begin() + ln_file_end - 2; it < it_end; it++) {
-			ln_ofstream_audio << *it;
-		}
-		ln_ofstream_audio.flush();
-		ln_ofstream_audio.close();
+		filename = "/home/nick/audio.mp3";
 	}
+	std::ofstream ln_ofstream(filename); //TODO: randomized filename
+	for (auto it = request.body().begin() + ln_file_start, it_end =
+			request.body().begin() + ln_file_end - 2; it < it_end; it++) {
+		ln_ofstream << *it;
+	}
+	ln_ofstream.flush();
+	ln_ofstream.close();
+	response.set("Access-Control-Allow-Origin", "*");
+	response.result(http::status::ok);
+	beast::ostream(response.body()) << filename;
 	std::cout << "OK: media content loaded successfully" << std::endl;
-	/*auto text = json_request.get<std::string>("text");
-	auto id = json_request.get<int>("id");
-	
-	auto cont =
-			make_shared<AddTweetController<Serialize<res_data>>>(worker, text, id);
-	
-	json_response = cont->get_queryset();
-	
-	boost::property_tree::json_parser::write_json(ss, json_response);
-	beast::ostream(response.body()) << ss.str();*/
 }
 
 void HTTPClient::process_request() {
