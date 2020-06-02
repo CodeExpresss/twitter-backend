@@ -80,10 +80,14 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
     updates.first = tweet;
     updates.second = profile_repositrory->get_by_id(tweet.get_profile_id(), rc);
 
-    auto subs = subscription_repository->get_by_inviter_id(tweet.get_profile_id(), rc);
-    for (int i : subs) {
-        news_feed_repository->update(updates, i, rc);
-    }
+    auto update_newsfeed = [&](){
+        auto subs = subscription_repository->get_by_inviter_id(tweet.get_profile_id(), rc);
+        for (int i : subs) {
+            news_feed_repository->update(updates, i, rc);
+        }
+    };
+
+    std::async(update_newsfeed);
 
     return std::pair<unsigned short, std::string>(200, "Ok");
 }

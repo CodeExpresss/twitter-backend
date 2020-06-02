@@ -2,6 +2,7 @@
 #define UNIT_OF_WORK_HEADER_HPP
 
 #include <boost/property_tree/ptree.hpp>
+#include <future>
 
 #include "tweet.hpp"
 #include "user.hpp"
