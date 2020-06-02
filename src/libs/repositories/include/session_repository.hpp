@@ -5,12 +5,13 @@
 
 class SessionRepository {
 public:
-    SessionRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {}
+    SessionRepository(std::weak_ptr<DBController<DBConnection>> controller)
+            : db_controller(controller) {}
     ~SessionRepository() = default;
 
     bool check_session(std::string& session_id, err_code& rc);
-    std::string create(int user_id, err_code &rc);
-    void erase(std::string& session_id, err_code &rc);
+    std::string create(int user_id, err_code& rc);
+    void erase(std::string& session_id, err_code& rc);
     int get_profile_id(std::string& session_id, err_code& rc);
 
 private:
