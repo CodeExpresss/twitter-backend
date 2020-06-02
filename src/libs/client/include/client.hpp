@@ -81,6 +81,8 @@ private:
     void routing_get_method();
 
     void routing_post_method();
+    
+    void routing_media();
 
     // записать ответ в сокет
     void write_response();

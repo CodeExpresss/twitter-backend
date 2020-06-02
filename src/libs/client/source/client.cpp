@@ -38,23 +38,115 @@ void HTTPClient::session() {
 }
 
 void HTTPClient::read_request() {
+	std::cout << "here" << std::endl;
     auto self = shared_from_this();
 
-    http::async_read(socket, buffer, request,
+    //http::request_parser<http::string_body> parser(request);
+	//beast::error_code ec;
+    //parser.put(boost::asio::buffer(request.body()), ec);
+    //parser.body_limit(99999);
+    http::async_read(socket, buffer, request,//parser,
                      [self](beast::error_code ec, std::size_t bytes_transferred) {
                          boost::ignore_unused(bytes_transferred);
+                         std::cout << "error_code = " << ec << std::endl;
                          if (!ec) self->process_request();
                      });
+}
+
+void HTTPClient::routing_media() {
+	/*{
+		std::ofstream f("/home/nick/twitter_backend_data2.txt");
+		f << request.body();
+		f.flush();
+		f.close();
+		std::cout << "OK" << std::endl;
+	}*/
+	std::stringstream ln_ss1(request.body()), ln_ss2(request.body());
+	std::string ln_boundary, ln_tmp;
+	std::getline(ln_ss1, ln_boundary); //TODO: break everything if can't getline
+	ln_boundary = ln_boundary.substr(0, ln_boundary.length() - 1); //чтобы убрать \r
+	const std::regex ln_regex("^Content-Disposition: form-data; name=\"([^\"]*)\".*");
+	enum ln_file_type {UNDEFINED, IMAGE, AUDIO} ln_current_file_type = UNDEFINED;
+	std::smatch ln_smatch;
+	while (std::getline(ln_ss1, ln_tmp) && ln_tmp.length() > 1) {
+		ln_tmp = ln_tmp.substr(0, ln_tmp.length() - 1);
+		if (std::regex_match(ln_tmp, ln_smatch, ln_regex)) {
+			if (ln_smatch[1].str().find("image") == 0) {
+				ln_current_file_type = IMAGE;
+			} else if (ln_smatch[1].str().find("audio") == 0) {
+				ln_current_file_type = AUDIO;
+			} else {
+				break;
+			}
+		}
+	}
+	if (ln_current_file_type == UNDEFINED) {
+		std::cout << "Error: undefined file type" << std::endl;
+		return;
+	}
+	std::cout << "File type: " << ln_current_file_type << std::endl;
+	size_t ln_file_start = ln_ss1.tellg(), ln_file_end, ln_current_start = ln_file_start, ln_current_end;
+	ln_ss2.ignore(ln_file_start);
+	while (true) {
+		ln_file_end = ln_current_start;
+		ln_ss1.ignore(9999999, '\n'); //TODO: normal constant needed here instead
+		ln_current_end = ln_ss1.tellg();
+		if (ln_current_end == ln_current_start) {
+			std::cout << "Error: can't parse form..." << std::endl;
+			return;
+		}
+		if (ln_current_end - ln_current_start == ln_boundary.length() + 4) {
+			ln_ss2 >> ln_tmp;
+			if (ln_tmp.find(ln_boundary) == 0) {
+				break;
+			}
+		}
+		ln_current_start = ln_ss1.tellg();
+		ln_ss2.ignore(ln_current_start - ln_ss2.tellg());
+	}
+	if (ln_file_end == ln_file_start) {
+		std::cout << "Error: file is empty" << std::endl;
+		return;
+	}
+	if (ln_current_file_type == IMAGE) { //TODO: check posted content
+		std::ofstream ln_ofstream_image("/home/nick/image.png"); //TODO: randomized filename
+		for (auto it = request.body().begin() + ln_file_start, it_end =
+				request.body().begin() + ln_file_end - 2; it < it_end; it++) {
+			ln_ofstream_image << *it;
+		}
+		ln_ofstream_image.flush();
+		ln_ofstream_image.close();
+	} else {
+		std::ofstream ln_ofstream_audio("/home/nick/audio.mp3");
+		for (auto it = request.body().begin() + ln_file_start, it_end =
+				request.body().begin() + ln_file_end - 2; it < it_end; it++) {
+			ln_ofstream_audio << *it;
+		}
+		ln_ofstream_audio.flush();
+		ln_ofstream_audio.close();
+	}
+	std::cout << "OK: media content loaded successfully" << std::endl;
+	/*auto text = json_request.get<std::string>("text");
+	auto id = json_request.get<int>("id");
+	
+	auto cont =
+			make_shared<AddTweetController<Serialize<res_data>>>(worker, text, id);
+	
+	json_response = cont->get_queryset();
+	
+	boost::property_tree::json_parser::write_json(ss, json_response);
+	beast::ostream(response.body()) << ss.str();*/
 }
 
 void HTTPClient::process_request() {
     response.version(request.version());
     response.keep_alive(false);
 
-    session();
+    //session();
 
     response.set("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
     response.set("Access-Control-Allow-Credentials", "true");
+    std::cout << "method = " << request.method() << std::endl;
 
     switch (request.method()) {
         case http::verb::get:
@@ -64,7 +156,12 @@ void HTTPClient::process_request() {
             break;
         case http::verb::post:
             response.result(http::status::ok);
-            routing_post_method();
+            std::cout << "request content_type = " << request[http::field::content_type] << std::endl;
+		    if (request[http::field::content_type].find("multipart/form-data") == 0) {
+			    routing_media();
+		    } else {
+		    	routing_post_method();
+		    }
             break;
         default:
             // неопределённый метод запроса
