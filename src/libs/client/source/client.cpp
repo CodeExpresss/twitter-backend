@@ -89,7 +89,7 @@ void HTTPClient::routing_media() {
 	ln_ss2.ignore(ln_file_start);
 	while (true) {
 		ln_file_end = ln_current_start;
-		ln_ss1.ignore(9999999, '\n'); //TODO: normal constant needed here instead
+		ln_ss1.ignore(std::numeric_limits<unsigned long>::max(), '\n');
 		ln_current_end = ln_ss1.tellg();
 		if (ln_current_end == ln_current_start) {
 			std::cout << "Error: can't parse form..." << std::endl;
@@ -109,18 +109,18 @@ void HTTPClient::routing_media() {
 		return;
 	}
 	std::string filename;
-	if (ln_current_file_type == IMAGE) { //TODO: check posted content
+	if (ln_current_file_type == IMAGE) { //TODO: randomized filename
 		filename = "/home/nick/image.png";
 	} else {
 		filename = "/home/nick/audio.mp3";
 	}
-	std::ofstream ln_ofstream(filename); //TODO: randomized filename
+	std::ofstream ln_ofstream(filename);
 	for (auto it = request.body().begin() + ln_file_start, it_end =
 			request.body().begin() + ln_file_end - 2; it < it_end; it++) {
 		ln_ofstream << *it;
 	}
 	ln_ofstream.flush();
-	ln_ofstream.close();
+	ln_ofstream.close(); //TODO: check posted content
 	response.set("Access-Control-Allow-Origin", "*");
 	response.result(http::status::ok);
 	beast::ostream(response.body()) << filename;
