@@ -22,7 +22,7 @@ public:
     ~UnitOfWork() = default;
 
     std::pair<unsigned short int, std::string> sing_up(User user, Profile profile);
-    std::vector<std::pair<Tweet, Profile>> get_index_tweet(int profile_id);
+    std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> get_index_tweet(int profile_id);
     std::pair<int, std::string> login(User user);
     std::pair<unsigned short int, std::string> authenticate() {}
     std::pair<unsigned short int, std::string> logout(User user) {}
@@ -63,14 +63,13 @@ public:
 
     Profile profile_update(Profile profile_id) {}
     std::vector<std::tuple<Tweet, Profile>> get_like_tweets(int profile_id) {}
-    std::pair<unsigned short int, std::string> vote(Vote vote) {}
-    std::pair<unsigned short int, std::string> create_tweet(Tweet tweet);/* {*/
-        //std::vector<Tag> tags = tweet.get_tags();
-
-    /*}*/
+    std::pair<unsigned short int, std::string> vote(Vote vote);
+    std::pair<unsigned short int, std::string> create_tweet(Tweet tweet);
     std::pair<unsigned short int, std::string> delete_tweet() {}
+    std::pair<unsigned short int, std::string> create_comment(Tweet comment, int tweet_id);
 
-    std::vector<Tweet> find_by_tag(const std::string& tag, err_code& rc);
+    std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> find_by_tag(const std::string& tag, err_code& rc);
+
 
 private:
     std::vector<Profile> get_sub() {}

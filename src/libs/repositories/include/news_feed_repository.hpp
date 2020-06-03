@@ -7,7 +7,8 @@
 
 class NewsFeedRepository {
 public:
-    NewsFeedRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {}
+    NewsFeedRepository(std::weak_ptr<DBController<DBConnection>> controller)
+            : db_controller(controller) {}
     ~NewsFeedRepository() = default;
 
     std::vector<Profile> get_where() {}
@@ -15,7 +16,7 @@ public:
     std::vector<std::pair<Tweet, Profile>> get_by_id(int id, err_code &rc);
 
     void create(Profile &item, err_code &rc);
-    void update(std::pair<Tweet, Profile> &item, int profile_id,err_code &rc);
+    void update(std::pair<Tweet, Profile> &item, int profile_id, err_code &rc);
     void erase(int id, err_code &rc);
 
 private:

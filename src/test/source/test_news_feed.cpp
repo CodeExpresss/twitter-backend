@@ -10,7 +10,9 @@ using ::testing::SetArgReferee;
 #include "DBController.hpp"
 
 #include "news_feed_repository.hpp"
+#include "tweet_repository.hpp"
 #include "unit_of_work.hpp"
+#include "server.hpp"
 
 TEST(NewsFeedTests, NewsFeedReturnValue) {
     std::shared_ptr<DBController<DBConnection>> controller =
@@ -35,6 +37,24 @@ TEST(NewsFeedTests, NewsFeedUpdating) {
     worker.create_tweet(tweet);
 }
 
+TEST(server_working, server_receiving_requests) {
+    HTTPServer server {"127.0.0.1", "8000"};
+    server.start_server();
+}
+
+TEST(creating_comment, comment_creating) {
+    std::shared_ptr<DBController<DBConnection>> controller =
+            make_shared<DBController<DBConnection>>(3);
+    TweetRepository CommentRep(controller);
+    err_code ec;
+    std::vector<Tag> tags;
+    std::string text{"some_text u dont know"};
+    std::string date{"2020-05-06 00:01"};
+    std::string image{"image"};
+    Tweet tweet{1, 1, tags, text, date, image};
+    CommentRep.create_comment(tweet, 1, ec);
+    auto res = CommentRep.get_comment(1, ec);
+}
 
 int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
