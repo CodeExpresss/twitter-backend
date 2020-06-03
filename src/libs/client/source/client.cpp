@@ -152,6 +152,9 @@ void HTTPClient::routing_post_method() {
                 worker, session_id);
 
         json_response = cont->get_queryset();
+        std::string query = "sessionid=1; HttpOnly; Path=/";
+
+        response.set(http::field::set_cookie, query);
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str();
