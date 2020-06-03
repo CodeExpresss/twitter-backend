@@ -11,6 +11,7 @@ class VoteRepository {
   ~VoteRepository() = default;
 
   bool get_by_id(int p_id, int t_id, err_code &rc);
+  int get_by_tweet_id(int t_id, err_code &rc);
   void create(Vote &item, err_code &rc);
   void update(Vote &item, err_code &rc);
   void erase(int p_id, int t_id, err_code &rc);
