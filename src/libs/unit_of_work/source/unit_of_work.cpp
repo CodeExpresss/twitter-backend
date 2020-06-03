@@ -204,16 +204,24 @@ std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> UnitOfWork::
 std::pair<unsigned short int, std::string> UnitOfWork::vote(Vote vote) {
     err_code rc;
     int pid = vote.get_profile_id(), tid = vote.get_tweet_id();
+    int votes = 0;
     if (vote_repository->get_by_id(pid, tid, rc)) {
         if (rc == OK)
             vote_repository->create(vote, rc);
         else if (rc == DELETED)
             vote_repository->update(vote, rc);
 
-        if (rc == OK)
-            return std::pair<unsigned short, std::string>(200, "Ok");
-        else
+        if (rc == OK) {
+            votes = vote_repository->get_by_tweet_id(tid, rc);
+            return std::pair<unsigned short, std::string>(votes, "Ok");
+        } else
             return std::pair<unsigned short, std::string>(404, "err");
+    } else {
+        if (rc == ALREADY_EXIST) {
+            vote_repository->erase(pid, tid, rc);
+            votes = vote_repository->get_by_tweet_id(tid, rc);
+            return std::pair<unsigned short, std::string>(votes, "Ok");
+        }
     }
     return std::pair<unsigned short, std::string>(403, "forbidden");
 }
