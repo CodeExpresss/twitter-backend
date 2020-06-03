@@ -13,6 +13,7 @@ class ProfileRepository {
   bool check_profile_username(Profile &item, err_code &rc);
 
   Profile get_by_id(int id, err_code &rc);
+  int check_last_id(err_code &rc);
 
   void create(Profile &item, err_code &rc);
   void update(Profile &item, err_code &rc);

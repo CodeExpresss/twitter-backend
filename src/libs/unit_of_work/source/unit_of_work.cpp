@@ -43,6 +43,7 @@ std::pair<unsigned short int, std::string> UnitOfWork::sing_up(User user, Profil
     profile.set_user_id(user_repository->check_last_id(rc));
     //profile_repositrory->check_profile_username(profile, rc);
     profile_repositrory->create(profile, rc);
+    profile.set_profile_id(profile_repositrory->check_last_id(rc));
     if (rc != OK) {
         return std::pair<unsigned short, std::string>(404, "err");
     }

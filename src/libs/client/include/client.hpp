@@ -27,7 +27,7 @@ namespace http = beast::http;
 namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
 using res_data = std::pair<unsigned short int, std::string>;
-using content = std::vector<std::pair<Tweet, Profile>>;
+using content = std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>;
 using profile = std::pair<Profile, bool>;
 
 class HTTPClient : public std::enable_shared_from_this<HTTPClient> {

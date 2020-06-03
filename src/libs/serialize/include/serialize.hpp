@@ -14,7 +14,7 @@ template<class Type> struct Serialize;
 template<> struct Serialize<Profile> {
     boost::property_tree::ptree operator() (Profile profile) {
         boost::property_tree::ptree profile_tree,
-                                    user_tree;
+            user_tree;
 
         profile_tree.put("status", 200);
 
@@ -33,7 +33,7 @@ template<> struct Serialize<Profile> {
 template<> struct Serialize<std::pair<Profile, bool>> {
     boost::property_tree::ptree operator() (std::pair<Profile, bool> info) {
         boost::property_tree::ptree profile_tree,
-                user_tree;
+            user_tree;
 
         Profile profile;
         bool is_follow;
@@ -97,7 +97,7 @@ template<> struct Serialize<User> {
 template<> struct Serialize<std::vector<Profile>> {
     boost::property_tree::ptree operator() (std::vector<Profile> profiles) {
         boost::property_tree::ptree profiles_tree,
-                                    profile_item;
+            profile_item;
 
         for(auto& profile : profiles) {
             profile_item.put("username", profile.get_username());
@@ -111,9 +111,9 @@ template<> struct Serialize<std::vector<Profile>> {
 template<> struct Serialize<std::tuple<User, Profile>> {
     boost::property_tree::ptree operator() (std::tuple<User, Profile> user) {
         boost::property_tree::ptree tweet_tree,
-                child_item,
-                child_profile,
-                child_user;
+            child_item,
+            child_profile,
+            child_user;
 
         Profile profile;
         User system_user;
@@ -136,9 +136,9 @@ template<> struct Serialize<std::tuple<User, Profile>> {
 template<> struct Serialize<std::tuple<Tweet, Profile>> {
     boost::property_tree::ptree operator() (std::tuple<Tweet, Profile> new_tweet) {
         boost::property_tree::ptree tweet_tree,
-                child_item,
-                child_tweet,
-                child_user;
+            child_item,
+            child_tweet,
+            child_user;
 
         Profile profile;
         Tweet tweet;
@@ -157,14 +157,57 @@ template<> struct Serialize<std::tuple<Tweet, Profile>> {
     }
 };
 
+template<> struct Serialize<std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>> {
+    boost::property_tree::ptree operator() (std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> wall) {
+        boost::property_tree::ptree wall_tree,
+                child_item,
+                child_tweet,
+                child_user,
+                tree;
+        std::vector<std::pair<Tweet, Profile>> tweets;
+        std::vector<int> votes;
+        std::tie(tweets, votes) = wall;
+
+        Profile profile;
+        Tweet tweet;
+
+        int j = 0;
+
+        for(auto& i : tweets) {
+            std::tie(tweet, profile) = i;
+            child_item.put("id", tweet.get_tweet_id());
+            child_item.put("text", tweet.get_text());
+            child_item.put("data", tweet.get_date());
+            child_item.put("votes", votes[j]);
+            child_user.put("username", profile.get_username());
+            child_user.put("id", profile.get_user_id());
+
+            child_item.add_child("tweet", child_tweet);
+            child_item.add_child("author", child_user);
+
+            wall_tree.push_back(std::make_pair("", child_item));
+            child_tweet.clear();
+            child_user.clear();
+            child_item.clear();
+            j++;
+        }
+
+        tree.add_child("data", wall_tree);
+
+        return tree;
+
+
+    }
+};
+
 
 template<> struct Serialize<std::vector<std::pair<Tweet, Profile>>> {
     boost::property_tree::ptree operator() (std::vector<std::pair<Tweet, Profile>> wall) {
         boost::property_tree::ptree wall_tree,
-                                    child_item,
-                                    child_tweet,
-                                    child_user,
-                                    tree;
+            child_item,
+            child_tweet,
+            child_user,
+            tree;
 
         Profile profile;
         Tweet tweet;

@@ -1,4 +1,4 @@
-#ifndef APP_SESSION_HPP
+#ifndef APP_SESSION_CONTROLLER_HPP
 #define APP_SESSION_CONTROLLER_HPP
 
 #include "controller_header.hpp"

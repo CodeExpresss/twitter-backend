@@ -23,6 +23,22 @@ Profile ProfileRepository::get_by_id(int id, err_code &rc) {
   return p;
 }
 
+int ProfileRepository::check_last_id(err_code &rc) {
+
+    std::vector<std::vector<std::string>> query_result = {};
+    std::string query("select * from profile where id = (select max(id) from users);");
+    if (auto ctrl = db_controller.lock()) {
+        if (ctrl->run_query(query, query_result)) {
+            rc = OK;
+            return std::stoi(query_result[0][0]);
+        }
+        else
+            rc = NOT_EXIST;
+    } else
+        rc = NO_CTRL;
+    return -1;
+}
+
 bool ProfileRepository::check_profile_username(Profile &item, err_code &rc) {
   std::vector<std::vector<std::string>> query_result = {};
   std::string username = item.get_username();
