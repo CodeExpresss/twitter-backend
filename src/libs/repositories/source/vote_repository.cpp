@@ -10,7 +10,10 @@ bool VoteRepository::get_by_id(int p_id, int t_id, err_code &rc) {
   if (auto ctrl = db_controller.lock()) {
     if (ctrl->run_query(query, query_result) &&
         (query_result.size() == 0 || !query_result[0][2].compare("f"))) {
-      rc = OK;
+      if (query_result.size() == 0)
+        rc = OK;
+      else if (!query_result[0][2].compare("f"))
+        rc = DELETED;
       return true;
     } else
       rc = ALREADY_EXIST;
@@ -18,6 +21,26 @@ bool VoteRepository::get_by_id(int p_id, int t_id, err_code &rc) {
     rc = NO_CTRL;
 
   return false;
+}
+
+int VoteRepository::get_by_tweet_id(int t_id, err_code &rc) {
+  std::vector<std::vector<std::string>> query_result = {};
+  std::string query =
+      (boost::format(
+           "select count(*) from vote where tweet_id = %1%;") %
+       t_id)
+          .str();
+  int result = 0;
+  if (auto ctrl = db_controller.lock()) {
+    if (ctrl->run_query(query, query_result) && query_result.size() > 0) {
+      result = std::stoi(query_result[0][0]);
+      rc = OK;
+    } else
+      rc = NOT_EXIST; 
+  } else 
+    rc = NO_CTRL;
+    
+  return result;
 }
 
 void VoteRepository::create(Vote &item, err_code &rc) {
