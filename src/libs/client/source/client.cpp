@@ -46,21 +46,22 @@ void HTTPClient::read_request() {
     	std::cout << "bytes_transfered = " << bytes_transferred << std::endl;
     	boost::ignore_unused(bytes_transferred);
     	std::cout << "error_code = " << ec << std::endl;
-    	if (!ec) self->process_request();
+    	if (!ec) {
+    		self->process_request();
+    	} else {
+    		self->response.result(http::status::bad_request);
+    	}
     });
-    //http::read(socket, buffer, parser);
-    //std::cout << parser.get() << std::endl;
+}
+
+std::string digestToString(const md5::digest_type &digest) {
+	const auto charDigest = reinterpret_cast<const char *>(&digest);
+	std::string result;
+	boost::algorithm::hex(charDigest, charDigest + sizeof(md5::digest_type), std::back_inserter(result));
+	return result;
 }
 
 void HTTPClient::routing_media() {
-	/*{
-		std::ofstream f("/home/nick/twitter_backend_data2.txt");
-		f << request.body();
-		f.flush();
-		f.close();
-		std::cout << "OK" << std::endl;
-	}*/
-	//response.result(http::status::bad_request);
 	std::stringstream ln_ss1(request.body()), ln_ss2(request.body());
 	std::string ln_boundary, ln_tmp;
 	std::getline(ln_ss1, ln_boundary); //TODO: break everything if can't getline
@@ -82,6 +83,7 @@ void HTTPClient::routing_media() {
 	}
 	if (ln_current_file_type == UNDEFINED) {
 		std::cout << "Error: undefined file type" << std::endl;
+		response.result(http::status::bad_request);
 		return;
 	}
 	std::cout << "File type: " << ln_current_file_type << std::endl;
@@ -89,10 +91,11 @@ void HTTPClient::routing_media() {
 	ln_ss2.ignore(ln_file_start);
 	while (true) {
 		ln_file_end = ln_current_start;
-		ln_ss1.ignore(std::numeric_limits<unsigned long>::max(), '\n');
+		ln_ss1.ignore(UINT_MAX, '\n');
 		ln_current_end = ln_ss1.tellg();
 		if (ln_current_end == ln_current_start) {
 			std::cout << "Error: can't parse form..." << std::endl;
+			response.result(http::status::bad_request);
 			return;
 		}
 		if (ln_current_end - ln_current_start == ln_boundary.length() + 4) {
@@ -106,24 +109,35 @@ void HTTPClient::routing_media() {
 	}
 	if (ln_file_end == ln_file_start) {
 		std::cout << "Error: file is empty" << std::endl;
+		response.result(http::status::bad_request);
 		return;
 	}
-	std::string filename;
-	if (ln_current_file_type == IMAGE) { //TODO: randomized filename
-		filename = "/home/nick/image.png";
-	} else {
-		filename = "/home/nick/audio.mp3";
+	std::string ln_filename;
+	if (ln_current_file_type == IMAGE) {
+		md5 ln_hash;
+		md5::digest_type ln_digest;
+		ln_hash.process_bytes(request.body().data(), request.body().size());
+		ln_hash.get_digest(ln_digest);
+		ln_filename = "/home/nick/images/" + digestToString(ln_digest) + ".png";
+	} else { //AUDIO
+		md5 ln_hash;
+		md5::digest_type ln_digest;
+		ln_hash.process_bytes(request.body().data(), request.body().size());
+		ln_hash.get_digest(ln_digest);
+		ln_filename = "/home/nick/audio/" + digestToString(ln_digest) + ".mp3";
 	}
-	std::ofstream ln_ofstream(filename);
-	for (auto it = request.body().begin() + ln_file_start, it_end =
-			request.body().begin() + ln_file_end - 2; it < it_end; it++) {
-		ln_ofstream << *it;
+	if (!std::ifstream(ln_filename).good()) {
+		std::ofstream ln_ofstream(ln_filename);
+		for (auto it = request.body().begin() + ln_file_start, it_end =
+				request.body().begin() + ln_file_end - 2; it < it_end; it++) {
+			ln_ofstream << *it;
+		}
+		ln_ofstream.flush();
+		ln_ofstream.close();
 	}
-	ln_ofstream.flush();
-	ln_ofstream.close(); //TODO: check posted content
 	response.set("Access-Control-Allow-Origin", "*");
 	response.result(http::status::ok);
-	beast::ostream(response.body()) << filename;
+	beast::ostream(response.body()) << ln_filename;
 	std::cout << "OK: media content loaded successfully" << std::endl;
 }
 
