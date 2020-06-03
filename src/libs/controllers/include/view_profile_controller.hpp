@@ -22,4 +22,6 @@ private:
     Serialize serialize;
 };
 
+#include "templates/template_view_controller.hpp"
+
 #endif

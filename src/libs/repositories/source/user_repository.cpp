@@ -57,7 +57,7 @@ bool UserRepository::check_user_email(User &item, err_code &rc) {
   std::vector<std::vector<std::string>> query_result = {};
   std::string email = item.get_email();
   std::string query =
-      (boost::format("select is_active from users where email = %1%;") % email)
+      (boost::format("select is_active from users where email = '%1%';") % email)
           .str();
   bool result = false;
   if (auto ctrl = db_controller.lock()) {
@@ -78,6 +78,22 @@ bool UserRepository::check_user_email(User &item, err_code &rc) {
   return result;
 }
 
+int UserRepository::check_last_id(err_code &rc) {
+
+    std::vector<std::vector<std::string>> query_result = {};
+    std::string query("select * from users where id = (select max(id) from users);");
+    if (auto ctrl = db_controller.lock()) {
+        if (ctrl->run_query(query, query_result)) {
+            rc = OK;
+            return std::stoi(query_result[0][0]);
+        }
+        else
+            rc = NOT_EXIST;
+    } else
+        rc = NO_CTRL;
+    return -1;
+}
+
 void UserRepository::create(User &item, err_code &rc) {
   std::string password = item.get_password();
   std::string email = item.get_email();
@@ -87,7 +103,7 @@ void UserRepository::create(User &item, err_code &rc) {
   std::string query =
       (boost::format("insert into users values(%1%, '%2%', '%3%', %4%, %5%);") %
        "default" % password % email %
-       boost::io::group(std::boolalpha, is_active) % session)
+       boost::io::group(std::boolalpha, is_active) % 8)
           .str();
   if (auto ctrl = db_controller.lock()) {
     if (ctrl->run_query(query, query_result))

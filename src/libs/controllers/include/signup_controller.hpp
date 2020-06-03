@@ -9,12 +9,11 @@ public:
     explicit SignUpController(std::shared_ptr<UnitOfWork> _worker,
         std::string username,
         std::string email,
-        std::string password,
-        std::string avatar,
-        std::string birthday):
+        std::string password
+        ):
             worker(_worker),
             system_user(0, std::move(email), std::move(password)),
-            profile(0, 0, std::move(username), std::move(birthday), std::move(avatar)) {};
+            profile(0, 0, std::move(username), "", "") {};
 
     ~SignUpController() = default;
 

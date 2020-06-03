@@ -60,7 +60,7 @@ void ProfileRepository::create(Profile &item, err_code &rc) {
   std::string query =
       (boost::format(
            "insert into profile values(%1%, %2%, '%3%', '%4%', '%5%');") %
-       "default" % user_id % username % avatar % birthday)
+       "default" % user_id % username % 'a' % "2000-01-31")
           .str();
   if (auto ctrl = db_controller.lock()) {
     if (ctrl->run_query(query, query_result))

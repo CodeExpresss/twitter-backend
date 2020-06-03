@@ -12,6 +12,11 @@ std::pair<int, std::string> UnitOfWork::login(User user) {
     }
 }
 
+std::pair<unsigned short, std::string> UnitOfWork::logout(std::string& session) {
+    delete_session(session);
+    return std::make_pair(200, "ok");
+}
+
 
 std::pair<unsigned short int, std::string> UnitOfWork::sing_up(User user, Profile profile) {
     err_code rc;
@@ -35,6 +40,7 @@ std::pair<unsigned short int, std::string> UnitOfWork::sing_up(User user, Profil
         return std::pair<unsigned short, std::string>(404, "DB err");
     }
 
+    profile.set_user_id(user_repository->check_last_id(rc));
     //profile_repositrory->check_profile_username(profile, rc);
     profile_repositrory->create(profile, rc);
     if (rc != OK) {

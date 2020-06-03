@@ -28,6 +28,7 @@ namespace net = boost::asio;
 using tcp = boost::asio::ip::tcp;
 using res_data = std::pair<unsigned short int, std::string>;
 using content = std::vector<std::pair<Tweet, Profile>>;
+using profile = std::pair<Profile, bool>;
 
 class HTTPClient : public std::enable_shared_from_this<HTTPClient> {
 public:
@@ -45,6 +46,7 @@ private:
     static std::regex current_user_regex;
     static std::regex get_news_feed_regex;
     static std::regex login_regex;
+    static std::regex logout_regex;
     static std::regex user_update_regex;
     static std::regex profile_update_regex;
     static std::regex create_tweet_regex;
@@ -65,6 +67,7 @@ private:
     http::response<http::dynamic_body> response;  //объект ответа
 
     int profile_id;
+    std::string session_id;
 
     //таймер для "протухания" соеденений
     net::steady_timer deadline_{socket.get_executor(), std::chrono::seconds(60)};

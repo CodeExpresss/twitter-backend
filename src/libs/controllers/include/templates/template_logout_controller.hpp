@@ -2,5 +2,5 @@
 
 template <class Serialize>
 boost::property_tree::ptree LogoutController<Serialize>::get_queryset() {
-    return(serialize(worker->logout(user)));
+    return(serialize(worker->logout(session)));
 };

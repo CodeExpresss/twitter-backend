@@ -175,6 +175,7 @@ template<> struct Serialize<std::vector<std::pair<Tweet, Profile>>> {
             child_item.put("text", tweet.get_text());
             child_item.put("data", tweet.get_date());
             child_user.put("username", profile.get_username());
+            child_user.put("id", profile.get_user_id());
 
             child_item.add_child("tweet", child_tweet);
             child_item.add_child("author", child_user);
