@@ -5,21 +5,21 @@
 #include "profile.hpp"
 
 class ProfileRepository {
-public:
-    ProfileRepository(std::weak_ptr<DBController<DBConnection>> controller) : db_controller(controller) {}
-    ~ProfileRepository() = default;
+ public:
+  ProfileRepository(std::weak_ptr<DBController<DBConnection>> controller)
+      : db_controller(controller) {}
+  ~ProfileRepository() = default;
 
-    bool check_profile_username(Profile& item, err_code& rc);
-    std::vector<Profile> get_where() {}
+  bool check_profile_username(Profile &item, err_code &rc);
 
-    Profile get_by_id(int id, err_code &rc);
+  Profile get_by_id(int id, err_code &rc);
 
-    void create(Profile &item, err_code &rc);
-    void update(Profile &item, err_code &rc);
-    void erase(int id, err_code &rc);
+  void create(Profile &item, err_code &rc);
+  void update(Profile &item, err_code &rc);
+  void erase(int id, err_code &rc);
 
-private:
-    std::weak_ptr<DBController<DBConnection>> db_controller;
+ private:
+  std::weak_ptr<DBController<DBConnection>> db_controller;
 };
 
-#endif // PROFILE_REPOSITORY_HPP
+#endif  // PROFILE_REPOSITORY_HPP

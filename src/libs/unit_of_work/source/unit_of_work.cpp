@@ -80,10 +80,14 @@ std::pair<unsigned short int, std::string> UnitOfWork::create_tweet(Tweet tweet)
     updates.first = tweet;
     updates.second = profile_repositrory->get_by_id(tweet.get_profile_id(), rc);
 
-    auto subs = subscription_repository->get_by_inviter_id(tweet.get_profile_id(), rc);
-    for (int i : subs) {
-        news_feed_repository->update(updates, i, rc);
-    }
+    auto update_newsfeed = [&](){
+        auto subs = subscription_repository->get_by_inviter_id(tweet.get_profile_id(), rc);
+        for (int i : subs) {
+            news_feed_repository->update(updates, i, rc);
+        }
+    };
+
+    std::async(update_newsfeed);
 
     return std::pair<unsigned short, std::string>(200, "Ok");
 }
@@ -139,11 +143,13 @@ std::pair<unsigned short int, std::string> UnitOfWork::following(Subscription su
 }
 
 
-std::vector<std::pair<Tweet, Profile>> UnitOfWork::get_index_tweet(int profile_id) {
+std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> UnitOfWork::get_index_tweet(int profile_id) {
     err_code rc;
-    std::vector<std::pair<Tweet, Profile>> contents = news_feed_repository->get_by_id(profile_id, rc);
-
-    return contents;
+    std::vector<std::pair<Tweet, Profile>> news = news_feed_repository->get_by_id(profile_id, rc);
+    std::vector<int> votes = {};
+    for (int i = 0; i < news.size(); i++)
+        votes.push_back(vote_repository->get_by_tweet_id(news[i].first.get_tweet_id(), rc));
+    return std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>(news, votes);
 }
 
 std::pair<int, std::string> UnitOfWork::create_session(int user_id) {
@@ -170,16 +176,12 @@ bool UnitOfWork::check_session(std::string &session_id) {
     return session_repository->check_session(session_id, rc);
 }
 
-/*Profile UnitOfWork::get_profile(int profile_id) {*/
-    //Profile _profile;
-    //return _profile;
-/*}*/
-
-std::vector<std::pair<Tweet, Profile>> UnitOfWork::find_by_tag(const std::string& tag, err_code& rc)
+std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> UnitOfWork::find_by_tag(const std::string& tag, err_code& rc)
 {
     Tag searching_tag = tag_repository->get_by_title(tag, rc);
     std::vector<int> tweets_id = tag_repository->get_by_id(searching_tag.get_tag_id(), rc);
     std::vector<std::pair<Tweet, Profile>> contents = {};
+    std::vector<int> votes = {};
     std::pair<Tweet, Profile> pair;
     for (auto i: tweets_id) {
         Tweet tweet = tweet_repository->get_by_id(i, rc);
@@ -187,6 +189,34 @@ std::vector<std::pair<Tweet, Profile>> UnitOfWork::find_by_tag(const std::string
         pair.first = tweet;
         pair.second = profile;
         contents.push_back(pair);
+        votes.push_back(vote_repository->get_by_tweet_id(i, rc));
     }
-    return contents;
+    return std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>(contents, votes);
+}
+
+std::pair<unsigned short int, std::string> UnitOfWork::vote(Vote vote) {
+    err_code rc;
+    int pid = vote.get_profile_id(), tid = vote.get_tweet_id();
+    if (vote_repository->get_by_id(pid, tid, rc)) {
+        if (rc == OK)
+            vote_repository->create(vote, rc);
+        else if (rc == DELETED)
+            vote_repository->update(vote, rc);
+
+        if (rc == OK)
+            return std::pair<unsigned short, std::string>(200, "Ok");
+        else
+            return std::pair<unsigned short, std::string>(404, "err");
+    }
+    return std::pair<unsigned short, std::string>(403, "forbidden");
+}
+
+std::pair<unsigned short int, std::string> UnitOfWork::create_comment(Tweet comment, int tweet_id) {
+    err_code rc;
+    std::vector<Tag> tags = comment.get_tags();
+    tweet_repository->create_comment(comment, tweet_id, rc);
+    if (rc != OK) {
+        return std::pair<unsigned short, std::string>(404, "err");
+    }
+    return std::pair<unsigned short, std::string>(200, "Ok");
 }
