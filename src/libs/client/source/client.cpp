@@ -85,7 +85,6 @@ void HTTPClient::routing_media() {
 	if (ln_current_file_type == UNDEFINED) {
 		return;
 	}
-	std::cout << "File type: " << ln_current_file_type << std::endl;
 	size_t ln_file_start = ln_ss1.tellg(), ln_file_end,
 			ln_current_start = ln_file_start, ln_current_end;
 	ln_ss2.ignore(ln_file_start);
@@ -154,11 +153,10 @@ void HTTPClient::process_request() {
     response.version(request.version());
     response.keep_alive(false);
 
-    //session();
+    session();
 
     response.set("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
     response.set("Access-Control-Allow-Credentials", "true");
-    std::cout << "method = " << request.method() << std::endl;
 
     switch (request.method()) {
         case http::verb::get:
@@ -168,8 +166,7 @@ void HTTPClient::process_request() {
             break;
         case http::verb::post:
             response.result(http::status::ok);
-            std::cout << "request content_type = " << request[http::field::content_type] << std::endl;
-		    if (request[http::field::content_type].find("multipart/form-data") == 0) {
+            if (request[http::field::content_type].find("multipart/form-data") == 0) {
 			    routing_media();
 		    } else {
 		    	routing_post_method();
