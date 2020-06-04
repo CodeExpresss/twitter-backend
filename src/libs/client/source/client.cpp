@@ -19,6 +19,8 @@ std::regex HTTPClient::vote_tweet_regex = std::regex("/api/tweet/vote/");
 std::regex HTTPClient::follow_regex = std::regex("/api/profile/follow/");
 std::regex HTTPClient::make_subscription_regex =
         std::regex("/api/user/make_subscription");
+const std::regex ln_regex("^Content-Disposition: form-data; name=\"([^\"]*)\".*");
+enum ln_file_type {UNDEFINED, IMAGE, AUDIO} ln_current_file_type = UNDEFINED;
 
 void HTTPClient::start() {
     read_request();
@@ -55,19 +57,21 @@ void HTTPClient::read_request() {
 }
 
 std::string digestToString(const md5::digest_type &digest) {
-	const auto charDigest = reinterpret_cast<const char *>(&digest);
+	const auto charDigest = reinterpret_cast<const char*>(&digest);
 	std::string result;
 	boost::algorithm::hex(charDigest, charDigest + sizeof(md5::digest_type), std::back_inserter(result));
 	return result;
 }
 
 void HTTPClient::routing_media() {
+	response.set("Access-Control-Allow-Origin", "*");
+	response.result(http::status::bad_request);
 	std::stringstream ln_ss1(request.body()), ln_ss2(request.body());
 	std::string ln_boundary, ln_tmp;
-	std::getline(ln_ss1, ln_boundary); //TODO: break everything if can't getline
+	if (!std::getline(ln_ss1, ln_boundary)) {
+		return;
+	}
 	ln_boundary = ln_boundary.substr(0, ln_boundary.length() - 1); //чтобы убрать \r
-	const std::regex ln_regex("^Content-Disposition: form-data; name=\"([^\"]*)\".*");
-	enum ln_file_type {UNDEFINED, IMAGE, AUDIO} ln_current_file_type = UNDEFINED;
 	std::smatch ln_smatch;
 	while (std::getline(ln_ss1, ln_tmp) && ln_tmp.length() > 1) {
 		ln_tmp = ln_tmp.substr(0, ln_tmp.length() - 1);
@@ -83,7 +87,6 @@ void HTTPClient::routing_media() {
 	}
 	if (ln_current_file_type == UNDEFINED) {
 		std::cout << "Error: undefined file type" << std::endl;
-		response.result(http::status::bad_request);
 		return;
 	}
 	std::cout << "File type: " << ln_current_file_type << std::endl;
@@ -95,7 +98,6 @@ void HTTPClient::routing_media() {
 		ln_current_end = ln_ss1.tellg();
 		if (ln_current_end == ln_current_start) {
 			std::cout << "Error: can't parse form..." << std::endl;
-			response.result(http::status::bad_request);
 			return;
 		}
 		if (ln_current_end - ln_current_start == ln_boundary.length() + 4) {
@@ -109,24 +111,37 @@ void HTTPClient::routing_media() {
 	}
 	if (ln_file_end == ln_file_start) {
 		std::cout << "Error: file is empty" << std::endl;
-		response.result(http::status::bad_request);
 		return;
 	}
-	std::string ln_filename;
+	md5 ln_hash;
+	md5::digest_type ln_digest;
+	std::basic_string<char> ln_x = request.body().substr(ln_file_start, ln_file_end - ln_file_start - 2);
+	ln_hash.process_bytes(ln_x.data(), ln_x.size());
+	ln_hash.get_digest(ln_digest);
+	std::string ln_filename = "/home/nick/";
 	if (ln_current_file_type == IMAGE) {
-		md5 ln_hash;
-		md5::digest_type ln_digest;
-		ln_hash.process_bytes(request.body().data(), request.body().size());
-		ln_hash.get_digest(ln_digest);
-		ln_filename = "/home/nick/images/" + digestToString(ln_digest) + ".png";
+		ln_filename += "images/" + digestToString(ln_digest);
 	} else { //AUDIO
-		md5 ln_hash;
-		md5::digest_type ln_digest;
-		ln_hash.process_bytes(request.body().data(), request.body().size());
-		ln_hash.get_digest(ln_digest);
-		ln_filename = "/home/nick/audio/" + digestToString(ln_digest) + ".mp3";
+		ln_filename += "audio/" + digestToString(ln_digest);
 	}
-	if (!std::ifstream(ln_filename).good()) {
+	std::ifstream ln_ifstream(ln_filename);
+	while (ln_ifstream.good()) {
+		std::istreambuf_iterator<char> ln_it1(ln_ifstream);
+		const std::istreambuf_iterator<char> ln_it1_end;
+		auto ln_it2 = request.body().begin() + ln_file_start;
+		const auto ln_it2_end = request.body().begin() + ln_file_end - 2;
+		while (ln_it1 != ln_it1_end && ln_it2 < ln_it2_end && *ln_it1 == *ln_it2) {
+			ln_it1++;
+			ln_it2++;
+		}
+		if (ln_it1 == ln_it1_end && ln_it2 == ln_it2_end) {
+			break;
+		}
+		ln_filename += "0";
+		ln_ifstream = std::ifstream(ln_filename);
+	}
+	if (!ln_ifstream.good()) {
+		std::cout << "writing file..." << std::endl;
 		std::ofstream ln_ofstream(ln_filename);
 		for (auto it = request.body().begin() + ln_file_start, it_end =
 				request.body().begin() + ln_file_end - 2; it < it_end; it++) {
@@ -135,10 +150,9 @@ void HTTPClient::routing_media() {
 		ln_ofstream.flush();
 		ln_ofstream.close();
 	}
-	response.set("Access-Control-Allow-Origin", "*");
 	response.result(http::status::ok);
 	beast::ostream(response.body()) << ln_filename;
-	std::cout << "OK: media content loaded successfully" << std::endl;
+	std::cout << "OK: media content loaded successfully" << std::endl << "----------" << std::endl;
 }
 
 void HTTPClient::process_request() {
