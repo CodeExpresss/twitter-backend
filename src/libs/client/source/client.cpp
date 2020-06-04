@@ -40,26 +40,22 @@ void HTTPClient::session() {
 }
 
 void HTTPClient::read_request() {
-	std::cout << "here" << std::endl;
-    auto self = shared_from_this();
-    //http::request_parser<http::string_body> parser(request);
-	//parser.body_limit(8192);
-    http::async_read(socket, buffer, request, [self](beast::error_code ec, std::size_t bytes_transferred) {
-    	std::cout << "bytes_transfered = " << bytes_transferred << std::endl;
-    	boost::ignore_unused(bytes_transferred);
-    	std::cout << "error_code = " << ec << std::endl;
-    	if (!ec) {
-    		self->process_request();
-    	} else {
-    		self->response.result(http::status::bad_request);
-    	}
-    });
+	auto self = shared_from_this();
+	http::async_read(socket, buffer, request,
+	                 [self](beast::error_code ec, std::size_t bytes_transferred) {
+		                 boost::ignore_unused(bytes_transferred);
+		                 if (!ec) {
+			                 self->process_request();
+		                 } else {
+			                 self->response.result(http::status::bad_request);
+		                 }
+	                 });
 }
 
 std::string digestToString(const md5::digest_type &digest) {
-	const auto charDigest = reinterpret_cast<const char*>(&digest);
+	const auto char_digest = reinterpret_cast<const char*>(&digest);
 	std::string result;
-	boost::algorithm::hex(charDigest, charDigest + sizeof(md5::digest_type), std::back_inserter(result));
+	boost::algorithm::hex(char_digest, char_digest + sizeof(md5::digest_type), std::back_inserter(result));
 	return result;
 }
 
@@ -71,7 +67,8 @@ void HTTPClient::routing_media() {
 	if (!std::getline(ln_ss1, ln_boundary)) {
 		return;
 	}
-	ln_boundary = ln_boundary.substr(0, ln_boundary.length() - 1); //чтобы убрать \r
+	ln_boundary =
+			ln_boundary.substr(0, ln_boundary.length() - 1);  //чтобы убрать \r
 	std::smatch ln_smatch;
 	while (std::getline(ln_ss1, ln_tmp) && ln_tmp.length() > 1) {
 		ln_tmp = ln_tmp.substr(0, ln_tmp.length() - 1);
@@ -86,18 +83,17 @@ void HTTPClient::routing_media() {
 		}
 	}
 	if (ln_current_file_type == UNDEFINED) {
-		std::cout << "Error: undefined file type" << std::endl;
 		return;
 	}
 	std::cout << "File type: " << ln_current_file_type << std::endl;
-	size_t ln_file_start = ln_ss1.tellg(), ln_file_end, ln_current_start = ln_file_start, ln_current_end;
+	size_t ln_file_start = ln_ss1.tellg(), ln_file_end,
+			ln_current_start = ln_file_start, ln_current_end;
 	ln_ss2.ignore(ln_file_start);
 	while (true) {
 		ln_file_end = ln_current_start;
 		ln_ss1.ignore(UINT_MAX, '\n');
 		ln_current_end = ln_ss1.tellg();
 		if (ln_current_end == ln_current_start) {
-			std::cout << "Error: can't parse form..." << std::endl;
 			return;
 		}
 		if (ln_current_end - ln_current_start == ln_boundary.length() + 4) {
@@ -110,18 +106,18 @@ void HTTPClient::routing_media() {
 		ln_ss2.ignore(ln_current_start - ln_ss2.tellg());
 	}
 	if (ln_file_end == ln_file_start) {
-		std::cout << "Error: file is empty" << std::endl;
 		return;
 	}
 	md5 ln_hash;
 	md5::digest_type ln_digest;
-	std::basic_string<char> ln_x = request.body().substr(ln_file_start, ln_file_end - ln_file_start - 2);
+	std::basic_string<char> ln_x =
+			request.body().substr(ln_file_start, ln_file_end - ln_file_start - 2);
 	ln_hash.process_bytes(ln_x.data(), ln_x.size());
 	ln_hash.get_digest(ln_digest);
 	std::string ln_filename = "/home/nick/";
 	if (ln_current_file_type == IMAGE) {
 		ln_filename += "images/" + digestToString(ln_digest);
-	} else { //AUDIO
+	} else {  // AUDIO
 		ln_filename += "audio/" + digestToString(ln_digest);
 	}
 	std::ifstream ln_ifstream(ln_filename);
@@ -141,10 +137,10 @@ void HTTPClient::routing_media() {
 		ln_ifstream = std::ifstream(ln_filename);
 	}
 	if (!ln_ifstream.good()) {
-		std::cout << "writing file..." << std::endl;
 		std::ofstream ln_ofstream(ln_filename);
-		for (auto it = request.body().begin() + ln_file_start, it_end =
-				request.body().begin() + ln_file_end - 2; it < it_end; it++) {
+		for (auto it = request.body().begin() + ln_file_start,
+				     it_end = request.body().begin() + ln_file_end - 2;
+		     it < it_end; it++) {
 			ln_ofstream << *it;
 		}
 		ln_ofstream.flush();
@@ -152,7 +148,6 @@ void HTTPClient::routing_media() {
 	}
 	response.result(http::status::ok);
 	beast::ostream(response.body()) << ln_filename;
-	std::cout << "OK: media content loaded successfully" << std::endl << "----------" << std::endl;
 }
 
 void HTTPClient::process_request() {
