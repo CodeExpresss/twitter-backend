@@ -17,7 +17,7 @@ public:
 private:
     std::weak_ptr<DBController<DBConnection>> db_controller;
 
-    std::string generate_key(int profile_id);
+    std::string generate_key(const std::string &u_id);
 };
 
 #endif

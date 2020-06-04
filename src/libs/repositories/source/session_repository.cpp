@@ -4,21 +4,20 @@
 
 using boost::uuids::detail::md5;
 
-std::string toString(const md5::digest_type &digest)
-{
+std::string SessionRepository::generate_key(const std::string &u_id) {
+    md5 hash;
+    md5::digest_type digest;
+    hash.process_bytes(u_id.data(), u_id.size());
+    hash.get_digest(digest);
     const auto charDigest = reinterpret_cast<const char *>(&digest);
     std::string result;
-    boost::algorithm::hex(charDigest, charDigest + sizeof(md5::digest_type), std::back_inserter(result));
+    boost::algorithm::hex(charDigest, charDigest + sizeof(md5::digest_type),
+                          std::back_inserter(result));
     return result;
 }
 
 std::string SessionRepository::create(int user_id, err_code &rc) {
-    md5 hash;
-    md5::digest_type digest;
-    std::string u_id = std::to_string(user_id);
-    hash.process_bytes(u_id.data(), u_id.size());
-    hash.get_digest(digest);
-    std::string session_id = toString(digest);
+    std::string session_id = generate_key(std::to_string(user_id));
     std::vector<std::vector<std::string>> query_result = {};
     std::string query =
             (boost::format("insert into session values('%1%', %2%, now());") %
