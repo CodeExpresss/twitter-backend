@@ -37,7 +37,7 @@ public:
     int get_user_id_session(std::string& session_id);
     void delete_session(std::string& session_id);
     bool check_session(std::string& session_id);
-
+    std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> get_profile_tweets(int profile_id);
 
     User user_update(User user) {}
 

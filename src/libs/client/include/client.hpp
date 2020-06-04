@@ -45,6 +45,7 @@ private:
     static std::regex get_profile_regex;
     static std::regex current_user_regex;
     static std::regex get_news_feed_regex;
+    static std::regex get_profile_tweets_regex;
     static std::regex login_regex;
     static std::regex logout_regex;
     static std::regex user_update_regex;

@@ -11,9 +11,9 @@ DBController<Connection>::~DBController() {}
 template <class Connection>
 void DBController<Connection>::create_pool(int size) {
   lock_guard<mutex> locker_(mtx);
-  string host = "", db_name = "";
-  string user = "", password = "";
-  int port = 0;
+  string host = "127.0.0.1", db_name = "twitter";
+  string user = "twitter_user", password = "twitter_password";
+  int port = 5432;
   ifstream fin("../src/libs/data_base/include/config.txt", ios_base::in);
   if (fin.is_open()) {
     fin >> db_name >> user >> password >> host >> port;
@@ -52,7 +52,7 @@ bool DBController<Connection>::run_query(const string &query,
   auto conn = get_free_connection();
   PGresult *query_res = PQexec(conn->get_connection().get(), query.c_str());
   reset_connection(conn);
-  // cout << "PError: " << PQresultErrorMessage(query_res) << endl;
+   cout << "PError: " << PQresultErrorMessage(query_res) << endl;
   if (PQresultStatus(query_res) != PGRES_TUPLES_OK &&
       PQresultStatus(query_res) != PGRES_COMMAND_OK) {
     cout << "Error!" << endl;

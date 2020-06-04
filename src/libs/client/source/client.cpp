@@ -5,6 +5,7 @@ std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
 std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/.+");
 std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/");
 std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/");
+std::regex HTTPClient::get_profile_tweets_regex = std::regex("/api/profile/tweets/.+");
 std::regex HTTPClient::get_subscription_regex =
         std::regex("/api/user/subscription/.+");
 std::regex HTTPClient::tag_search_regex = std::regex("/api/tweet/tag/.+");
@@ -262,6 +263,15 @@ void HTTPClient::routing_get_method() {
 
         return;
 
+    } else if(std::regex_match(request_string,get_profile_tweets_regex)) {
+        auto cont = make_shared<GetTweetsController<Serialize<content>>>(worker);
+
+        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str();
+
+        return;
     }
 
     else if (std::regex_match(request_string, get_subscription_regex)) {

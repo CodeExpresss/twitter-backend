@@ -201,6 +201,19 @@ std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> UnitOfWork::
     return std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>(contents, votes);
 }
 
+std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> UnitOfWork::get_profile_tweets(int profile_id) {
+    err_code rc;
+    std::vector<Tweet> tweets = tweet_repository->get_by_profile_id(profile_id, rc);
+    std::vector<std::pair<Tweet, Profile>> contents = {};
+    std::vector<int> votes = {};
+    Profile profile = profile_repositrory->get_by_id(profile_id, rc);
+    for (int i = 0; i < tweets.size(); i++) {
+        contents.push_back(std::pair<Tweet, Profile>(tweets[i], profile));
+        votes.push_back(vote_repository->get_by_tweet_id(tweets[i].get_tweet_id(), rc));
+    }
+    return std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>(contents, votes);
+}
+
 std::pair<unsigned short int, std::string> UnitOfWork::vote(Vote vote) {
     err_code rc;
     int pid = vote.get_profile_id(), tid = vote.get_tweet_id();
