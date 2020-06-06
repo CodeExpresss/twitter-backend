@@ -1,6 +1,5 @@
-*.o
-*.exe
+cmake-build-debug
+googletest
+mybuild
 Makefile
-
-**/build/**
-.idea/
+.idea
