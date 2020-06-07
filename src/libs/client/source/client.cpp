@@ -4,13 +4,15 @@ std::shared_ptr<UnitOfWork> HTTPClient::worker = make_shared<UnitOfWork>();
 //регулярные выражения для GET
 std::regex HTTPClient::get_profile_regex = std::regex("/api/profile/.+");
 std::regex HTTPClient::current_user_regex = std::regex("/api/user/current/");
-std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/.+");
+std::regex HTTPClient::get_news_feed_regex = std::regex("/api/tweet/index/");
+std::regex HTTPClient::get_profile_tweets_regex = std::regex("/api/profile/tweets/.+");
 std::regex HTTPClient::get_subscription_regex =
         std::regex("/api/user/subscription/.+");
 std::regex HTTPClient::tag_search_regex = std::regex("/api/tweet/tag/.+");
 //регулярные выражения для POST
 std::regex HTTPClient::register_regex = std::regex("/api/user/register/");
 std::regex HTTPClient::login_regex = std::regex("/api/user/login/");
+std::regex HTTPClient::logout_regex = std::regex("/api/user/logout/");
 std::regex HTTPClient::user_update_regex = std::regex("/api/user/update/");
 std::regex HTTPClient::profile_update_regex =
         std::regex("/api/profile/update/");
@@ -28,7 +30,6 @@ void HTTPClient::start() {
 }
 
 void HTTPClient::session() {
-    std::string session_id;
     for (int i = request[http::field::cookie].find("=") + 1;
          i < request[http::field::cookie].size(); i++) {
         session_id += request[http::field::cookie][i];
@@ -200,11 +201,9 @@ void HTTPClient::routing_post_method() {
             auto username = json_request.get<std::string>("username");
             auto email = json_request.get<std::string>("email");
             auto password = json_request.get<std::string>("password");
-            auto avatar = json_request.get<std::string>("avatar");
-            auto birthday = json_request.get<std::string>("birthday");
 
-            auto cont = make_shared<SignUpController<Serialize<Profile>>>(
-                    worker, username, email, password, avatar, birthday);
+            auto cont = make_shared<SignUpController<Serialize<res_data>>>(
+                    worker, username, email, password);
 
             json_response = cont->get_queryset();
 
@@ -253,6 +252,21 @@ void HTTPClient::routing_post_method() {
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str();
+
+    } else if (std::regex_match(request_string, logout_regex)) {
+
+        auto cont = make_shared<LogoutController<Serialize<res_data>>>(
+                worker, session_id);
+
+        json_response = cont->get_queryset();
+        std::string query = "sessionid=1; HttpOnly; Path=/";
+
+        response.set(http::field::set_cookie, query);
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str();
+
+        return;
 
     } else if (std::regex_match(request_string, user_update_regex)) {
         auto id = json_request.get<int>("id");
@@ -330,16 +344,43 @@ void HTTPClient::routing_get_method() {
     std::stringstream ss;
 
     if (std::regex_match(request_string, current_user_regex)) {
-        auto cont = make_shared<GetProfileController<Serialize<Profile>>>(worker);
 
-        json_response = cont->get_queryset(profile_id);
+        if (profile_id == -1) {
+            json_response.put("status", 404);
+        } else {
+            auto cont = make_shared < GetProfileController < Serialize < Profile >> > (worker);
+
+            json_response = cont->get_queryset(profile_id);
+        }
 
         boost::property_tree::json_parser::write_json(ss, json_response);
         beast::ostream(response.body()) << ss.str();
 
         return;
 
-    } else if (std::regex_match(request_string, get_subscription_regex)) {
+    }  else if (std::regex_match(request_string, get_profile_regex)) {
+        int id = std::stoi(query_string_map["id"]);
+        auto cont = make_shared<ViewProfileController<Serialize<profile>>>(worker, id, profile_id);
+
+        json_response = cont->get_queryset();
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str();
+
+        return;
+
+    } else if(std::regex_match(request_string,get_profile_tweets_regex)) {
+        auto cont = make_shared<GetTweetsController<Serialize<content>>>(worker);
+
+        json_response = cont->get_queryset(std::stoi(query_string_map["id"]));
+
+        boost::property_tree::json_parser::write_json(ss, json_response);
+        beast::ostream(response.body()) << ss.str();
+
+        return;
+    }
+
+    else if (std::regex_match(request_string, get_subscription_regex)) {
         auto cont =
                 make_shared<SubscriptionController<Serialize<std::vector<Profile>>>>(
                         worker);

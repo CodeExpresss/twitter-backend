@@ -9,6 +9,7 @@ set(CMAKE_CXX_FLAGS "-g -O0 -Wall -fprofile-arcs -ftest-coverage -I /usr/include
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 set(INC
+    include/get_profile_tweets.hpp
     include/session_controller.hpp
     include/view_profile_controller.hpp
     include/create_tweet_controller.hpp

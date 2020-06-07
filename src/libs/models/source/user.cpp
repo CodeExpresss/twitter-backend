@@ -10,6 +10,7 @@ User::User(int id, std::string& password,
 User::User(int id, std::string email, std::string password)
     : user_id(id), password(std::move(password)),
     email(std::move(email)) {
+    is_active = true;
 }
 
 bool User::login() {}

@@ -27,7 +27,7 @@ int VoteRepository::get_by_tweet_id(int t_id, err_code &rc) {
   std::vector<std::vector<std::string>> query_result = {};
   std::string query =
       (boost::format(
-           "select count(*) from vote where tweet_id = %1%;") %
+              "select count(*) from vote where tweet_id = %1% and is_vote = true;") %
        t_id)
           .str();
   int result = 0;
@@ -68,7 +68,7 @@ void VoteRepository::update(Vote &item, err_code &rc) {
   std::vector<std::vector<std::string>> query_result = {};
   std::string query =
       (boost::format(
-           "update vote set profile_id = %1%, tweet_id = %2%, is_vote = %3%;") %
+           "update vote set is_vote = %3% where profile_id = %1% AND tweet_id = %2%;") %
        profile_id % tweet_id % boost::io::group(std::boolalpha, visible))
           .str();
   if (auto ctrl = db_controller.lock()) {

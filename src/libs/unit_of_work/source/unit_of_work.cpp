@@ -12,6 +12,11 @@ std::pair<int, std::string> UnitOfWork::login(User user) {
     }
 }
 
+std::pair<unsigned short, std::string> UnitOfWork::logout(std::string& session) {
+    delete_session(session);
+    return std::make_pair(200, "ok");
+}
+
 
 std::pair<unsigned short int, std::string> UnitOfWork::sing_up(User user, Profile profile) {
     err_code rc;
@@ -35,8 +40,10 @@ std::pair<unsigned short int, std::string> UnitOfWork::sing_up(User user, Profil
         return std::pair<unsigned short, std::string>(404, "DB err");
     }
 
+    profile.set_user_id(user_repository->check_last_id(rc));
     //profile_repositrory->check_profile_username(profile, rc);
     profile_repositrory->create(profile, rc);
+    profile.set_profile_id(profile_repositrory->check_last_id(rc));
     if (rc != OK) {
         return std::pair<unsigned short, std::string>(404, "err");
     }
@@ -194,19 +201,40 @@ std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> UnitOfWork::
     return std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>(contents, votes);
 }
 
+std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> UnitOfWork::get_profile_tweets(int profile_id) {
+    err_code rc;
+    std::vector<Tweet> tweets = tweet_repository->get_by_profile_id(profile_id, rc);
+    std::vector<std::pair<Tweet, Profile>> contents = {};
+    std::vector<int> votes = {};
+    Profile profile = profile_repositrory->get_by_id(profile_id, rc);
+    for (int i = 0; i < tweets.size(); i++) {
+        contents.push_back(std::pair<Tweet, Profile>(tweets[i], profile));
+        votes.push_back(vote_repository->get_by_tweet_id(tweets[i].get_tweet_id(), rc));
+    }
+    return std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>(contents, votes);
+}
+
 std::pair<unsigned short int, std::string> UnitOfWork::vote(Vote vote) {
     err_code rc;
     int pid = vote.get_profile_id(), tid = vote.get_tweet_id();
+    int votes = 0;
     if (vote_repository->get_by_id(pid, tid, rc)) {
         if (rc == OK)
             vote_repository->create(vote, rc);
         else if (rc == DELETED)
             vote_repository->update(vote, rc);
 
-        if (rc == OK)
-            return std::pair<unsigned short, std::string>(200, "Ok");
-        else
+        if (rc == OK) {
+            votes = vote_repository->get_by_tweet_id(tid, rc);
+            return std::pair<unsigned short, std::string>(votes, "Ok");
+        } else
             return std::pair<unsigned short, std::string>(404, "err");
+    } else {
+        if (rc == ALREADY_EXIST) {
+            vote_repository->erase(pid, tid, rc);
+            votes = vote_repository->get_by_tweet_id(tid, rc);
+            return std::pair<unsigned short, std::string>(votes, "Ok");
+        }
     }
     return std::pair<unsigned short, std::string>(403, "forbidden");
 }

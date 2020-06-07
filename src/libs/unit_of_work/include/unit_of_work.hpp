@@ -25,7 +25,7 @@ public:
     std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> get_index_tweet(int profile_id);
     std::pair<int, std::string> login(User user);
     std::pair<unsigned short int, std::string> authenticate() {}
-    std::pair<unsigned short int, std::string> logout(User user) {}
+    std::pair<unsigned short int, std::string> logout(std::string& session);
     std::pair<unsigned short int, std::string> following(Subscription subscription);
     bool check_subscriptions(Subscription& sub, err_code rc) {
         bool status = subscription_repository->check_subscription(sub, rc);
@@ -37,7 +37,7 @@ public:
     int get_user_id_session(std::string& session_id);
     void delete_session(std::string& session_id);
     bool check_session(std::string& session_id);
-
+    std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>> get_profile_tweets(int profile_id);
 
     User user_update(User user) {}
 
