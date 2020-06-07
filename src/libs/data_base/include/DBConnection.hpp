@@ -3,7 +3,7 @@
 
 #include <memory>
 #include <string>
-#include <libpq-fe.h>
+#include <postgresql/libpq-fe.h>
 
 using namespace std;
 

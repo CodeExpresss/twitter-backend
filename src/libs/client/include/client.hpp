@@ -10,6 +10,8 @@
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/regex.hpp>
 #include <boost/algorithm/string.hpp>
+#include <boost/uuid/detail/md5.hpp>
+#include <boost/algorithm/hex.hpp>
 #include <regex>
 #include <chrono>
 #include <cstdlib>
@@ -29,6 +31,7 @@ using tcp = boost::asio::ip::tcp;
 using res_data = std::pair<unsigned short int, std::string>;
 using content = std::pair<std::vector<std::pair<Tweet, Profile>>, std::vector<int>>;
 using profile = std::pair<Profile, bool>;
+using boost::uuids::detail::md5;
 
 class HTTPClient : public std::enable_shared_from_this<HTTPClient> {
 public:
@@ -85,6 +88,8 @@ private:
     void routing_get_method();
 
     void routing_post_method();
+    
+    void routing_media();
 
     // записать ответ в сокет
     void write_response();
